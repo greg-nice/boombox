@@ -14,19 +14,21 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    playlists = db.Relationship("Playlist", back_populates="user")
+
     followers = db.relationship(
         'User',
         secondary=users_users,
-        primaryjoin=(users_users.followed_id==id),
-        secondaryjoin=(users_users.c.follower_id==id),
+        primaryjoin=(users_users.followed_id == id),
+        secondaryjoin=(users_users.c.follower_id == id),
         backref=db.backref('following', lazy='dynamic'),
         lazy='dynamic'
     )
 
-    followedPlaylists = db.relationship(
+    followed_playlists = db.relationship(
         'Playlist',
         secondary=users_playlists,
-        back_populates="users"
+        back_populates="playlist_followers"
     )
 
     @property

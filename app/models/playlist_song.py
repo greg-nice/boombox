@@ -10,3 +10,7 @@ class Playlist_Song(db.Model):
     song_id = db.Column(db.Integer, db.ForeignKey('songs.id'), nullable=False)
     order = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datatime.datetime.now, nullable=False)
+
+    playlist = db.Relationship("Playlist", back_populates="playlist_songs")
+    song = db.Relationship("Song", back_populates="playlist_songs")
+

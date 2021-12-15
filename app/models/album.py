@@ -8,3 +8,6 @@ class Album(db.Model):
     title = db.Column(db.String(255), nullable=False)
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
     pic = db.Column(db.String(255), nullable=False)
+
+    songs = db.relationship("Song", back_populates="album")
+    artist = db.relationship("Artist", back_populates="albums")

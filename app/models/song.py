@@ -11,3 +11,7 @@ class Song(db.Model):
     song_num = db.Column(db.Integer, nullable=False)
     length = db.Column(db.Integer, nullable=False)
     data_url = db.COlumn(db.String(255), nullable=False)
+
+    playlist_songs = db.relationship("Playlist_Song", back_populates="song")
+    album = db.relationship("Album", back_populates="songs")
+    artist = db.relationship("Artist", back_poulates="songs")

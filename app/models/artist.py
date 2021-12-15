@@ -7,3 +7,6 @@ class Artist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     pic = db.Column(db.String(255), nullable=False)
+
+    albums = db.relationship("Album", back_populates="artist")
+    songs = db.relationship("Song", back_populates="artist")
