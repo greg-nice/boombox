@@ -15,10 +15,10 @@ class Playlist(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
 
-    user = db.Relationship("User", back_populates="playlists")
-    playlist_songs = db.Relationship("Playlist_Song", back_populates="playlist")
+    user = db.relationship("User", back_populates="playlists")
+    playlist_songs = db.relationship("Playlist_Song", back_populates="playlist", cascade="all, delete-orphan")
 
-    playlist_followers = db.relationship(
+    list_followers = db.relationship(
         "User",
         secondary=users_playlists,
         back_populates="followed_playlists"

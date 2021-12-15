@@ -10,8 +10,8 @@ class Song(db.Model):
     album_id = db.Column(db.Integer, db.ForeignKey('albums.id'), nullable=False)
     song_num = db.Column(db.Integer, nullable=False)
     length = db.Column(db.Integer, nullable=False)
-    data_url = db.COlumn(db.String(255), nullable=False)
+    data_url = db.Column(db.String(255), nullable=False)
 
-    playlist_songs = db.relationship("Playlist_Song", back_populates="song")
+    playlist_songs = db.relationship("Playlist_Song", back_populates="song", cascade="all, delete-orphan")
     album = db.relationship("Album", back_populates="songs")
-    artist = db.relationship("Artist", back_poulates="songs")
+    artist = db.relationship("Artist", back_populates="songs")

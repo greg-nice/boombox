@@ -8,5 +8,5 @@ class Artist(db.Model):
     name = db.Column(db.String(255), nullable=False)
     pic = db.Column(db.String(255), nullable=False)
 
-    albums = db.relationship("Album", back_populates="artist")
-    songs = db.relationship("Song", back_populates="artist")
+    albums = db.relationship("Album", back_populates="artist", cascade="all, delete-orphan")
+    songs = db.relationship("Song", back_populates="artist", cascade="all, delete-orphan")
