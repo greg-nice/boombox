@@ -6,7 +6,7 @@ def seed_artists():
     beasties = Artist(
         name='Beastie Boys', pic='https://media.wired.com/photos/5e1f74f30a849800092e8d47/master/w_960')
     rage = Artist(
-        name='Rage Against the Machine', pic='https://images.radiox.co.uk/images/160851', password='password')
+        name='Rage Against the Machine', pic='https://images.radiox.co.uk/images/160851')
 
     db.session.add(beasties)
     db.session.add(rage)
@@ -19,6 +19,6 @@ def seed_artists():
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
-def undo_users():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+def undo_artists():
+    db.session.execute('TRUNCATE artists RESTART IDENTITY CASCADE;')
     db.session.commit()
