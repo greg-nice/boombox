@@ -4,6 +4,9 @@ from flask_login import UserMixin
 
 from .users_users import users_users
 from .users_playlists import users_playlists
+from .users_songs import users_songs
+from .users_albums import users_albums
+from .users_artists import users_artists
 
 
 class User(db.Model, UserMixin):
@@ -12,6 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    profile_pic = db.Column(db.String(255))
     hashed_password = db.Column(db.String(255), nullable=False)
 
     playlists = db.relationship("Playlist", back_populates="user", cascade="all, delete-orphan")
@@ -31,6 +35,24 @@ class User(db.Model, UserMixin):
         back_populates="list_followers"
     )
 
+    followed_songs = db.relationship(
+        'Song',
+        secondary=users_songs,
+        back_populates="song_followers"
+    )
+
+    followed_albums = db.relationship(
+        'Album',
+        secondary=users_albums,
+        back_populates="album_followers"
+    )
+
+    followed_artists = db.relationship(
+        'Artist',
+        secondary=users_artists,
+        back_populates="artist_followers"
+    )
+
     @property
     def password(self):
         return self.hashed_password
@@ -48,9 +70,10 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'playlists': [playlist.id for playlist in self.playlists],
-            'following': [followed.id for followed in self.following],
-            'followers': [follower.id for follower in self.followers],
-            'followed_playlists': [playlist.id for playlist in self.followed_playlists]
+            'profile_pic': self.profile_pic if self.profile_pic else "none"
+            # 'following': [followed.id for followed in self.following],
+            # 'followers': [follower.id for follower in self.followers],
+            # 'followed_playlists': [playlist.id for playlist in self.followed_playlists]
         }
 
     def to_dict_verbose(self):
@@ -59,7 +82,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'playlists': [playlist.name for playlist in self.playlists],
-            'following': [followed.username for followed in self.following],
-            'followers': [follower.username for follower in self.followers],
-            'followed_playlists': [playlist.name for playlist in self.followed_playlists]
+            # 'following': [followed.username for followed in self.following],
+            # 'followers': [follower.username for follower in self.followers],
+            # 'followed_playlists': [playlist.name for playlist in self.followed_playlists]
         }

@@ -1,5 +1,7 @@
 from .db import db
 
+from .users_albums import users_albums
+
 
 class Album(db.Model):
     __tablename__ = "albums"
@@ -11,3 +13,9 @@ class Album(db.Model):
 
     songs = db.relationship("Song", back_populates="album", cascade="all, delete-orphan")
     artist = db.relationship("Artist", back_populates="albums")
+
+    album_followers = db.relationship(
+        "User",
+        secondary=users_albums,
+        back_populates="followed_albums"
+    )
