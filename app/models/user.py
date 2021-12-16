@@ -70,9 +70,10 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'playlists': [playlist.id for playlist in self.playlists],
-            'following': [followed.id for followed in self.following],
-            'followers': [follower.id for follower in self.followers],
-            'followed_playlists': [playlist.id for playlist in self.followed_playlists]
+            'profile_pic': self.profile_pic if self.profile_pic else "none"
+            # 'following': [followed.id for followed in self.following],
+            # 'followers': [follower.id for follower in self.followers],
+            # 'followed_playlists': [playlist.id for playlist in self.followed_playlists]
         }
 
     def to_dict_verbose(self):
@@ -81,7 +82,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'playlists': [playlist.name for playlist in self.playlists],
-            'following': [followed.username for followed in self.following],
-            'followers': [follower.username for follower in self.followers],
-            'followed_playlists': [playlist.name for playlist in self.followed_playlists]
+            # 'following': [followed.username for followed in self.following],
+            # 'followers': [follower.username for follower in self.followers],
+            # 'followed_playlists': [playlist.name for playlist in self.followed_playlists]
         }
