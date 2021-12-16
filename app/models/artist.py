@@ -2,6 +2,7 @@ from .db import db
 
 from .users_artists import users_artists
 
+
 class Artist(db.Model):
     __tablename__ = "artists"
 

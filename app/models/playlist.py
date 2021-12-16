@@ -3,6 +3,7 @@ import datetime
 
 from .users_playlists import users_playlists
 
+
 class Playlist(db.Model):
     __tablename__ = 'playlists'
 
