@@ -1,5 +1,7 @@
 from .db import db
 
+from .users_albums import users_albums
+
 
 class Album(db.Model):
     __tablename__ = "albums"

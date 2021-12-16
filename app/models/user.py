@@ -4,6 +4,9 @@ from flask_login import UserMixin
 
 from .users_users import users_users
 from .users_playlists import users_playlists
+from .users_songs import users_songs
+from .users_albums import users_albums
+from .users_artists import users_artists
 
 
 class User(db.Model, UserMixin):
