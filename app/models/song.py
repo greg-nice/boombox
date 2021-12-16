@@ -15,3 +15,9 @@ class Song(db.Model):
     playlist_songs = db.relationship("Playlist_Song", back_populates="song", cascade="all, delete-orphan")
     album = db.relationship("Album", back_populates="songs")
     artist = db.relationship("Artist", back_populates="songs")
+
+    song_followers = db.relationship(
+        "User",
+        secondary=users_songs,
+        back_populates="followed_songs"
+    )

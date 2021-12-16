@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    profile_pic = db.Column(db.String(255))
     hashed_password = db.Column(db.String(255), nullable=False)
 
     playlists = db.relationship("Playlist", back_populates="user", cascade="all, delete-orphan")
@@ -29,6 +30,24 @@ class User(db.Model, UserMixin):
         'Playlist',
         secondary=users_playlists,
         back_populates="list_followers"
+    )
+
+    followed_songs = db.relationship(
+        'Song',
+        secondary=users_songs,
+        back_populates="song_followers"
+    )
+
+    followed_albums = db.relationship(
+        'Album',
+        secondary=users_albums,
+        back_populates="album_followers"
+    )
+
+    followed_artists = db.relationship(
+        'Artist',
+        secondary=users_artists,
+        back_populates="artist_followers"
     )
 
     @property
