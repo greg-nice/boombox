@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Playlist
-from app.forms import PlayListForm
+from app.forms import PlaylistForm
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -15,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # GET ALL OF SESSION USER'S PLAYLISTS
-@user_routes.route('/')
+@playlist_routes.route('/')
 @login_required
 def get_sessionuser_playlists():
     user_id = current_user.id
@@ -59,7 +59,7 @@ def create_playlist(id):
 # UPDATE PLAYLIST
 @playlist_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
-def update_playlist(id)
+def update_playlist(id):
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -81,6 +81,6 @@ def update_playlist(id)
 @login_required
 def delete_one_playlist(id):
     deleted_playlist = Playlist.query.get(id)
-        db.session.delete(playlist)
-        db.session.commit()
-        return {"delete": id}
+    db.session.delete(playlist)
+    db.session.commit()
+    return {"delete": id}

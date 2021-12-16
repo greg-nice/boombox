@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User, Playlist
-from app.forms import PlaylistForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -31,6 +30,9 @@ def user(id):
 #GET ALL OF ANY USER'S PLAYLISTS
 @user_routes.route('/<int:id>/playlists')
 def get_user_playlists(id):
-    playlists = Playlist.query.filter(Playlist.user_id == id).all()
+    if id == current_user.id:
+        playlists = Playlist.query.filter(Playlist.user_id == id).all()
+    else:
+        playlists = Playlist.query.filter(Playlist.user_id == id and Playlist.public == True).all()
     if playlists:
         return #stuff

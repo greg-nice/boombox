@@ -26,3 +26,13 @@ class Playlist(db.Model):
         back_populates="followed_playlists"
     )
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'pic': self.pic,
+            'description': self.description,
+            'public': self.public,
+            'updated_at': self.updated_at
+        }
