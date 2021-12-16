@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     playlists = db.relationship("Playlist", back_populates="user", cascade="all, delete-orphan")
 
-    users_users = db.relationship(
+    followers = db.relationship(
         'User',
         secondary=users_users,
         primaryjoin=(users_users.c.followed_id == id),
@@ -47,5 +47,19 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'playlists': [playlist.name for playlist in self.playlists]
+            'playlists': [playlist.id for playlist in self.playlists],
+            'following': [followed.id for followed in self.following],
+            'followers': [follower.id for follower in self.followers],
+            'followed_playlists': [playlist.id for playlist in self.followed_playlists]
+        }
+
+    def to_dict_verbose(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'playlists': [playlist.name for playlist in self.playlists],
+            'following': [followed.username for followed in self.following],
+            'followers': [follower.username for follower in self.followers],
+            'followed_playlists': [playlist.name for playlist in self.followed_playlists]
         }

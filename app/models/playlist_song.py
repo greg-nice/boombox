@@ -11,6 +11,7 @@ class Playlist_Song(db.Model):
     order = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
 
-    playlist = db.relationship("Playlist", back_populates="playlist_songs")
+    playlist = db.relationship("Playlist", back_populates="list_songs")
+    
     song = db.relationship("Song", back_populates="playlist_songs")
 

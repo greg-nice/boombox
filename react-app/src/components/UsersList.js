@@ -10,14 +10,23 @@ function UsersList() {
       const responseData = await response.json();
       setUsers(responseData.users);
     }
-    fetchData();
+    fetchData()
   }, []);
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
-        <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
-      </li>
+      <div key={user.id}>
+        <li>
+          <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+        </li>
+        <div>Id: {user.id}</div>
+        <div>Email: {user.email}</div>
+        <div>User Playlists: {user.playlists.map(playlist => <span key={playlist}>* {playlist} * </span>)}</div>
+        <div>Following (Users): {user.following}</div>
+        <div>Followers (Users): {user.followers}</div>
+        <div>Following (Playlists): {user.followed_playlists}</div>
+        <br></br>
+      </div>
     );
   });
 
