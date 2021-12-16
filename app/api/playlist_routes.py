@@ -48,7 +48,7 @@ def create_playlist(id):
             name=form.data["name"],
             pic=form.data["pic"],
             description=form.data["description"],
-            public=form.data["public"],
+            public=form.data["public"]
         )
         db.session.add(new_playlist)
         db.session.commit()
@@ -60,24 +60,27 @@ def create_playlist(id):
 @playlist_routes.route('/<int:id>', methods=["PATCH"])
 @login_required
 def update_playlist(id)
-    form = PlaylistForm
-    playlist = Playlist.query.get(playlist_id)
-    if playlist:
-        #playlist.fieldname = stuff
+    form = PlaylistForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        updated_playlist = Playlist.query.get(id)
+
+        updated_playlist.name=form.data["name"]
+        updated_playlist.pic=form.data["pic"]
+        updated_playlist.description=form.data["description"]
+        updated_playlist.public=form.data["public"]
+
         db.session.commit()
-        return #stuff
-    else:
-        return #stuff
+        return updated_playlist.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # DELETE ONE PLAYLIST
-@playlist_routes.route('/<int:id>')
+@playlist_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_one_playlist(id):
-    playlist = Playlist.query.get(id)
-    if playlist:
+    deleted_playlist = Playlist.query.get(id)
         db.session.delete(playlist)
         db.session.commit()
-        return #stuff
-    else:
-        return #stuff
+        return {"delete": id}
