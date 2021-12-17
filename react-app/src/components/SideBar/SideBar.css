@@ -1,0 +1,18 @@
+.sidebar-container {
+    background-color: rgb(24,24,24);
+    color:rgb(179,179,179);
+    width: 200px;
+    height: 50vw;
+}
+
+.sidebar-subcontainer {
+    padding: 1rem;
+}
+
+.sidebar-item {
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    color:white;
+}
