@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
+import OnePlaylist from './components/OnePlaylist/';
 import { authenticate } from './store/session';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar loaded={loaded}/>
+      <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -42,8 +43,11 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <HomePage />
+          <HomePage loaded={loaded}/>
         </ProtectedRoute>
+        <Route path='/playlists/:playlistId' exact={true}>
+          <OnePlaylist />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

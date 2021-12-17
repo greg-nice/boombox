@@ -19,9 +19,11 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def get_sessionuser_playlists():
     user_id = current_user.id
-    playlists = Playlist.query.filter(Playlist.user_id == user_id)
+    playlists = Playlist.query.filter(Playlist.user_id == user_id).all()
+    print("SO FRESH")
     if playlists:
-        return {playlist.name for playlist in playlists} #fix this
+        print("SUPER DOPE")
+        return {playlist.id: playlist.to_dict() for playlist in playlists}
 
 
 # GET ONE PLAYLIST

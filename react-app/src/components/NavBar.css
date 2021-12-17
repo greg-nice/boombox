@@ -9,7 +9,7 @@
 }
 
 #home-button-container {
-    line-height: 1.6rem;
+    /* line-height: 1.6rem; */
 }
 
 #login-buttons-group {
@@ -37,7 +37,6 @@
     border-bottom-right-radius: 500px;
     border-bottom-left-radius: 500px;
     font-family: Helvetica, Arial, sans-serif;
-    cursor: pointer;
 }
 
 #signup-button {
@@ -64,6 +63,11 @@
     cursor: pointer;
 }
 
+#sign-up-link {
+    text-decoration: none;
+    color: white;
+}
+
 #login-button {
     border: 2px;
     padding: 8px 34px;
@@ -86,4 +90,13 @@
     border-bottom-left-radius: 500px;
     font-family: Helvetica, Arial, sans-serif;
     cursor: pointer;
+}
+
+#demo-span {
+    cursor:pointer;
+}
+
+.nav-link {
+    color:white;
+    text-decoration: none;
 }

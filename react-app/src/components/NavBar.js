@@ -6,7 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 import './NavBar.css';
 import { login } from '../store/session';
 
-const NavBar = ({loaded}) => {
+const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -36,14 +36,14 @@ const NavBar = ({loaded}) => {
     sessionLinks = (
       <>
         <div id="login-buttons-group">
-          <button id="demo-button" onClick={handleClick}>Demo</button>
+          <button id="demo-button"><span id="demo-span" onClick={handleClick}>Demo</span></button>
           <button id="signup-button">
-            <NavLink id="sign-up-link" to='/sign-up' exact={true} activeClassName='active'>
+            <NavLink id="sign-up-link" to='/sign-up' exact={true}>
               Sign Up
             </NavLink>
           </button>
           <button id="login-button">
-            <NavLink to='/login' exact={true} activeClassName='active'>
+            <NavLink to='/login' exact={true}>
               Log In
             </NavLink>
           </button>
@@ -55,17 +55,17 @@ const NavBar = ({loaded}) => {
   return (
     <nav className="nav-container">
       <div id="home-button-container">
-        <NavLink to='/' exact={true} activeClassName='active'>
+        <NavLink className="nav-link" to='/' exact={true}>
           BOOMBOX
         </NavLink>
       </div>
       <div>
-        <NavLink to='/users' exact={true} activeClassName='active'>
+        <NavLink className='nav-link' to='/users' exact={true}>
           Users
         </NavLink>
       </div>
       <div>
-        {loaded && sessionLinks}
+        {sessionLinks}
       </div>
     </nav>
   );
