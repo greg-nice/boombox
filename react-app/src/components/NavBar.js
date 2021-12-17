@@ -53,21 +53,23 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="nav-container">
-      <div id="home-button-container">
-        <NavLink className="nav-link" to='/' exact={true}>
-          BOOMBOX
-        </NavLink>
-      </div>
-      <div>
-        <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
-          Users
-        </NavLink>
-      </div>
-      <div>
-        {sessionLinks}
-      </div>
-    </nav>
+    <div className="top-bar">
+      <header className="top-bar-and-user-menu">
+        <div id="home-button-container">
+          <NavLink id="boombox-logo-link" className="nav-link" to='/' exact={true}>
+            BOOMBOX
+          </NavLink>
+        </div>
+        <div>
+          <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
+            Users
+          </NavLink>
+        </div>
+        <div>
+          {sessionLinks}
+        </div>
+      </header>
+    </div>
   );
 }
 
