@@ -1,4 +1,8 @@
-.nav-container {
+.top-bar {
+    
+}
+
+.top-bar-and-user-menu {
     background-color: rgb(24, 24, 24);
     display: flex;
     align-items: center;
@@ -6,10 +10,16 @@
     margin-bottom: 2rem;
     padding: 1rem;
     font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 #home-button-container {
     /* line-height: 1.6rem; */
+}
+
+#boombox-logo-link {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 #login-buttons-group {
