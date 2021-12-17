@@ -2,7 +2,7 @@
     background-color: rgb(24,24,24);
     color:rgb(179,179,179);
     width: 200px;
-    height: 50vw;
+    height: fit-content;
 }
 
 .sidebar-subcontainer {

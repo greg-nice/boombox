@@ -24,14 +24,14 @@ const HomePage = () => {
     // if (user && playlistsLoaded) {
     if (user && playlists) {
         return (
-            <>
+            <div>
                 <h1>Hello, {user.username}!</h1>
                 {playlists.map(playlist => {
                     return (
                         <div key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
                     )
                 })}
-            </>
+            </div>
         )
     } else {
         return null;

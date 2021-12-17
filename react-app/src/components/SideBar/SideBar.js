@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import { getSuserPlaylists } from '../../store/playlists';
+import { getSuserPlaylists } from '../../store/playlists';
 import './SideBar.css'
 
 const SideBar = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
     // const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
     const user = useSelector(state => state.session.user);
@@ -35,17 +35,19 @@ const SideBar = () => {
                     <div className="sidebar-item">Create Playlist</div>
                     <div className="sidebar-item">Liked Songs</div>
                 </div>
-                <div className="sidebar-subcontainer">
+                {<div className="sidebar-subcontainer">
                     {playlists.map(playlist => {
                         return (
                             <div className="sidebar-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
                         )
                     })}
-                </div>
+                </div>}
             </div>
         )
     } else {
-        return null;
+        return (
+            null
+        )
     }
 }
 
