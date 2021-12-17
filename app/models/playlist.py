@@ -3,12 +3,13 @@ import datetime
 
 from .users_playlists import users_playlists
 
+
 class Playlist(db.Model):
     __tablename__ = 'playlists'
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), default="My New Playlist", nullable=False)
     pic = db.Column(db.String(255))
     description = db.Column(db.String(255))
     public = db.Column(db.Boolean, default=False, nullable=False)
@@ -25,3 +26,14 @@ class Playlist(db.Model):
         back_populates="followed_playlists"
     )
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'pic': self.pic,
+            'description': self.description,
+            'public': self.public,
+            'updated_at': self.updated_at,
+            'list_songs': [list_song.id for list_song in self.list_songs]
+        }

@@ -22,7 +22,7 @@ function UsersList() {
         <div>Id: {user.id}</div>
         <div>Email: {user.email}</div>
         <div>Profile Pic URL: {user.profile_pic}</div>
-        <div>User Playlists: {user.playlists.map(playlist => <span key={playlist}>* {playlist} * </span>)}</div>
+        {/* <div>User Playlists: {user.playlists.map(playlist => <span key={playlist}>* {playlist} * </span>)}</div> */}
         {/* <div>Following (Users): {user.following}</div>
         <div>Followers (Users): {user.followers}</div>
         <div>Following (Playlists): {user.followed_playlists}</div> */}

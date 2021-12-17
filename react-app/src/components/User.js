@@ -34,9 +34,9 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
-      <li>
+      {/* <li>
         <strong>Playlists</strong>{user.playlists && user.playlists.map(playlist => <p key={playlist}>{playlist}</p>)}
-      </li>
+      </li> */}
     </ul>
   );
 }
