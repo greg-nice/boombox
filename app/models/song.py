@@ -23,3 +23,16 @@ class Song(db.Model):
         secondary=users_songs,
         back_populates="followed_songs"
     )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "artist_id": self.artist_id,
+            "album_id": self.album_id,
+            "song_num": self.song_num,
+            "length": self.length,
+            "data_url": self.data_url,
+            "album": self.album.title,
+            "artist": self.artist.name
+        }

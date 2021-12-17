@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPlaylist } from '../../store/playlist';
+import { getPlaylistSongs } from '../../store/playlist_songs'
 import OnePlaylistView from './OnePlaylist';
 import { useParams } from 'react-router-dom';
 
 const OnePlaylist = () => {
     const dispatch = useDispatch();
-    const [listLoaded, setListLoaded] = useState(false);
+    const [playlistLoaded, setPlaylistLoaded] = useState(false);
+    // const [playlistSongsLoaded, setPlaylistSongsLoaded] = useState(false);
     const {playlistId} = useParams();
 
     useEffect(() => {
         (async () => {
             await dispatch(getPlaylist(playlistId));
-            setListLoaded(true);
+            setPlaylistLoaded(true);
+
         })();
     }, [dispatch, playlistId]);
 
-    if (listLoaded) {
+    // useEffect(() => {
+    //     if (playlistLoaded) {
+    //         (async () => {
+    //             await dispatch(getPlaylistSongs(playlistId));
+    //             setPlaylistSongsLoaded(true)
+    //         })();
+    //     }
+    // }, [dispatch, playlistLoaded])
+
+    // if (playlistLoaded && playlistSongsLoaded) {
+    if (playlistLoaded) {
         return (
             <>
                 <OnePlaylistView />

@@ -1,6 +1,6 @@
 // ACTIONS
 
-const LOAD_PLAYLIST = 'playlist/GET_PLAYLIST';
+const LOAD_PLAYLIST = 'playlist/LOAD_PLAYLIST';
 const REMOVE_PLAYLIST = 'playlist/REMOVE_PLAYLIST'
 
 // ACTION CREATORS

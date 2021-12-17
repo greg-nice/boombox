@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
 
+
     return (
         <>
             {playlist.id}

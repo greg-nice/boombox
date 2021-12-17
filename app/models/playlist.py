@@ -35,5 +35,5 @@ class Playlist(db.Model):
             'description': self.description,
             'public': self.public,
             'updated_at': self.updated_at,
-            'list_songs': [list_song.id for list_song in self.list_songs]
+            'playlist_songs': [list_song.to_dict() for list_song in self.list_songs]
         }
