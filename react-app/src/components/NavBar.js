@@ -38,12 +38,12 @@ const NavBar = () => {
         <div id="login-buttons-group">
           <button id="demo-button"><span id="demo-span" onClick={handleClick}>Demo</span></button>
           <button id="signup-button">
-            <NavLink id="sign-up-link" to='/sign-up' exact={true}>
+            <NavLink id="signup-link" to='/sign-up' exact={true}>
               Sign Up
             </NavLink>
           </button>
           <button id="login-button">
-            <NavLink to='/login' exact={true}>
+            <NavLink id="login-link" to='/login' exact={true}>
               Log In
             </NavLink>
           </button>
@@ -60,7 +60,7 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div>
-        <NavLink className='nav-link' to='/users' exact={true}>
+        <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
           Users
         </NavLink>
       </div>

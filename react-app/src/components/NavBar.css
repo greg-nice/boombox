@@ -63,7 +63,7 @@
     cursor: pointer;
 }
 
-#sign-up-link {
+#signup-link {
     text-decoration: none;
     color: white;
 }
@@ -92,6 +92,11 @@
     cursor: pointer;
 }
 
+#login-link {
+    text-decoration: none;
+    color: rgb(24, 24, 24);
+}
+
 #demo-span {
     cursor:pointer;
 }
@@ -99,4 +104,8 @@
 .nav-link {
     color:white;
     text-decoration: none;
+}
+
+#users-link {
+    color: black;
 }

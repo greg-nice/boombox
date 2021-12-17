@@ -14,7 +14,6 @@ const load = (playlists) => ({
 // GET all of the session user's playlists
 
 export const getSuserPlaylists = () => async (dispatch) => {
-    console.log("SUUUP")
     const response = await fetch("/api/playlists/");
 
     if (response.ok) {
@@ -30,15 +29,11 @@ export const getSuserPlaylists = () => async (dispatch) => {
 
 const initialState = {}
 
-export default function playlistsReducer(state=initialState, action) {
-    let newState = {};
+export default function userPlaylistsReducer(state=initialState, action) {
     switch (action.type) {
         case LOAD_SUSER_PLAYLISTS:
             let playlists = Object.values(action.playlists);
-            playlists.forEach((playlist) => {
-                newState[playlist.id] = playlist;
-            });
-            return newState;
+            return [ ...playlists ];
         default:
             return state;
     }
