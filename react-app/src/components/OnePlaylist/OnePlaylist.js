@@ -11,7 +11,8 @@ const OnePlaylistView = () => {
             {/* {playlist.id} */}
             <div className="playlist-title-tile-container">
                 <div className="playlist-image-container">
-                    <img className="playlist-image" src={playlist.pic} alt=""></img>
+                    {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}
+                    {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>}
                 </div>
                 <h1>{playlist.name}</h1>
                 {playlist.description}
