@@ -12,30 +12,32 @@ const OnePlaylistView = () => {
             <div>{playlist.pic}<h1>{playlist.name}</h1>{playlist.description}</div>
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
-            {playlist.playlist_songs.length > 0 && (
-                <div className="playlist-row">
-                    <div>#</div>
-                    <div>Title</div>
-                    <div>Artist</div>
-                    <div>Date Added</div>
-                    <div>Length</div>
-                    <div></div>
-                    <div></div>
-                </div>
-            )}
-            {playlist.playlist_songs?.map(playlist_song => {
-                return (
-                    <div className="playlist-row" key={playlist_song.id}>
-                        <div>{playlist_song.order}</div>
-                        <div>{playlist_song.song.title}</div>
-                        <div>{playlist_song.song.artist}</div>
-                        <div>{playlist_song.song.album}</div>
-                        <div>{playlist_song.created_at}</div>
-                        <div>{playlist_song.song.length}</div>
-                        <div>Del</div>
+            <div className="playlist-table">
+                {playlist.playlist_songs.length > 0 && (
+                    <div className="playlist-row">
+                        <div className="row-element"><div>#</div></div>
+                        <div className="row-element"><div>Title</div></div>
+                        <div className="row-element"><div>Artist</div></div>
+                        <div className="row-element"><div>Album</div></div>
+                        <div className="row-element"><div>Date Added</div></div>
+                        <div className="row-element"><div>Length</div></div>
+                        <div className="row-element"><div>Options</div></div>
                     </div>
-                )
-            })}
+                )}
+                {playlist.playlist_songs.map(playlist_song => {
+                    return (
+                        <div className="playlist-row" key={playlist_song.id}>
+                            <div className="row-element"><div>{playlist_song.order}</div></div>
+                            <div className="row-element"><div>{playlist_song.song.title}</div></div>
+                            <div className="row-element"><div>{playlist_song.song.artist}</div></div>
+                            <div className="row-element"><div>{playlist_song.song.album}</div></div>
+                            <div className="row-element"><div>{playlist_song.created_at}</div></div>
+                            <div className="row-element"><div>{playlist_song.song.length}</div></div>
+                            <div className="row-element"><div>[Button]</div></div>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
