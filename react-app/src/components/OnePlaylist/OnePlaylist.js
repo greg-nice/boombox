@@ -9,7 +9,14 @@ const OnePlaylistView = () => {
     return (
         <div className="one-playlist-view">
             {/* {playlist.id} */}
-            <div>{playlist.pic}<h1>{playlist.name}</h1>{playlist.description}</div>
+            <div className="playlist-title-tile-container">
+                <div className="playlist-image-container">
+                    {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}
+                    {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>}
+                </div>
+                <h1>{playlist.name}</h1>
+                {playlist.description}
+            </div>
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-table">

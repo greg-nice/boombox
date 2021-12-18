@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Playlist, Playlist_Song
 from app.forms import PlaylistForm
+from app.models.db import db;
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -39,7 +40,7 @@ def get_one_playlist(id):
 # CREATE NEW PLAYLIST
 @playlist_routes.route('/', methods=["POST"])
 @login_required
-def create_playlist(id):
+def create_playlist():
     user_id = current_user.id
     form = PlaylistForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -57,6 +58,20 @@ def create_playlist(id):
         db.session.commit()
         return new_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
+
+
+# CREATE NEW PLAYLIST SIMPLE
+@playlist_routes.route("/simple", methods=["POST"])
+@login_required
+def create_simple_playlist():
+    user_id = current_user.id
+    new_playlist = Playlist(
+        user_id=user_id
+    )
+    db.session.add(new_playlist)
+    db.session.commit()
+    return new_playlist.to_dict()
+# add error handling
 
 
 # UPDATE PLAYLIST
