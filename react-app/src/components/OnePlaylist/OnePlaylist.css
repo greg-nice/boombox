@@ -15,3 +15,7 @@
 .row-element {
     width: 100px
 }
+
+.header {
+    font-weight: bold;
+}
