@@ -1,5 +1,5 @@
 .top-bar {
-    
+
 }
 
 .top-bar-and-user-menu {
@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2rem;
     padding: 1rem;
     font-family: Helvetica, Arial, sans-serif;
     box-sizing: border-box;
@@ -20,6 +19,7 @@
 #boombox-logo-link {
     font-size: 1.5rem;
     font-weight: 500;
+    font-weight: bolder;
 }
 
 #login-buttons-group {

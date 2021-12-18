@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Playlist
+from app.models import Playlist, Playlist_Song
 from app.forms import PlaylistForm
 
 playlist_routes = Blueprint('playlists', __name__)
@@ -24,6 +24,7 @@ def get_sessionuser_playlists():
     if playlists:
         print("SUPER DOPE")
         return {playlist.id: playlist.to_dict() for playlist in playlists}
+    # else??
 
 
 # GET ONE PLAYLIST
@@ -86,3 +87,11 @@ def delete_one_playlist(id):
     db.session.delete(playlist)
     db.session.commit()
     return {"delete": id}
+
+
+# GET PLAYLIST_SONGS
+@playlist_routes.route('/<int:id>/playlists_songs')
+def get_playlist_songs(id):
+    playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
+    if playlist_songs:
+        return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
