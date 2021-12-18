@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSuserPlaylists } from '../../store/playlists';
+import './HomePage.css';
 
 const HomePage = () => {
     // const dispatch = useDispatch();
@@ -24,11 +25,11 @@ const HomePage = () => {
     // if (user && playlistsLoaded) {
     if (user && playlists) {
         return (
-            <div>
+            <div className="homepage-container">
                 <h1>Hello, {user.username}!</h1>
                 {playlists.map(playlist => {
                     return (
-                        <div key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                        <div className="playlist-link" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
                     )
                 })}
             </div>
