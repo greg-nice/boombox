@@ -57,7 +57,7 @@ const NavBar = () => {
       <header className="top-bar-and-user-menu">
         <div id="home-button-container">
           <NavLink id="boombox-logo-link" className="nav-link" to='/' exact={true}>
-            BOOMBOX
+            {"BOOMBOX"}
           </NavLink>
         </div>
         <div>

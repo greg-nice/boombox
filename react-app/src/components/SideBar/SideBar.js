@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSuserPlaylists } from '../../store/playlists';
 import { createSimplePlaylist } from '../../store/playlists';
+import { clearPlaylist } from "../../store/playlist";
 import './SideBar.css'
 
 const SideBar = () => {
@@ -25,6 +26,7 @@ const SideBar = () => {
 
     const handleCreatePlaylistClick = () => {
         dispatch(createSimplePlaylist());
+        history.push(`/`);
     }
 
     // if (user && playlistsLoaded) {
@@ -40,7 +42,7 @@ const SideBar = () => {
                     <div className="sidebar-item"><span onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></div>
                     <div className="sidebar-item">Liked Songs</div>
                 </div>
-                {<div className="sidebar-subcontainer">
+                {<div className="sidebar-subcontainer" id="playlists-subcontainer">
                     {playlists.map(playlist => {
                         return (
                             <div className="sidebar-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>

@@ -99,7 +99,7 @@ def update_playlist(id):
 @login_required
 def delete_one_playlist(id):
     deleted_playlist = Playlist.query.get(id)
-    db.session.delete(playlist)
+    db.session.delete(deleted_playlist)
     db.session.commit()
     return {"delete": id}
 

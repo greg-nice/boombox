@@ -1,9 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { deleteSuserPlaylist } from '../../store/playlists';
 import './OnePlaylist.css'
 
 const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const handleDeletePlaylistClick = (playlistId) => {
+        dispatch(deleteSuserPlaylist(playlistId));
+        history.push("/"); // have store return a confirmation?
+        }
 
 
     return (
@@ -14,11 +23,24 @@ const OnePlaylistView = () => {
                     {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}
                     {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>}
                 </div>
-                <h1>{playlist.name}</h1>
-                {playlist.description}
+                <div>
+                    <div><h1>{playlist.name}</h1></div>
+                    <div>{playlist.description}</div>
+                    <div>
+                        {playlist.user.username} - {playlist.playlist_songs.length > 0 && playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"},
+                        {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
+                    </div>
+                </div>
             </div>
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
+            <div className="playlist-playbutton-section-container">
+                <div><button>[Play]</button></div>
+                <div><button>[Like]</button></div>
+                <div><button>[Make public]</button></div>
+                <div><button>[Edit details]</button></div>
+                <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>
+            </div>
             <div className="playlist-table">
                 {playlist.playlist_songs.length > 0 && (
                     <div className="playlist-row">
@@ -39,7 +61,7 @@ const OnePlaylistView = () => {
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
                             <div className="row-element"><div>{playlist_song.created_at}</div></div>
-                            <div className="row-element"><div>{playlist_song.song.length}</div></div>
+                            <div className="row-element"><div>{Math.floor(playlist_song.song.length/60)}:{playlist_song.song.length % 60}</div></div>
                             <div className="row-element"><div>[Button]</div></div>
                         </div>
                     )
