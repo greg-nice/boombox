@@ -1,0 +1,14 @@
+.homepage-container {
+    color:white;
+    background-color: #121212;
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 24px;
+    width: 80vw;
+    height: 100vw;
+}
+
+.playlist-link {
+    cursor:pointer;
+    color:white;
+}

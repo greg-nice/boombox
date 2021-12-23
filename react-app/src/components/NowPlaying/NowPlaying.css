@@ -1,0 +1,20 @@
+.now-playing-bar { 
+    height: 90px; 
+    position: fixed; 
+    bottom:0%;
+    width:100%; 
+    background-color: rgb(24,24,24); 
+    opacity: 1;
+    color:gray;
+    display:flex;
+    align-items:center;
+    padding:1rem;
+    box-sizing:border-box;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-top: 1px solid rgb(40,40,40)
+}
+
+#test-div {
+}

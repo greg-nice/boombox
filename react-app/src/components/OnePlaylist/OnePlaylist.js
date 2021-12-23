@@ -26,8 +26,8 @@ const OnePlaylistView = () => {
                 <div>
                     <div><h1>{playlist.name}</h1></div>
                     <div>{playlist.description}</div>
-                    <div>
-                        {playlist.user.username} - {playlist.playlist_songs.length > 0 && playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"},
+                    <div className="playlist-stats">
+                        {playlist.user.username}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, [playlist length calculation]</span>}
                         {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
                     </div>
                 </div>
@@ -57,7 +57,7 @@ const OnePlaylistView = () => {
                     return (
                         <div className="playlist-row" key={playlist_song.id}>
                             <div className="row-element"><div>{playlist_song.order}</div></div>
-                            <div className="row-element"><div>{playlist_song.song.title}</div></div>
+                            <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
                             <div className="row-element"><div>{playlist_song.created_at}</div></div>

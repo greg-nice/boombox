@@ -1,4 +1,8 @@
 .one-playlist-view {
+    background-color: rgb(18,18,18);
+    color: white;
+    width: 100%;
+    height: 100vw
 }
 
 .playlist-title-tile-container {
@@ -11,14 +15,23 @@
 }
 
 .playlist-image-container {
-    height: 100px;
-    width: 100px;
+    height: 192px;
+    width: 192px;
     overflow: hidden;
 }
 
 .playlist-image {
-    height: 100px;
-    width: 100px;
+    height: 192px;
+    width: 192px;
+}
+
+.playlist-stats {
+    font-size: smaller;
+}
+
+#playlist-stats {
+    color: rgb(179,179,179);
+    font-weight: lighter;
 }
 
 .playlist-playbutton-section-container {
@@ -33,6 +46,12 @@
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    font-size: small;
+    color: rgb(179, 179, 179);
+}
+
+.header {
+    font-weight: bold;
 }
 
 .playlist-row {
@@ -47,6 +66,6 @@
     width: 100px
 }
 
-.header {
-    font-weight: bold;
+#title-in-row {
+    color:white;
 }
