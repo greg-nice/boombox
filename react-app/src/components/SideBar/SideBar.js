@@ -1,7 +1,7 @@
 import React from 'react';
 // import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 // import { getSuserPlaylists } from '../../store/playlists';
 import { createSimplePlaylist } from '../../store/playlists';
 // import { clearPlaylist } from "../../store/playlist";
@@ -34,6 +34,11 @@ const SideBar = () => {
     if (user) {
         return (
             <div className="sidebar-container">
+                <div id="home-button-container">
+                    <NavLink id="boombox-logo-link" className="nav-link" to='/' exact={true}>
+                        {"BOOMBOX"}
+                    </NavLink>
+                </div>
                 <div className="sidebar-subcontainer">
                     <div className="sidebar-item">Home</div>
                     <div className="sidebar-item">Search</div>

@@ -1,3 +1,72 @@
-.side-and-main {
+/* .side-and-main {
     display:flex;
+} */
+/* .main {
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: rgb(179,179,179);
+
+} */
+
+.top-container {
+    box-sizing:border-box;
+    display: grid;
+    height: 100%;
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    grid-template-areas:
+        "side-bar main-view"
+        "now-playing-bar now-playing-bar";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.side-bar {
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    margin: 0;
+    position: relative;
+    width: 242px;
+    z-index: 3;
+    line-height: 1.6;
+    background-color: rgb(0,0,0);
+    color: rgb(179,179,179);
+    grid-area: side-bar;
+}
+
+.now-playing-bar {
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    z-index: 4;
+    line-height: 1.6;
+    color:rgb(179,179,179);
+    background-color: rgb(24,24,24);
+    grid-area: now-playing-bar;
+}
+
+.main-view {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    line-height: 1.6;
+    grid-area: main-view;
 }

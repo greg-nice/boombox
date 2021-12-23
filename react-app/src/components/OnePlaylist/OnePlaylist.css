@@ -1,8 +1,12 @@
 .one-playlist-view {
-    background-color: rgb(18,18,18);
-    color: white;
-    width: 80vw;
-    height: 100vw
+    color: rgb(179, 179, 179);
+    box-sizing: border-box;
+    display:block;
+    flex-basis: 0%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0px;
+    position: relative;
 }
 
 .playlist-title-tile-container {

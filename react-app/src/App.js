@@ -34,33 +34,33 @@ function App() {
 
   return (
     <BrowserRouter>
-        <NavBar />
-        <div className="side-and-main">
-          <SideBar />
-          <div className="main-view">
-            <Switch>
-              <Route path='/login' exact={true}>
-                <LoginForm />
-              </Route>
-              <Route path='/sign-up' exact={true}>
-                <SignUpForm />
-              </Route>
-              <ProtectedRoute path='/users' exact={true} >
-                <UsersList/>
-              </ProtectedRoute>
-              <ProtectedRoute path='/users/:userId' exact={true} >
-                <User />
-              </ProtectedRoute>
-              <ProtectedRoute path='/' exact={true} >
-                <HomePage loaded={loaded}/>
-              </ProtectedRoute>
-              <Route path='/playlists/:playlistId' exact={true}>
-                <OnePlaylist />
-              </Route>
-            </Switch>
-          </div>
+      <div className="top-container">
+        <SideBar className="side-bar"/>
+        <NowPlaying className="now-playing-bar"/>
+        <div className="main-view">
+          <NavBar className="top-bar"/>
+          <Switch>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/sign-up' exact={true}>
+              <SignUpForm />
+            </Route>
+            <ProtectedRoute path='/users' exact={true} >
+              <UsersList/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true} >
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute path='/' exact={true} >
+              <HomePage loaded={loaded}/>
+            </ProtectedRoute>
+            <Route path='/playlists/:playlistId' exact={true}>
+              <OnePlaylist />
+            </Route>
+          </Switch>
         </div>
-        <NowPlaying />
+      </div>
     </BrowserRouter>
   );
 }
