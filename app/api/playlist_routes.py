@@ -109,6 +109,8 @@ def get_playlist_songs(id):
     if playlist_songs:
         return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
 
+# ADD SONG TO PLAYLIST
+
 def getOrder(playlist):
     playlist = playlist.to_dict()
     print("^^^^^^^^^", playlist)
@@ -136,3 +138,21 @@ def add_playlist_song(id):
         db.session.commit()
         return updated_playlist.to_dict()
 
+#DELETE SONG FROM PLAYLIST
+
+@playlist_routes.route('/<int:id>/playlist_songs/<int:playlist_song_id>', methods=["DELETE"])
+@login_required
+def delete_playlist_song(id, playlist_song_id):
+    updated_playlist = Playlist.query.get(id)
+    print("***********", updated_playlist.list_songs)
+    deleted_playlist_song = Playlist_Song.query.get(playlist_song_id)
+    deleted_song_order = deleted_playlist_song.order
+    print("9999999999999", deleted_song_order)
+    if updated_playlist:
+        updated_playlist.list_songs.remove(deleted_playlist_song)
+        db.session.commit()
+        for list_song in updated_playlist.list_songs:
+            if list_song.order > deleted_song_order:
+                list_song.order -= 1
+        db.session.commit()
+        return updated_playlist.to_dict()

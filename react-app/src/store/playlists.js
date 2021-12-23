@@ -86,6 +86,19 @@ export const addSuserPlaylistSong = (playlistId, songId) => async (dispatch) => 
     } // return anything or handle errors?
 }
 
+// EDIT a session user playlist to delete a song
+
+export const deleteSuserPlaylistSong = (playlistId, playlistSongId) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}/playlist_songs/${playlistSongId}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    } // return anything or handle errors?
+} 
+
 
 // SESSION USER PLAYLISTS REDUCER
 
@@ -111,8 +124,10 @@ export default function userPlaylistsReducer(state=initialState, action) {
         }
         case UPDATE_ONE_SUSER_PLAYLIST: {
             const newState = state.reduce((accum, playlist) => {
-                return accum[playlist.id] = playlist;
+                return {...accum, [playlist.id]: playlist}
             }, {});
+            // console.log(state);
+            // console.log(newState);
             newState[action.playlist.id] = action.playlist;
             let playlists = Object.values(newState);
             return [ ...playlists ]
