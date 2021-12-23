@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getSuserPlaylists } from '../../store/playlists';
+// import { getSuserPlaylists } from '../../store/playlists';
 import { createSimplePlaylist } from '../../store/playlists';
-import { clearPlaylist } from "../../store/playlist";
+// import { clearPlaylist } from "../../store/playlist";
 import './SideBar.css'
 
 const SideBar = () => {
