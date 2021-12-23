@@ -77,6 +77,22 @@ const OnePlaylistView = () => {
         }
     }, [showSongMenu]);
 
+
+    const playlistDuration = (playlist) => {
+        const duration = playlist.playlist_songs.reduce((accum, playlist_song) => {
+            return accum += playlist_song.song.length;
+        }, 0)
+        if (Math.floor(duration / 60 / 60) >= 1) {
+            return `${Math.floor(duration / 60 / 60)} hr, ${Math.floor(duration / 60 % 60)} min, ${duration % 60} sec`
+        } else {
+            return `${Math.floor(duration / 60)} min, ${duration % 60} sec`;
+        }
+    };
+        //     duration += playlist_song.length;
+        //     console.log(playlist_song.song);
+        // }
+        // return `${Math.floor(duration / 60)} hours, ${duration % 60} seconds`
+    // }
     // useEffect(() => {
     //     if (!isLoaded) {
     //         (async () => {
@@ -99,7 +115,7 @@ const OnePlaylistView = () => {
                     <div><h1>{playlist.name}</h1></div>
                     <div>{playlist.description}</div>
                     <div className="playlist-stats">
-                        {playlist.user.username}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, [playlist length calculation]</span>}
+                        {playlist.user.username}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
                         {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
                     </div>
                 </div>
