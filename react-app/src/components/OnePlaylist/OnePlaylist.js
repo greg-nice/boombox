@@ -1,18 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteSuserPlaylist } from '../../store/playlists';
+import { deleteSuserPlaylist, addSuserPlaylistSong } from '../../store/playlists';
 import './OnePlaylist.css'
 
 const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
+    const playlists = useSelector(state => state.userPlaylists);
     const history = useHistory();
     const dispatch = useDispatch();
+    const [showSongMenu, setShowSongMenu] = useState(false);
+    const [showPlaylistMenuFloatFromSongMenu, setShowPlaylistMenuFloatFromSongMenu] = useState(false)
+    const [songId, setSongId] = useState(null);
 
     const handleDeletePlaylistClick = (playlistId) => {
         dispatch(deleteSuserPlaylist(playlistId));
         history.push("/"); // have store return a confirmation?
         }
+
+    const openSongMenuClick = (songId) => {
+        setSongId(songId)
+        setShowSongMenu(true);
+    }
+
+    const closeSongMenuClick = () => {
+        setShowSongMenu(false)
+    }
+
+    const handlePlaylistMenuFloatFromSongMenu = () => {
+        setShowPlaylistMenuFloatFromSongMenu(true);
+    }
+
+    const handleAddSongClick = (playlistId, songId) => {
+        dispatch(addSuserPlaylistSong(playlistId, songId));
+        // if (playlistId = playlist.id) {
+        //     dispatch(addPlaylistSong);
+        // } else {
+        //     dispatch(addSuserPlaylistSong(playlistId, songId));
+        // }
+        // DO MORE HERE??
+    }
+
+    useEffect(() => {
+        if (showSongMenu) {
+            document.addEventListener('click', closeSongMenuClick);
+            const playlistSongButton = document.getElementById("playlist-song-button");
+            playlistSongButton.addEventListener('mouseover', handlePlaylistMenuFloatFromSongMenu);
+            return () => {
+                setShowPlaylistMenuFloatFromSongMenu(false);
+                document.removeEventListener('click', closeSongMenuClick);
+                playlistSongButton.removeEventListener('mouseover', handlePlaylistMenuFloatFromSongMenu);
+            }
+        } else {
+            return;
+        }
+    }, [showSongMenu]);
 
 
     return (
@@ -50,7 +92,7 @@ const OnePlaylistView = () => {
                         <div className="row-element header"><div>Album</div></div>
                         <div className="row-element header"><div>Date Added</div></div>
                         <div className="row-element header"><div>Length</div></div>
-                        <div className="row-element header"><div>Options</div></div>
+                        {/* <div className="row-element header"><div>Options</div></div> */}
                     </div>
                 )}
                 {playlist.playlist_songs.map(playlist_song => {
@@ -61,8 +103,44 @@ const OnePlaylistView = () => {
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
                             <div className="row-element"><div>{playlist_song.created_at}</div></div>
-                            <div className="row-element"><div>{Math.floor(playlist_song.song.length/60)}:{playlist_song.song.length % 60}</div></div>
-                            <div className="row-element"><div>[Button]</div></div>
+                            <div className="row-element">
+                                <div>{Math.floor(playlist_song.song.length/60)}:{playlist_song.song.length % 60}</div>
+                                <div>
+                                    <button className="song-nav-dropdown-button" onClick={() => openSongMenuClick(playlist_song.song.id)}>. . .
+                                    </button>
+                                    {showSongMenu && (
+                                        <div className='song-nav-dropdown-wrapper'>
+                                            <div className='song-nav-dropdown'>
+                                                <ul className='song-nav-menu-options-list'>
+                                                    <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Add to queue</span></button></li>
+                                                    <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li>
+                                                    <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li>
+                                                    <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>
+                                                    <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Remove from this playlist</span></button></li>
+                                                    <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {showSongMenu && showPlaylistMenuFloatFromSongMenu &&
+                                        <div className="playlist-song-dropdown-wrapper">
+                                            <div className='playlist-song-nav-dropdown'>
+                                                <ul className='playlist-song-options-list'>
+                                                    {playlists.length > 0 && playlists.map(playlist => {
+                                                        return (
+                                                            <li className="menu-list-item" key={playlist.id}>
+                                                                <button className="menu-list-button" onClick={() => handleAddSongClick(playlist.id, songId)}><span className="menu-button-span">{playlist.name}</span></button>
+                                                            </li>
+                                                        )    
+                                                    })}
+                                                </ul>
+                                            </div>
+                                        </div>}
+                                </div>
+                            </div>
+                            {/* <div className="row-element">
+                                
+                            </div> */}
                         </div>
                     )
                 })}

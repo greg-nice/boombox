@@ -21,9 +21,7 @@ def validation_errors_to_error_messages(validation_errors):
 def get_sessionuser_playlists():
     user_id = current_user.id
     playlists = Playlist.query.filter(Playlist.user_id == user_id).all()
-    print("SO FRESH")
     if playlists:
-        print("SUPER DOPE")
         return {playlist.id: playlist.to_dict() for playlist in playlists}
     # else??
 
@@ -74,24 +72,24 @@ def create_simple_playlist():
 # add error handling
 
 
-# UPDATE PLAYLIST
-@playlist_routes.route('/<int:id>', methods=["PATCH"])
-@login_required
-def update_playlist(id):
-    form = PlaylistForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+# # UPDATE PLAYLIST METADATA
+# @playlist_routes.route('/<int:id>', methods=["PUT"])
+# @login_required
+# def update_playlist(id):
+#     form = PlaylistForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        updated_playlist = Playlist.query.get(id)
+#     if form.validate_on_submit():
+#         updated_playlist = Playlist.query.get(id)
 
-        updated_playlist.name=form.data["name"]
-        updated_playlist.pic=form.data["pic"]
-        updated_playlist.description=form.data["description"]
-        updated_playlist.public=form.data["public"]
+#         updated_playlist.name=form.data["name"]
+#         updated_playlist.pic=form.data["pic"]
+#         updated_playlist.description=form.data["description"]
+#         updated_playlist.public=form.data["public"]
 
-        db.session.commit()
-        return updated_playlist.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}
+#         db.session.commit()
+#         return updated_playlist.to_dict()
+#     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # DELETE ONE PLAYLIST
@@ -103,10 +101,38 @@ def delete_one_playlist(id):
     db.session.commit()
     return {"delete": id}
 
-
+# is this route ever used?? if not, delete it
 # GET PLAYLIST_SONGS
 @playlist_routes.route('/<int:id>/playlists_songs')
 def get_playlist_songs(id):
     playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
     if playlist_songs:
         return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
+
+def getOrder(playlist):
+    playlist = playlist.to_dict()
+    print("^^^^^^^^^", playlist)
+    print("%%%%%%%%%", playlist["playlist_songs"])
+    plsongsList = playlist["playlist_songs"]
+    if len(plsongsList) == 0:
+        return 0
+    plsongsOrderList = [int(plsong["order"]) for plsong in plsongsList]
+    maxNum = max(plsongsOrderList)
+    return maxNum
+
+@playlist_routes.route('/<int:id>', methods=["PATCH"])
+@login_required
+def add_playlist_song(id):
+    updated_playlist = Playlist.query.get(id)
+    req = request.get_json()
+    print("&&&&&&&&&&&", req)
+    if updated_playlist:
+        new_playlist_song = Playlist_Song(
+            playlist_id=id,
+            song_id=int(req["songId"]),
+            order=(getOrder(updated_playlist) + 1)
+        )
+        updated_playlist.list_songs.append(new_playlist_song)
+        db.session.commit()
+        return updated_playlist.to_dict()
+

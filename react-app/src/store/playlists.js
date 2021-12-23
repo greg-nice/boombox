@@ -3,6 +3,8 @@
 const LOAD_SUSER_PLAYLISTS = "playlists/LOAD_SUSER_PLAYLISTS";
 const ADD_ONE_SUSER_PLAYLIST = "playlists/ADD_ONE_SUSER_PLAYLIST";
 const REMOVE_SUSER_PLAYLIST = "playlists/REMOVE_SUSER_PLAYLIST";
+const UPDATE_ONE_SUSER_PLAYLIST = "playlists/UPDATE_ONE_SUSER_PLAYLIST";
+// const ADD_SUSER_PLAYLIST_SONG = "playlists/ADD_SUSER_PLAYLIST_SONG";
 
 // ACTION CREATORS
 
@@ -19,6 +21,11 @@ const add = (playlist) => ({
 const remove = (playlistId) => ({
     type: REMOVE_SUSER_PLAYLIST,
     playlistId 
+})
+
+const update = (playlist) => ({
+    type: UPDATE_ONE_SUSER_PLAYLIST,
+    playlist
 })
 
 // THUNK ACTION CREATORS
@@ -63,7 +70,21 @@ export const deleteSuserPlaylist = (playlistId) => async (dispatch) => {
     } //do I want to return antyhing or handle errors?
 };
 
+// EDIT a session user playlist to add a song
 
+export const addSuserPlaylistSong = (playlistId, songId) => async (dispatch) => {
+    console.log("********", playlistId, songId);
+    const response = await fetch(`/api/playlists/${playlistId}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({songId})
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    } // return anything or handle errors?
+}
 
 
 // SESSION USER PLAYLISTS REDUCER
@@ -87,6 +108,14 @@ export default function userPlaylistsReducer(state=initialState, action) {
             // if (index > -1) {
             //     newState.splice(index, 1);
             return newState;
+        }
+        case UPDATE_ONE_SUSER_PLAYLIST: {
+            const newState = state.reduce((accum, playlist) => {
+                return accum[playlist.id] = playlist;
+            }, {});
+            newState[action.playlist.id] = action.playlist;
+            let playlists = Object.values(newState);
+            return [ ...playlists ]
         }
         default:
             return state;

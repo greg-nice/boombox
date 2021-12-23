@@ -48,13 +48,13 @@ const SideBar = () => {
                     <div className="sidebar-item"><span onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></div>
                     <div className="sidebar-item">Liked Songs</div>
                 </div>
-                {<div className="sidebar-subcontainer" id="playlists-subcontainer">
+                <div className="sidebar-subcontainer" id="playlists-subcontainer">
                     {playlists.map(playlist => {
                         return (
                             <div className="sidebar-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
                         )
                     })}
-                </div>}
+                </div>
             </div>
         )
     } else {
