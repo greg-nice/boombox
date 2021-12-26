@@ -7,6 +7,7 @@ import './OnePlaylist.css'
 
 const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
+    playlist.playlist_songs.sort((a, b) => a.order - b.order);
     const playlists = useSelector(state => state.userPlaylists);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -60,6 +61,10 @@ const OnePlaylistView = () => {
             await dispatch(deleteSuserPlaylistSong(playlistId, playlistSongId));
             await dispatch(getPlaylist(playlistId));
         })();
+    }
+
+    const handleSongPlayClick = (songId) => {
+        
     }
 
     useEffect(() => {
@@ -144,7 +149,7 @@ const OnePlaylistView = () => {
                 {playlist.playlist_songs.map(playlist_song => {
                     return (
                         <div className="playlist-row" key={playlist_song.id}>
-                            <div className="row-element"><div>{playlist_song.order}</div></div>
+                            <div className="row-element" id="song-order" onClick={() => handleSongPlayClick()}><div>{playlist_song.order}</div></div>
                             <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
