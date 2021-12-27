@@ -10,6 +10,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
+import OneAlbum from './components/OneAlbum/OneAlbum.js'
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
@@ -53,11 +54,14 @@ function App() {
               <User />
             </ProtectedRoute>
             <ProtectedRoute path='/' exact={true} >
-              <HomePage loaded={loaded}/>
+              <HomePage />
             </ProtectedRoute>
-            <Route path='/playlists/:playlistId' exact={true}>
+            <ProtectedRoute path='/playlists/:playlistId' exact={true}>
               <OnePlaylist />
-            </Route>
+            </ProtectedRoute>
+            <ProtectedRoute path='/albums/:albumId' exact={true}>
+              <OneAlbum />
+            </ProtectedRoute>
           </Switch>
         </div>
       </div>

@@ -29,6 +29,10 @@
     width: 192px;
 }
 
+.playlist-name-container {
+    color:white;
+}
+
 .playlist-stats {
     font-size: smaller;
 }

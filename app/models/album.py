@@ -19,3 +19,11 @@ class Album(db.Model):
         secondary=users_albums,
         back_populates="followed_albums"
     )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "artist_id": self.artist_id,
+            "pic": self.pic
+        }

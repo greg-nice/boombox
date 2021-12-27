@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } from '../../store/playlists';
 import { getPlaylist } from '../../store/playlist';
+import { lazyLoadPlaylistSongThunk } from '../../store/queue';
 import './OnePlaylist.css'
+
 
 const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
@@ -64,7 +66,13 @@ const OnePlaylistView = () => {
     }
 
     const handleSongPlayClick = (songId) => {
-        
+
+    }
+
+    const handleAddPlaylistSongToQueueClick = (playlistName, playlistSongArr) => {
+        (async () => {
+            await dispatch(lazyLoadPlaylistSongThunk(playlistName, playlistSongArr[0]))
+        })();
     }
 
     useEffect(() => {
@@ -93,6 +101,12 @@ const OnePlaylistView = () => {
             return `${Math.floor(duration / 60)} min, ${duration % 60} sec`;
         }
     };
+
+    const dateAdded = (datetimeObj) => {
+        const now = new Date();
+        return datetimeObj;
+    }
+
         //     duration += playlist_song.length;
         //     console.log(playlist_song.song);
         // }
@@ -117,7 +131,7 @@ const OnePlaylistView = () => {
                     {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>}
                 </div>
                 <div>
-                    <div><h1>{playlist.name}</h1></div>
+                    <div className="playlist-name-container"><h1>{playlist.name}</h1></div>
                     <div>{playlist.description}</div>
                     <div className="playlist-stats">
                         {playlist.user.username}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
@@ -153,7 +167,7 @@ const OnePlaylistView = () => {
                             <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
-                            <div className="row-element"><div>{playlist_song.created_at}</div></div>
+                            <div className="row-element"><div>{dateAdded(playlist_song.created_at)}</div></div>
                             <div className="row-element">
                                 <div>{Math.floor(playlist_song.song.length/60)}:{playlist_song.song.length % 60}</div>
                                 <div>
@@ -172,7 +186,7 @@ const OnePlaylistView = () => {
                     <div className='song-nav-dropdown-wrapper'>
                         <div className='song-nav-dropdown'>
                             <ul className='song-nav-menu-options-list'>
-                                <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Add to queue</span></button></li>
+                                <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id == playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>

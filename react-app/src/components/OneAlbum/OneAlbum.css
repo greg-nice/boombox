@@ -1,0 +1,393 @@
+.main-view-container {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+}
+
+.main-view-second-container {
+    height: 100%;
+    overflow: hidden;
+    align-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    position:relative;
+    box-sizing:border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 1.6;
+}
+
+.os-resize {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height:100%;
+    left:0;
+    overflow:hidden;
+    top:0;
+    position:absolute;
+    visibility:hidden;
+    width:100%;
+    z-index:-1;
+    box-sizing: border-box;
+    border:inherit;
+    border-color:transparent;
+    border-style:solid;
+    padding:inherit;
+}
+
+.os-resize-observer {
+    left: 0px;
+    right: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    position: relative;
+    border: inherit;
+    height: 200%;
+    width: 200%;
+    overflow:hidden;
+    top:0;
+    visibility:hidden;
+    z-index:-1;
+    pointer-events: none;
+}
+
+.os-padding {
+    overflow:hidden;
+    bottom: 0;
+    direction: inherit;
+    height: auto;
+    left:0;
+    margin:0;
+    padding:0;
+    position:absolute;
+    right:0;
+    top:0;
+    width:auto;
+    z-index:0;
+    box-sizing:inherit;
+    border: 0;
+    display: block;
+}
+
+.os-viewport {
+    overflow-y:scroll;
+    transform: translateZ(0);
+    bottom: 0;
+    box-sizing: inherit;
+    direction: inherit;
+    left: 0;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    resize: none;
+    right: 0;
+    top: 0;
+    overflow-x: hidden;
+}
+
+.os-content {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    direction: inherit;
+    display:block;
+    position:relative;
+    visibility:visible;
+}
+
+.scroll-child-spacer {
+    height:64px;
+    position:sticky;
+    top:0;
+}
+
+.scroll-child {
+    min-height:calc(((100vh - 64px) - 90px) - 519px);
+    scroll-behavior: smooth;
+    isolation: isolate;
+    padding-bottom:32px;
+    visibility:visible;
+    display:block;
+    box-sizing:border-box;
+}
+
+.presentation {
+    margin-top:-64px;
+    display:block;
+}
+
+.content-spacing {
+    height:30vh;
+    max-height:500px;
+    min-height:340px;
+    color: #fff;
+    display: flex;
+    max-width:none;
+    overflow:hidden;
+    padding-bottom:24px;
+    position:relative;
+    padding-left:32px;
+    padding-right:32px;
+    box-sizing: border-box;
+}
+
+.background-color {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    background-color: gray;
+}
+
+.background-gradient {
+    background:linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
+    display:block;
+    height:100%;
+    left:0;
+    position:absolute;
+    top:0;
+    width:100%;
+}
+
+.album-art-container {
+    margin-right: 24px;
+    align-items:flex-end;
+    align-self:flex-end;
+    display: flex;
+    height:192px;
+    width:192px;
+    z-index:0;
+    user-select:none;
+}
+
+.album-art-wrapper {
+    height:100%;
+    width:100%;
+    user-select:none;
+}
+
+.album-art {
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.album-info-container {
+    align-content:space-between;
+    display:flex;
+    flex:1;
+    flex-flow:column;
+    justify-content:flex-end;
+    z-index:0;
+}
+
+.h2-type {
+    font-weight:700;
+    font-size:12px;
+    margin:4px 0 0 0;
+    text-transform: uppercase;
+    align-items:center;
+    display: flex;
+    line-height: 16px;
+    color:#fff;
+}
+
+.album-title-container {
+    overflow: hidden;
+    text-align:left;
+    width:100%;
+    word-break:break-word;
+    color:#fff;    
+}
+
+.album-title-text {
+    padding: .08em 0px;
+    visibility: visible;
+    width: 100%;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    text-transform: none;
+    box-sizing: border-box;
+    margin:0;
+}
+
+.album-data-container {
+    align-items:center;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top:8px;
+    box-sizing: border-box;
+    border:0;
+    padding:0;
+}
+
+.artist-info-container {
+    color:rgba(255,255,255,.7);
+    white-space: nowrap;
+    align-items:center;
+    display:grid;
+    grid-gap:4px;
+    grid-auto-flow: column;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    line-height:1.6;
+}
+
+.artist-profile-pic-container {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
+
+.artist-profile-pic-wrapper {
+    width: 24px;
+    height: 24px;
+    inset-inline-start: 0px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: block;
+    white-space: nowrap;
+}
+
+.artist-profile-pic {
+    border-radius: 50%;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    object-position: center center;
+}
+
+.artist-name {
+    user-select: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    color:#fff;
+    text-decoration: none;
+}
+
+.album-year-info {
+    color:rgba(255,255,255,.7);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.album-length-info {
+    color:rgba(255,255,255,.7);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.second-background-color {
+    background-color: gray;
+    background-image: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%);
+    height:232px;
+    position:absolute;
+    width:100%;
+    z-index:-1;
+}
+
+.album-buttons-container {
+    align-items: flex;
+    display:flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    position: relative;
+    margin:0;
+    max-width:1955px;
+    box-sizing: border-box;
+}
+
+.album-tracks-table-container {
+    padding: 0 32px;
+    margin: 0;
+    max-width: 1955px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.vertical-scrollbar {
+    right: 3px;
+    bottom: 0;
+    top: 0;
+    z-index: 3;
+    padding: 2px;
+    transition-property: opacity, visibility, top, right, bottom, left;
+    transition-duration: 0.3s, 0.3s, 0.3s, 0.3s, 0.3s, 0.3s;
+    transition-timing-function: ease, ease, ease, ease, ease, ease;
+    transition-delay: 0s, 0s, 0s, 0s, 0s, 0s;
+    opacity: 1;
+    position: absolute;
+    box-sizing: border-box;
+    display: block;
+    width: 12px;
+    color:rgb(179,179,179);
+}
+
+.scrollbar-track {
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    background: transparent;
+    height: 100%;
+    pointer-events: auto;
+    width: 100%;
+    border: none;
+    padding: 0;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+
+}
+
+.scrollbar-handle {
+    height: 34%;
+    transform: translate(0px, 0px);
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    border-radius: 12px;
+    max-height: none;
+    min-height: 30px;
+    position: absolute;
+    pointer-events: auto;
+    width: 100%;
+    background:rgba(255, 255, 255, .3)
+}
