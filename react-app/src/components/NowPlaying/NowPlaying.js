@@ -35,10 +35,40 @@ export default function NowPlaying() {
                             </div>
                         </div>
                         <div className="song-and-artist-data">
-                            <div></div>
-                            <div></div>
+                            <div className="song-title-container">
+                                <div className="song-title-second-container">
+                                    <div className="song-title-third-container">
+                                        <div className="song-title-fourth-container">
+                                            <div className="song-title-final-container">
+                                                <span className="song-title-span">
+                                                    <Link className="song-title-link">
+                                                        Song Title
+                                                    </Link>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="song-artist-container">
+                                <div className="song-artist-second-container">
+                                    <div className="song-artist-third-container">
+                                        <div className="song-artist-fourth-container">
+                                            <div className="song-artist-final-container">
+                                                <span className="song-artist-span">
+                                                    <span className="song-artist-second-span">
+                                                        <Link className="song-artist-link">
+                                                            Artist Name
+                                                        </Link>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button className="song-favorite-button"></button>
+                        <button className="song-favorite-button">[Like]</button>
                     </div>
                 </div>
                 {Player()}

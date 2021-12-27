@@ -123,9 +123,132 @@
     box-sizing: border-box;
 }
 
+.song-title-container {
+    color:#fff;
+    grid-area: title;
+    justify-self: start;
+    width: 100%;
+}
+
+.song-title-second-container {
+    margin-left:-6px;
+    margin-right:-6px;
+    overflow:hidden;
+    position:relative;
+}
+
+.song-title-third-container {
+    overflow:hidden;
+
+}
+
+.song-title-fourth-container {
+   display:flex;
+   padding-inline-end: 12px;
+   padding-inline-start: 6px;
+   white-space: nowrap;
+   width:fit-content; 
+   box-sizing: border-box;
+}
+
+.song-title-final-container {
+    color:#fff;
+    grid-area: title;
+    justify-self: start;
+    width: 100%;
+    font-size:14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    box-sizing: border-box;
+}
+
+.song-title-span {
+    user-select: none;
+    border:0;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    color:#fff;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.song-title-link {
+    border: none;
+    user-select: none;
+    color:#fff;
+    text-decoration: none;
+}
+
+.song-artist-container {
+    grid-area: subtitle;
+    width: 100%;
+}
+
+.song-artist-second-container {
+    margin-left:-6px;
+    margin-right:-6px;
+    overflow:hidden;
+    position:relative;
+}
+
+.song-artist-third-container {
+    overflow:hidden;
+}
+
+.song-artist-fourth-container {
+    display:flex;
+    padding-inline-end: 12px;
+    padding-inline-start: 6px;
+    white-space: nowrap;
+    width:fit-content;
+}
+
+.song-artist-final-container {
+    color:rgb(179, 179, 179);
+    grid-area: subtitle;
+    width: 100%;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.song-artist-link {
+    color:#b3b3b3;
+    user-select: none;
+    text-decoration: none;
+}
+
+.song-favorite-button {
+    color:#b3b3b3;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+    position: relative;
+    padding:0;
+    box-sizing: border-box;
+    cursor:default;
+}
 
 .rhap_container {
     background-color: #181818;
+}
+
+.rhap_play-pause-button {
+    color:white;
 }
 
 .placeholder {
