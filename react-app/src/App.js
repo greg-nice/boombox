@@ -10,6 +10,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
+import OneAlbum from './components/OneAlbum/OneAlbum.js'
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
@@ -34,33 +35,36 @@ function App() {
 
   return (
     <BrowserRouter>
-        <NavBar />
-        <div className="side-and-main">
-          <SideBar />
-          <div className="main-view">
-            <Switch>
-              <Route path='/login' exact={true}>
-                <LoginForm />
-              </Route>
-              <Route path='/sign-up' exact={true}>
-                <SignUpForm />
-              </Route>
-              <ProtectedRoute path='/users' exact={true} >
-                <UsersList/>
-              </ProtectedRoute>
-              <ProtectedRoute path='/users/:userId' exact={true} >
-                <User />
-              </ProtectedRoute>
-              <ProtectedRoute path='/' exact={true} >
-                <HomePage loaded={loaded}/>
-              </ProtectedRoute>
-              <Route path='/playlists/:playlistId' exact={true}>
-                <OnePlaylist />
-              </Route>
-            </Switch>
-          </div>
+      <div className="top-container">
+        <SideBar className="side-bar"/>
+        <NowPlaying className="now-playing-bar"/>
+        <div className="main-view">
+          <NavBar className="top-bar"/>
+          <Switch>
+            <Route path='/login' exact={true}>
+              <LoginForm />
+            </Route>
+            <Route path='/sign-up' exact={true}>
+              <SignUpForm />
+            </Route>
+            <ProtectedRoute path='/users' exact={true} >
+              <UsersList/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true} >
+              <User />
+            </ProtectedRoute>
+            <ProtectedRoute path='/' exact={true} >
+              <HomePage />
+            </ProtectedRoute>
+            <ProtectedRoute path='/playlists/:playlistId' exact={true}>
+              <OnePlaylist />
+            </ProtectedRoute>
+            <ProtectedRoute path='/albums/:albumId' exact={true}>
+              <OneAlbum />
+            </ProtectedRoute>
+          </Switch>
         </div>
-        <NowPlaying />
+      </div>
     </BrowserRouter>
   );
 }

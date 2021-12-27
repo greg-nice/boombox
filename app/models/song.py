@@ -34,5 +34,6 @@ class Song(db.Model):
             "length": self.length,
             "data_url": self.data_url,
             "album": self.album.title,
-            "artist": self.artist.name
+            "artist": self.artist.name,
+            "albumDetails": self.album.to_dict()
         }

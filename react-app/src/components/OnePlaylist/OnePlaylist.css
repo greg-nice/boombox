@@ -1,8 +1,12 @@
 .one-playlist-view {
-    background-color: rgb(18,18,18);
-    color: white;
-    width: 80vw;
-    height: 100vw
+    color: rgb(179, 179, 179);
+    box-sizing: border-box;
+    display:block;
+    flex-basis: 0%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0px;
+    position: relative;
 }
 
 .playlist-title-tile-container {
@@ -23,6 +27,10 @@
 .playlist-image {
     height: 192px;
     width: 192px;
+}
+
+.playlist-name-container {
+    color:white;
 }
 
 .playlist-stats {
@@ -63,9 +71,115 @@
 }
 
 .row-element {
-    width: 100px
+    width: 125px;
+    display: flex;
+    gap: 1rem;
 }
 
 #title-in-row {
     color:white;
+}
+
+.song-nav-dropdown-button {
+    background-color:rgb(18,18,18);
+    color:rgb(179, 179, 179);
+    border-radius: 25%;
+    border: 1px solid rgb(179, 179, 179);
+}
+
+.song-nav-dropdown-wrapper {
+    z-index: 9999;
+    position: absolute;
+    inset: 6rem 10rem auto auto;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.song-nav-dropdown {
+    box-sizing: border-box;
+    display: block;
+}
+
+.song-nav-menu-options-list {
+    box-sizing: border-box;
+    display: block;
+    max-height: calc(100vh - 24px);
+    max-width: 350px;
+    min-width: 160px;
+    overflow-y: auto;
+    padding: 4px;
+    background-color: rgb(40, 40, 40);
+    border-radius: 4px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .2);
+}
+
+.menu-list-item {
+    box-sizing: border-box;
+    display: list-item;
+    text-align: left;
+}
+
+.menu-list-button {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 12px 8px 12px 8px;
+    position: relative;
+    width: 100%;
+    color: rgba(255, 255, 255, .9);
+    background: transparent;
+    border: 0;
+    border-radius: 2px;
+    cursor: default;
+    text-decoration: none;
+    gap:8px;
+    text-align: start;
+    touch-action: manipulation;
+
+}
+
+.menu-list-button:hover {
+    background: rgb(114, 114, 114)
+}
+
+.menu-button-text {
+    box-sizing: border-box;
+    flex-basis: 0%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.playlist-song-dropdown-wrapper {
+    z-index: 9999;
+    position: absolute;
+    inset: 6rem 21rem auto auto;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.playlist-song-nav-dropdown {
+    box-sizing: border-box;
+    display: block;
+}
+
+.playlist-song-options-list {
+    box-sizing: border-box;
+    display: block;
+    max-height: calc(100vh - 24px);
+    max-width: 350px;
+    min-width: 160px;
+    overflow-y: auto;
+    padding: 4px;
+    background-color: rgb(40, 40, 40);
+    border-radius: 4px;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .2);
 }
