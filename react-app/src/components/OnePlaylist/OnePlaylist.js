@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } from '../../store/playlists';
 import { getPlaylist } from '../../store/playlist';
-import { lazyLoadPlaylistSongThunk } from '../../store/queue';
+import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk } from '../../store/queue';
 import './OnePlaylist.css'
 
 
@@ -19,6 +19,12 @@ const OnePlaylistView = () => {
     const [songId, setSongId] = useState(null);
     const [playlistSongId, setPlaylistSongId] = useState(null);
     // const [isLoaded, setIsLoaded] = useState(true);
+
+    const handlePlaylistPlayClick = (playlist) => {
+        (async () => {
+            await dispatch(eagerLoadPlaylistThunk(playlist))
+        })();
+    }
 
     const handleDeletePlaylistClick = (playlistId) => {
         dispatch(deleteSuserPlaylist(playlistId));
@@ -65,8 +71,10 @@ const OnePlaylistView = () => {
         })();
     }
 
-    const handleSongPlayClick = (songId) => {
-
+    const handleSongPlayClick = (playlist, playlistSongOrder) => {
+        (async () => {
+            await dispatch(eagerLoadPlaylistFromSongThunk(playlist, playlistSongOrder))
+        })();
     }
 
     const handleAddPlaylistSongToQueueClick = (playlistName, playlistSongArr) => {
@@ -142,7 +150,7 @@ const OnePlaylistView = () => {
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-playbutton-section-container">
-                <div><button>[Play]</button></div>
+                <div><button onClick={() => handlePlaylistPlayClick(playlist)}>Play</button></div>
                 <div><button>[Like]</button></div>
                 <div><button>[Make public]</button></div>
                 <div><button>[Edit details]</button></div>
@@ -163,13 +171,13 @@ const OnePlaylistView = () => {
                 {playlist.playlist_songs.map(playlist_song => {
                     return (
                         <div className="playlist-row" key={playlist_song.id}>
-                            <div className="row-element" id="song-order" onClick={() => handleSongPlayClick()}><div>{playlist_song.order}</div></div>
+                            <div className="row-element" id="song-order" onClick={() => handleSongPlayClick(playlist, playlist_song.order)}><div>{playlist_song.order}</div></div>
                             <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
                             <div className="row-element"><div>{playlist_song.song.artist}</div></div>
                             <div className="row-element"><div>{playlist_song.song.album}</div></div>
                             <div className="row-element"><div>{dateAdded(playlist_song.created_at)}</div></div>
                             <div className="row-element">
-                                <div>{Math.floor(playlist_song.song.length/60)}:{playlist_song.song.length % 60}</div>
+                                <div>{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
                                 <div>
                                     <button className="song-nav-dropdown-button" onClick={() => openSongMenuClick(playlist_song.song.id, playlist_song.id)}>. . .
                                     </button>

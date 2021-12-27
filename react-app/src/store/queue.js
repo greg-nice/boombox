@@ -5,6 +5,8 @@ const LAZY_LOAD_ALBUM_SONG = "queue/LAZY_LOAD_ALBUM_SONG";
 const LAZY_LOAD_PLAYLIST_SONGS = "queue/LAZY_LOAD_PLAYLIST_SONGS";
 const LAZY_LOAD_ALBUM_SONGS = "queue/LAZY_LOAD_ALBUM_SONGS";
 const LAZY_CLEAR_QUEUE = "queue/LAZY_CLEAR_QUEUE";
+const EAGER_LOAD_PLAYLIST_FROM_SONG = "queue/EAGER_LOAD_PLAYLIST_FROM_SONG";
+const EAGER_LOAD_PLAYLIST = "queue/EAGER_LOAD_PLAYLIST"
 // const EAGER_CLEAR_QUEUE = "queue/EAGER_CLEAR_QUEUE";
 
 // ACTION CREATORS
@@ -30,7 +32,16 @@ const lazyLoadAlbumSongs = (album_songs) => ({
     album_songs
 })
 
-// const eagerLoadPlaylistSong
+const eagerLoadPlaylistFromSong = (playlist, playlistSongOrder) => ({
+    type: EAGER_LOAD_PLAYLIST_FROM_SONG,
+    playlist,
+    playlistSongOrder
+})
+
+const eagerLoadPlaylist = (playlist) => ({
+    type: EAGER_LOAD_PLAYLIST,
+    playlist
+})
 
 // const eagerLoadAlbumSong
 
@@ -48,6 +59,14 @@ export const lazyLoadPlaylistSongThunk = (playlistName, playlistSong) => async (
     dispatch(lazyLoadPlaylistSong(playlistName, playlistSong))
 }
 
+export const eagerLoadPlaylistFromSongThunk = (playlist, playlistSongOrder) => async (dispatch) => {
+    dispatch(eagerLoadPlaylistFromSong(playlist, playlistSongOrder))
+}
+
+export const eagerLoadPlaylistThunk = (playlist) => async (dispatch) => {
+    dispatch(eagerLoadPlaylist(playlist))
+}
+
 // QUEUE REDUCER
 
 const initialState = [];
@@ -59,6 +78,26 @@ export default function queueReducer(state = initialState, action) {
             action.playlistSong.type = "playlist_song";
             action.playlistSong.playlistName = action.playlistName;
             newState.push(action.playlistSong);
+            return newState;
+        }
+        case EAGER_LOAD_PLAYLIST_FROM_SONG: {
+            let newState = [];
+            const filteredPlaylistSongs = action.playlist.playlist_songs.filter(playlist_song => playlist_song.order >= action.playlistSongOrder)
+            filteredPlaylistSongs.sort((a, b) => a.order - b.order);
+            filteredPlaylistSongs.forEach(playlist_song => {
+                playlist_song.type = "playlist_song";
+                playlist_song.playlistName = action.playlist.name;
+                newState.push(playlist_song)
+            })
+            return newState;
+        }
+        case EAGER_LOAD_PLAYLIST: {
+            let newState = [];
+            action.playlist.playlist_songs.forEach(playlist_song => {
+                playlist_song.type = "playlist_song";
+                playlist_song.playlistName = action.playlist.name;
+                newState.push(playlist_song)
+            })
             return newState;
         }
         default:

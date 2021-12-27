@@ -4,12 +4,14 @@ from app.models import db, Playlist
 def seed_playlists():
     PL1 = Playlist(
         user_id=1,
-        name="Awesome Jamz"
+        name="Awesome Jamz",
+        pic="https://images-ext-1.discordapp.net/external/dvlGIiEtx8-ws4FgSmN8XHyB3IjDZj7MUg08gHpChRw/https/i.redd.it/0ls5x7mm8r011.jpg"
     )
 
     PL2 = Playlist(
         user_id=1,
-        name="Sleepy Music"
+        name="Sleepy Music",
+        pic="https://i1.sndcdn.com/artworks-VeEiv24OKi2eTRbM-kcDU7g-t500x500.jpg"
     )
 
     PL3 = Playlist(

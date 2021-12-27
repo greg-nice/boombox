@@ -152,7 +152,7 @@
     top: 0;
     width: 100%;
     color: #fff;
-    background-color: gray;
+    background-color: rgb(29, 0, 82);
 }
 
 .background-gradient {
@@ -313,7 +313,7 @@
 }
 
 .second-background-color {
-    background-color: gray;
+    background-color: rgb(29, 0, 82);
     background-image: linear-gradient(rgba(0,0,0,.6) 0,#121212 100%);
     height:232px;
     position:absolute;

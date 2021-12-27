@@ -24,7 +24,7 @@ const OneAlbum = () => {
                                         <div className="background-gradient"></div>
                                         <div className="album-art-container">
                                             <div className="album-art-wrapper">
-                                                <img className="album-art" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg"></img>
+                                                <img className="album-art" src="https://i.redd.it/0ls5x7mm8r011.jpg"></img>
                                             </div>
                                         </div>
                                         <div className="album-info-container">
