@@ -31,7 +31,7 @@ const ProfileButton = ({ user }) => {
             <button className='nav-profile-button' onClick={handleMenu}>
                 <div className="artist-profile-pic-container">
                     <div className="artist-profile-pic-wrapper">
-                        <img className="artist-profile-pic" alt=""></img>
+                        <img className="artist-profile-pic" src={user.profile_pic} alt=""></img>
                     </div>
                 </div>
                 <span className="profile-button-span">{user.username}</span>

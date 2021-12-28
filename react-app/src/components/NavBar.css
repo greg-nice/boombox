@@ -143,7 +143,7 @@
     cursor: pointer;
     background-color: white;
     box-sizing:border-box; */
-    background-color:#1a1919;
+    background-color:rgba(0,0,0,.7);
     border:0;
     border-radius: 23px;
     color:#fff;
@@ -157,6 +157,10 @@
     display: flex;
     justify-content: center;
     box-sizing: border-box;
+}
+
+.nav-profile-button:hover {
+    background-color:#282828;
 }
 
 .profile-button-span {

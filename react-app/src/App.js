@@ -11,7 +11,7 @@ import UsersList from './components/UsersList';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
 import OneAlbum from './components/OneAlbum/OneAlbum.js';
-import OneUser from './components/OneUser/index.js';
+import OneUser from './components/OneUser/OneUser.js';
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
