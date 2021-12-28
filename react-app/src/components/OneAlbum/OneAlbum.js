@@ -24,7 +24,7 @@ const OneAlbum = () => {
                                         <div className="background-gradient"></div>
                                         <div className="album-art-container">
                                             <div className="album-art-wrapper">
-                                                <img className="album-art" src="https://i.redd.it/0ls5x7mm8r011.jpg"></img>
+                                                <img className="album-art" src="https://i.redd.it/0ls5x7mm8r011.jpg" alt=""></img>
                                             </div>
                                         </div>
                                         <div className="album-info-container">
@@ -35,7 +35,7 @@ const OneAlbum = () => {
                                                     {/* need to finish the below elements */}
                                                     <div className="artist-profile-pic-container">
                                                         <div className="artist-profile-pic-wrapper">
-                                                            <img className="artist-profile-pic"></img>
+                                                            <img className="artist-profile-pic" alt=""></img>
                                                         </div>
                                                     </div>
                                                     <Link className="artist-name">artist.name </Link>

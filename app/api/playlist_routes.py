@@ -2,7 +2,8 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Playlist, Playlist_Song
 from app.forms import PlaylistForm
-from app.models.db import db;
+from app.models.db import db
+import datetime
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -72,24 +73,26 @@ def create_simple_playlist():
 # add error handling
 
 
-# # UPDATE PLAYLIST METADATA
-# @playlist_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
-# def update_playlist(id):
-#     form = PlaylistForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
+# UPDATE PLAYLIST METADATA
+@playlist_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_playlist(id):
+    form = PlaylistForm()
+    # print("WHOOOOOOOOOOOA", form.data)
+    # print(request.form)
+    # req = request.get_json()
+    # print(req)
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#     if form.validate_on_submit():
-#         updated_playlist = Playlist.query.get(id)
+    if form.validate_on_submit():
+        updated_playlist = Playlist.query.get(id)
 
-#         updated_playlist.name=form.data["name"]
-#         updated_playlist.pic=form.data["pic"]
-#         updated_playlist.description=form.data["description"]
-#         updated_playlist.public=form.data["public"]
+        updated_playlist.name=form.data["name"]
+        updated_playlist.description=form.data["description"]
 
-#         db.session.commit()
-#         return updated_playlist.to_dict()
-#     return {"errors": validation_errors_to_error_messages(form.errors)}
+        db.session.commit()
+        return updated_playlist.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # DELETE ONE PLAYLIST
@@ -156,3 +159,4 @@ def delete_playlist_song(id, playlist_song_id):
                 list_song.order -= 1
         db.session.commit()
         return updated_playlist.to_dict()
+

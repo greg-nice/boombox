@@ -5,6 +5,7 @@ import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } fr
 import { getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk } from '../../store/queue';
 import './OnePlaylist.css'
+import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
 
 
 const OnePlaylistView = () => {
@@ -16,6 +17,7 @@ const OnePlaylistView = () => {
     // const { playlistId } = useParams();
     const [showSongMenu, setShowSongMenu] = useState(false);
     const [showPlaylistMenuFloatFromSongMenu, setShowPlaylistMenuFloatFromSongMenu] = useState(false)
+    const [showPlaylistEditModal, setShowPlaylistEditModal] = useState(false);
     const [songId, setSongId] = useState(null);
     const [playlistSongId, setPlaylistSongId] = useState(null);
     // const [isLoaded, setIsLoaded] = useState(true);
@@ -26,10 +28,15 @@ const OnePlaylistView = () => {
         })();
     }
 
+    const handlePlaylistEditClick = () => {
+        setShowPlaylistEditModal(!showPlaylistEditModal);
+    }
+
     const handleDeletePlaylistClick = (playlistId) => {
         dispatch(deleteSuserPlaylist(playlistId));
         history.push("/"); // have store return a confirmation?
-        }
+    }
+   
 
     const openSongMenuClick = (songId, playlistSongId) => {
         setSongId(songId);
@@ -98,6 +105,16 @@ const OnePlaylistView = () => {
         }
     }, [showSongMenu]);
 
+    // useEffect(() => {
+    //     if (showPlaylistEditModal) {
+    //         document.addEventListener('click', handlePlaylistEditClick);
+    //         return () => {
+    //             document.removeEventListener('click', handlePlaylistEditClick)
+    //         }
+    //     } else {
+    //         return;
+    //     }
+    // }, [showPlaylistEditModal, handlePlaylistEditClick])
 
     const playlistDuration = (playlist) => {
         const duration = playlist.playlist_songs.reduce((accum, playlist_song) => {
@@ -142,7 +159,7 @@ const OnePlaylistView = () => {
                     <div className="playlist-name-container"><h1>{playlist.name}</h1></div>
                     <div>{playlist.description}</div>
                     <div className="playlist-stats">
-                        {playlist.user.username}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
+                        <span id="username-span">{playlist.user.username}</span>{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
                         {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
                     </div>
                 </div>
@@ -153,9 +170,13 @@ const OnePlaylistView = () => {
                 <div><button onClick={() => handlePlaylistPlayClick(playlist)}>Play</button></div>
                 <div><button>[Like]</button></div>
                 <div><button>[Make public]</button></div>
-                <div><button>[Edit details]</button></div>
+                <div><button onClick ={() => handlePlaylistEditClick(setShowPlaylistEditModal)}>Edit details</button></div>
                 <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>
             </div>
+            {showPlaylistEditModal && (
+                <PlaylistEditModal playlist={playlist} handlePlaylistEditClick={handlePlaylistEditClick}/>
+                )
+            }
             <div className="playlist-table">
                 {playlist.playlist_songs.length > 0 && (
                     <div className="playlist-row">

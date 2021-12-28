@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css';
 import { login } from '../store/session';
+import ProfileButton from './ProfileButton';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -21,15 +22,14 @@ const NavBar = () => {
 
 
 
-  // swap this out for a real react component
-  let ProfileButton 
+  
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        {ProfileButton && <ProfileButton />}
-        <LogoutButton />
+        <ProfileButton user={sessionUser}/>
+        {/* <LogoutButton /> */}
       </>
     )
   } else {

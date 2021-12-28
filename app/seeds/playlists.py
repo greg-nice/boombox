@@ -10,18 +10,18 @@ def seed_playlists():
 
     PL2 = Playlist(
         user_id=1,
-        name="Sleepy Music",
+        name="Purple Moon II",
         pic="https://i1.sndcdn.com/artworks-VeEiv24OKi2eTRbM-kcDU7g-t500x500.jpg"
     )
 
     PL3 = Playlist(
         user_id=2,
-        name="Totally 80s!"
+        name="Totally 80s!",
     )
 
     PL4 = Playlist(
         user_id=2,
-        name="Reggae Tunes"
+        name="Reggae Tunes",
     )
 
     db.session.add(PL1)

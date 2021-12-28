@@ -53,7 +53,7 @@ export const createSimplePlaylist = () => async (dispatch) => {
 
     if (response.ok) {
         const playlist = await response.json();
-        dispatch(add(playlist));
+        await dispatch(add(playlist));
         return playlist.id //is this what I want to return??
     }
 }
@@ -97,7 +97,24 @@ export const deleteSuserPlaylistSong = (playlistId, playlistSongId) => async (di
         const playlist = await response.json();
         dispatch(update(playlist));
     } // return anything or handle errors?
-} 
+}
+
+// EDIT a session user playlist to update the name and description
+
+export const updateSuserPlaylist = (playlistData) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistData.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify( playlistData )
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    }
+}
+
+export 
 
 
 // SESSION USER PLAYLISTS REDUCER
