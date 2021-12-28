@@ -5,6 +5,7 @@ import playlistReducer from './playlist';
 import userPlaylistsReducer from './playlists';
 import playlist_songsReducer from './playlist_songs';
 import queueReducer from './queue';
+import userReducer from './user';
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   playlist_songs: playlist_songsReducer,
   userPlaylists: userPlaylistsReducer,
   queue: queueReducer,
+  user: userReducer
 });
 
 

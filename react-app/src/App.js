@@ -10,7 +10,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
-import OneAlbum from './components/OneAlbum/OneAlbum.js'
+import OneAlbum from './components/OneAlbum/OneAlbum.js';
+import OneUser from './components/OneUser/index.js';
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
@@ -50,9 +51,9 @@ function App() {
             <ProtectedRoute path='/users' exact={true} >
               <UsersList/>
             </ProtectedRoute>
-            <ProtectedRoute path='/users/:userId' exact={true} >
+            {/* <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
-            </ProtectedRoute>
+            </ProtectedRoute> */}
             <ProtectedRoute path='/' exact={true} >
               <HomePage />
             </ProtectedRoute>
@@ -61,6 +62,9 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path='/albums/:albumId' exact={true}>
               <OneAlbum />
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true}>
+              <OneUser />
             </ProtectedRoute>
           </Switch>
         </div>
