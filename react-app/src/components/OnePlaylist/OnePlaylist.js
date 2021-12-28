@@ -128,7 +128,7 @@ const OnePlaylistView = () => {
     };
 
     const dateAdded = (datetimeObj) => {
-        const now = new Date();
+        // const now = new Date();
         return datetimeObj;
     }
 
@@ -215,7 +215,7 @@ const OnePlaylistView = () => {
                     <div className='song-nav-dropdown-wrapper'>
                         <div className='song-nav-dropdown'>
                             <ul className='song-nav-menu-options-list'>
-                                <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id == playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
+                                <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>

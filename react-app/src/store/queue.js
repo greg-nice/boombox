@@ -1,10 +1,10 @@
 // ACTIONS
 
 const LAZY_LOAD_PLAYLIST_SONG = "queue/LAZY_LOAD_PLAYLIST_SONG";
-const LAZY_LOAD_ALBUM_SONG = "queue/LAZY_LOAD_ALBUM_SONG";
-const LAZY_LOAD_PLAYLIST_SONGS = "queue/LAZY_LOAD_PLAYLIST_SONGS";
-const LAZY_LOAD_ALBUM_SONGS = "queue/LAZY_LOAD_ALBUM_SONGS";
-const LAZY_CLEAR_QUEUE = "queue/LAZY_CLEAR_QUEUE";
+// const LAZY_LOAD_ALBUM_SONG = "queue/LAZY_LOAD_ALBUM_SONG";
+// const LAZY_LOAD_PLAYLIST_SONGS = "queue/LAZY_LOAD_PLAYLIST_SONGS";
+// const LAZY_LOAD_ALBUM_SONGS = "queue/LAZY_LOAD_ALBUM_SONGS";
+// const LAZY_CLEAR_QUEUE = "queue/LAZY_CLEAR_QUEUE";
 const EAGER_LOAD_PLAYLIST_FROM_SONG = "queue/EAGER_LOAD_PLAYLIST_FROM_SONG";
 const EAGER_LOAD_PLAYLIST = "queue/EAGER_LOAD_PLAYLIST"
 // const EAGER_CLEAR_QUEUE = "queue/EAGER_CLEAR_QUEUE";
@@ -17,20 +17,20 @@ const lazyLoadPlaylistSong = (playlistName, playlistSong) => ({
     playlistSong
 })
 
-const lazyLoadAlbumSong = (song) => ({
-    type: LAZY_LOAD_ALBUM_SONG,
-    song
-})
+// const lazyLoadAlbumSong = (song) => ({
+//     type: LAZY_LOAD_ALBUM_SONG,
+//     song
+// })
 
-const lazyLoadPlaylistSongs = (playlist_songs) => ({
-    type: LAZY_LOAD_PLAYLIST_SONGS,
-    playlist_songs
-})
+// const lazyLoadPlaylistSongs = (playlist_songs) => ({
+//     type: LAZY_LOAD_PLAYLIST_SONGS,
+//     playlist_songs
+// })
 
-const lazyLoadAlbumSongs = (album_songs) => ({
-    type: LAZY_LOAD_ALBUM_SONGS,
-    album_songs
-})
+// const lazyLoadAlbumSongs = (album_songs) => ({
+//     type: LAZY_LOAD_ALBUM_SONGS,
+//     album_songs
+// })
 
 const eagerLoadPlaylistFromSong = (playlist, playlistSongOrder) => ({
     type: EAGER_LOAD_PLAYLIST_FROM_SONG,
@@ -49,9 +49,9 @@ const eagerLoadPlaylist = (playlist) => ({
 
 // const eagerLoadPlaylist
 
-const lazyClear = () => ({
-    type: LAZY_CLEAR_QUEUE
-})
+// const lazyClear = () => ({
+//     type: LAZY_CLEAR_QUEUE
+// })
 
 // THUNK ACTION CREATORS
 

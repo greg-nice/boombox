@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 import SideBar from './components/SideBar/SideBar.js';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
+// import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
 import OneAlbum from './components/OneAlbum/OneAlbum.js';

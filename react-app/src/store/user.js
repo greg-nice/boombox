@@ -1,7 +1,7 @@
 // ACTIONS
 
 const LOAD_USER = 'user/LOAD_USER';
-const REMOVE_USER = 'user/REMOVE_USER';
+// const REMOVE_USER = 'user/REMOVE_USER';
 
 // ACTION CREATORS
 
@@ -10,9 +10,9 @@ const load = (user) => ({
     user
 })
 
-const removeUser = () => ({
-    type: REMOVE_USER
-})
+// const removeUser = () => ({
+//     type: REMOVE_USER
+// })
 
 export const getUser = (userId) => async (dispatch) => {
     const response = await fetch(`/api/users/${userId}`)
