@@ -304,3 +304,13 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+.sidebar-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(179, 179, 179);
+}
+
+.sidebar-link:hover {
+    color:white;
+}

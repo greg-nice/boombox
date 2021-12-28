@@ -12,6 +12,7 @@ const OnePlaylistView = () => {
     const playlist = useSelector(state => state.playlist);
     playlist.playlist_songs.sort((a, b) => a.order - b.order);
     const playlists = useSelector(state => state.userPlaylists);
+    const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
     // const { playlistId } = useParams();
@@ -168,10 +169,10 @@ const OnePlaylistView = () => {
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-playbutton-section-container">
                 <div><button onClick={() => handlePlaylistPlayClick(playlist)}>Play</button></div>
-                <div><button>[Like]</button></div>
-                <div><button>[Make public]</button></div>
-                <div><button onClick ={() => handlePlaylistEditClick(setShowPlaylistEditModal)}>Edit details</button></div>
-                <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>
+                {sessionUser.id !== playlist.user_id && <div><button>[Like]</button></div>}
+                {sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>}
+                {sessionUser.id === playlist.user_id && <div><button onClick ={() => handlePlaylistEditClick(setShowPlaylistEditModal)}>Edit details</button></div>}
+                {sessionUser.id === playlist.user_id && <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>}
             </div>
             {showPlaylistEditModal && (
                 <PlaylistEditModal playlist={playlist} handlePlaylistEditClick={handlePlaylistEditClick}/>
@@ -216,10 +217,10 @@ const OnePlaylistView = () => {
                         <div className='song-nav-dropdown'>
                             <ul className='song-nav-menu-options-list'>
                                 <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
-                                <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li>
-                                <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li>
+                                {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li> */}
+                                {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li> */}
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>
-                                <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>
+                                {sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>}
                                 <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>
                             </ul>
                         </div>

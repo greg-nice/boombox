@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getUser } from '../../store/user';
 import { getSuserFollows, addSuserFollowed, deleteSuserFollowed } from '../../store/follows';
 import './OneUser.css';
@@ -54,21 +54,21 @@ const OneUser = () => {
             <div>Public Playlists
                 {user.playlists.length > 0 && user.playlists.map(playlist => {
                     return (
-                        <div key={playlist.id}>{playlist.name}</div>
+                        <div key={playlist.id}><Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link></div>
                     )
                 })}
             </div>
             <div>Followers
                 {user.followers.length > 0 && user.followers.map(follower => {
                     return (
-                    <div key={follower.id}>{follower.username}</div>
+                        <div key={follower.id}><Link to={`/users/${follower.id}`}>{follower.username}</Link></div>
                     )
                 })}
             </div>
             <div>Following
                 {user.following.length > 0 && user.following.map(followed => {
                     return (
-                        <div key={followed.id}>{followed.username}</div>
+                        <div key={followed.id}><Link to={`/users/${followed.id}`}>{followed.username}</Link></div>
                     )
                 })}
             </div>

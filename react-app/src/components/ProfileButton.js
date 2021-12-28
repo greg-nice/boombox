@@ -41,7 +41,7 @@ const ProfileButton = ({ user }) => {
                 <div className='nav-dropdown'>
                     <div className='nav-dropdown-second-container'>
                         <ul className='nav-dropdown-list'>
-                            <li className='nav-list-item'><Link className="profile-page-link"><span className="dropdown-span">Profile</span></Link></li>
+                            <li className='nav-list-item'><Link className="profile-page-link" to={`/users/${user.id}`}><span className="dropdown-span">Profile</span></Link></li>
                             <li className='nav-list-item'>
                                 {/* <button id="logout-button" onClick={handleLogout}>Log Out</button> */}
                                 <LogoutButton />
