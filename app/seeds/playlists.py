@@ -1,4 +1,4 @@
-from app.models import db, Playlist
+from app.models import db, Playlist, User
 
 
 def seed_playlists():
@@ -28,6 +28,13 @@ def seed_playlists():
     db.session.add(PL2)
     db.session.add(PL3)
     db.session.add(PL4)
+
+    db.session.commit()
+
+    demo = User.query.get(1)
+    marnie = User.query.get(2)
+    PL1.list_followers.append(marnie)
+    PL3.list_followers.append(demo)
 
     db.session.commit()
 
