@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } from '../../store/playlists';
 import { getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk } from '../../store/queue';
@@ -195,8 +195,8 @@ const OnePlaylistView = () => {
                         <div className="playlist-row" key={playlist_song.id}>
                             <div className="row-element" id="song-order" onClick={() => handleSongPlayClick(playlist, playlist_song.order)}><div>{playlist_song.order}</div></div>
                             <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
-                            <div className="row-element"><div>{playlist_song.song.artist}</div></div>
-                            <div className="row-element"><div>{playlist_song.song.album}</div></div>
+                            <div className="row-element"><div><Link to={`/artists/${playlist_song.song.artist_id}`}>{playlist_song.song.artist}</Link></div></div>
+                            <div className="row-element"><div><Link to={`/albums/${playlist_song.song.album_id}`}>{playlist_song.song.album}</Link></div></div>
                             <div className="row-element"><div>{dateAdded(playlist_song.created_at)}</div></div>
                             <div className="row-element">
                                 <div>{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
@@ -217,8 +217,8 @@ const OnePlaylistView = () => {
                         <div className='song-nav-dropdown'>
                             <ul className='song-nav-menu-options-list'>
                                 <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
-                                {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></li> */}
-                                {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></li> */}
+                                <li className="menu-list-item"><Link to={`/artists/${playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId})[0].song.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
+                                <li className="menu-list-item"><Link to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>
                                 {sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>}
                                 <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>
