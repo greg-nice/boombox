@@ -31,6 +31,7 @@ def seed_playlists():
 
     db.session.commit()
 
+
 def undo_playlists():
     db.session.execute('TRUNCATE playlists RESTART IDENTITY CASCADE;')
     db.session.commit()

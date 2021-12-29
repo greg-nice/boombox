@@ -28,10 +28,10 @@ def seed_playlists_songs():
         order=4
     )
 
-    stronger = Playlist_Song(
-        playlist_id=1,
+    people = Playlist_Song(
+        playlist_id=2,
         song_id=5,
-        order=5
+        order=2
     )
 
     goodlife = Playlist_Song(
@@ -43,7 +43,7 @@ def seed_playlists_songs():
     db.session.add(nosleep)
     db.session.add(bulls)
     db.session.add(fight)
-    db.session.add(stronger)
+    db.session.add(people)
     db.session.add(goodlife)
     db.session.commit()
 
