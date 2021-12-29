@@ -76,13 +76,21 @@ class User(db.Model, UserMixin):
             # 'followed_playlists': [playlist.id for playlist in self.followed_playlists]
         }
 
-    def to_dict_verbose(self):
+    def to_mydict(self):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email,
-            # 'playlists': [playlist.name for playlist in self.playlists],
-            # 'following': [followed.username for followed in self.following],
-            # 'followers': [follower.username for follower in self.followers],
-            # 'followed_playlists': [playlist.name for playlist in self.followed_playlists]
+            'profile_pic': self.profile_pic if self.profile_pic else None,
+            # 'email': self.email,
+            'playlists': list(filter(lambda playlist: playlist["public"] == True, [playlist.to_dict() for playlist in self.playlists])),
+            'following': [followed.to_safe() for followed in self.following],
+            'followers': [follower.to_safe() for follower in self.followers],
+            'followed_playlists': [playlist.name for playlist in self.followed_playlists]
+        }
+
+    def to_safe(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'profile_pic': self.profile_pic
         }

@@ -1,8 +1,9 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Playlist, Playlist_Song
+from app.models import User, Playlist, Playlist_Song
 from app.forms import PlaylistForm
-from app.models.db import db;
+from app.models.db import db
+import datetime
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -35,27 +36,27 @@ def get_one_playlist(id):
     return {"errors": ["Playlist does not exist"]}
 
 
-# CREATE NEW PLAYLIST
-@playlist_routes.route('/', methods=["POST"])
-@login_required
-def create_playlist():
-    user_id = current_user.id
-    form = PlaylistForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+# # CREATE NEW PLAYLIST
+# @playlist_routes.route('/', methods=["POST"])
+# @login_required
+# def create_playlist():
+#     user_id = current_user.id
+#     form = PlaylistForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-# make sure this works if the session user doesn't provide all the fields
-    if form.validate_on_submit():
-        new_playlist = Playlist(
-            user_id=user_id,
-            name=form.data["name"],
-            pic=form.data["pic"],
-            description=form.data["description"],
-            public=form.data["public"]
-        )
-        db.session.add(new_playlist)
-        db.session.commit()
-        return new_playlist.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}
+# # make sure this works if the session user doesn't provide all the fields
+#     if form.validate_on_submit():
+#         new_playlist = Playlist(
+#             user_id=user_id,
+#             name=form.data["name"],
+#             pic=form.data["pic"],
+#             description=form.data["description"],
+#             public=form.data["public"]
+#         )
+#         db.session.add(new_playlist)
+#         db.session.commit()
+#         return new_playlist.to_dict()
+#     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # CREATE NEW PLAYLIST SIMPLE
@@ -72,24 +73,27 @@ def create_simple_playlist():
 # add error handling
 
 
-# # UPDATE PLAYLIST METADATA
-# @playlist_routes.route('/<int:id>', methods=["PUT"])
-# @login_required
-# def update_playlist(id):
-#     form = PlaylistForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
+# UPDATE PLAYLIST METADATA
+@playlist_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def update_playlist(id):
+    form = PlaylistForm()
+    # print("WHOOOOOOOOOOOA", form.data)
+    # print(request.form)
+    # req = request.get_json()
+    # print(req)
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#     if form.validate_on_submit():
-#         updated_playlist = Playlist.query.get(id)
+    if form.validate_on_submit():
+        updated_playlist = Playlist.query.get(id)
 
-#         updated_playlist.name=form.data["name"]
-#         updated_playlist.pic=form.data["pic"]
-#         updated_playlist.description=form.data["description"]
-#         updated_playlist.public=form.data["public"]
+        updated_playlist.name=form.data["name"]
+        updated_playlist.description=form.data["description"]
+        # updated_playlist.created_at=datetime.datetime.now
 
-#         db.session.commit()
-#         return updated_playlist.to_dict()
-#     return {"errors": validation_errors_to_error_messages(form.errors)}
+        db.session.commit()
+        return updated_playlist.to_dict()
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # DELETE ONE PLAYLIST
@@ -101,13 +105,13 @@ def delete_one_playlist(id):
     db.session.commit()
     return {"delete": id}
 
-# is this route ever used?? if not, delete it
-# GET PLAYLIST_SONGS
-@playlist_routes.route('/<int:id>/playlists_songs')
-def get_playlist_songs(id):
-    playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
-    if playlist_songs:
-        return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
+# # is this route ever used?? if not, delete it
+# # GET PLAYLIST_SONGS
+# @playlist_routes.route('/<int:id>/playlists_songs')
+# def get_playlist_songs(id):
+#     playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
+#     if playlist_songs:
+#         return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
 
 # ADD SONG TO PLAYLIST
 
@@ -156,3 +160,32 @@ def delete_playlist_song(id, playlist_song_id):
                 list_song.order -= 1
         db.session.commit()
         return updated_playlist.to_dict()
+
+
+#ADD SESSION USER AS FOLLOWER TO A PLAYLIST
+
+@playlist_routes.route('/<int:id>/follow', methods=["POST"])
+@login_required
+def add_playlist_follow(id):
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    playlist = Playlist.query.get(id)
+    if user and playlist:
+        playlist.list_followers.append(user)
+        db.session.commit()
+        return user.to_safe()
+
+
+#DELETE SESSION USER AS FOLLOWER TO A PLAYLIST
+
+@playlist_routes.route('/<int:id>/follow', methods=["DELETE"])
+@login_required
+def delete_playlist_follow(id):
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    playlist = Playlist.query.get(id)
+    if user and playlist:
+        playlist.list_followers.remove(user)
+        db.session.commit()
+        return str(user.id)
+        

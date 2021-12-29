@@ -9,21 +9,50 @@ import { useSelector } from 'react-redux';
 
 export default function NowPlaying() {
     const queue = useSelector(state => state.queue);
+    const [currentSong, setCurrentSong] = useState(0)
 
-    const Player = (src) => (
+    const song = queue[currentSong];
+
+    let src = ""
+    if (song) {
+        if (song.type === "playlist_song") {
+            src = song.song.data_url;
+        } else if (song.type === "album_song") {
+            src = song.data_url;
+        }
+    }
+
+    const Player = () => (
         <AudioPlayer
             autoPlay
-            // src={src}
-            src=""
-            onPlay={e => console.log("onPlay")}
+            src={src}
+            // src=""
+            onPlay={e => console.log("onPlay", song ? song : null)}
             showSkipControls={true}
             showJumpControls={false}
+            onEnded={() => setCurrentSong((currentSong) => {
+                console.log("song ended");
+                if (currentSong < queue.length - 1) {
+                    return currentSong + 1
+                }
+            })}
+            
+            onClickNext={() => {
+                if (currentSong < queue.length - 1) {
+                    setCurrentSong((currentSong) => currentSong + 1)
+                }
+            }}
+            onClickPrevious={() => {
+                if (currentSong > 0) {
+                    setCurrentSong((currentSong) => currentSong - 1)
+                }
+            }}
         // other props here
         />
     );
 
     let songInfo;
-    if (queue.length > 0) {
+    if (song) {
         songInfo = (
             <>
                 <div className="song-info-widget">
@@ -33,7 +62,7 @@ export default function NowPlaying() {
                                 <div className="album-cover-shrink-setting">
                                     <div className="cover-art-shadow">
                                         <div>
-                                            <img className="album-cover-art" src={queue[0].song.albumDetails.pic} alt=""></img>
+                                            <img className="album-cover-art" src={queue[currentSong].song.albumDetails.pic} alt=""></img>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +77,7 @@ export default function NowPlaying() {
                                         <div className="song-title-final-container">
                                             <span className="song-title-span">
                                                 <Link className="song-title-link">
-                                                    {queue[0].song.title}
+                                                    {queue[currentSong].song.title}
                                                 </Link>
                                             </span>
                                         </div>
@@ -64,7 +93,7 @@ export default function NowPlaying() {
                                             <span className="song-artist-span">
                                                 <span className="song-artist-second-span">
                                                     <Link className="song-artist-link">
-                                                        {queue[0].song.artist}
+                                                        {queue[currentSong].song.artist}
                                                     </Link>
                                                 </span>
                                             </span>
@@ -91,7 +120,7 @@ export default function NowPlaying() {
                 <div className="song-info-container">
                     {songInfo}
                 </div>
-                {queue.length > 0 ? Player(queue[0].song.data_url) : Player()}
+                {Player()}
                 <div className="placeholder"></div>
             </div>
         </div>

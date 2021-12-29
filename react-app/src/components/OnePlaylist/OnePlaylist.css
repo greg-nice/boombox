@@ -42,6 +42,19 @@
     font-weight: lighter;
 }
 
+.username-link {
+    color: white;
+    text-decoration: none;
+}
+
+.username-link:hover {
+    text-decoration: underline;
+}
+
+#username-span {
+    color:white;
+}
+
 .playlist-playbutton-section-container {
     display: flex;
     padding-top: 24px;
@@ -155,6 +168,8 @@
     overflow-y: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-decoration: none;
+    color: rgba(255, 255, 255, .9);
 }
 
 .playlist-song-dropdown-wrapper {
@@ -182,4 +197,18 @@
     border-radius: 4px;
     box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
     box-shadow: 0 6px 8px rgba(0, 0, 0, .2);
+}
+
+.song-nav-link {
+    color:rgb(179, 179, 179);
+    text-decoration: none;
+}
+
+.song-nav-link:hover {
+    text-decoration:underline;
+}
+
+.menu-link {
+    color: rgba(255, 255, 255, .9);
+    text-decoration: none;
 }

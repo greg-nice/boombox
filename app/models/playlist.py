@@ -10,7 +10,7 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(100), default="My New Playlist", nullable=False)
-    pic = db.Column(db.String(255))
+    pic = db.Column(db.String(255), default="https://dbdzm869oupei.cloudfront.net/img/vinylrugs/preview/57823.png")
     description = db.Column(db.String(255))
     public = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
@@ -34,7 +34,9 @@ class Playlist(db.Model):
             'pic': self.pic,
             'description': self.description,
             'public': self.public,
+            'created_at': self.created_at,
             'updated_at': self.updated_at,
             'playlist_songs': [list_song.to_dict() for list_song in self.list_songs],
-            'user': self.user.to_dict()
+            'user': self.user.to_safe(),
+            'list_followers': {follower.id: follower.to_safe() for follower in self.list_followers}
         }

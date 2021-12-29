@@ -1,0 +1,204 @@
+.edit-playlist-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color:#282828;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 30%);
+    min-height: 300px;
+    width: 524px;
+    box-sizing: border-box;
+}
+
+.heading-container {
+    display:flex;
+    justify-content: space-between;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.heading-text {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 28px;
+    text-transform: none;
+    color: #fff;
+    padding:0;
+    margin:0;
+}
+
+.close-button {
+    align-items: center;
+    align-self: center;
+    background-color: transparent;
+    border:0;
+    border-radius: 32px;
+    color: rgba(255,255,255,.7);
+    grid-area: close-button;
+    height: 32px;
+    justify-content: center;
+    /* margin-inline-end: -8px;
+    margin-top: -8px; */
+    width: 32px;
+    display: flex;
+    cursor: pointer;
+}
+
+.playlist-pic-container {
+    grid-area: album-image;
+    height: 180px;
+    margin: 0;
+    position: relative;
+    width: 180px;
+}
+
+.playlist-pic-wrapper {
+    height: 100%;
+    width: 100%;
+    user-select: none;
+}
+
+.playlist-pic {
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.details-container {
+    grid-gap:16px;
+    display: grid;
+    grid-template: 32px 132px 32px auto/180px 1fr;
+    grid-template-areas:
+        "album-image title"
+        "album-image description"
+        ". save-button";
+    padding-top: 0px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    box-sizing: border-box;
+}
+
+.title-container {
+    grid-area: title;
+    position: relative;
+    color: #fff;
+}
+
+.title-label {
+    left: 10px;
+    color: #b3b3b3;
+    inset-inline-start: 10px;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    transform: translateY(-75%);
+    /* transition: opacity .2s; */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+#title-text {
+    background: rgba(255,255,255,.1);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    height: 40px;
+    padding: 0 12px;
+    width: 100%;
+    text-transform: none;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+.description-container {
+    grid-area: description;
+    margin-top: 8px;
+    position: relative;
+}
+
+.description-label {
+    left: 10px;
+    color: #b3b3b3;
+    inset-inline-start: 10px;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    transform: translateY(-75%);
+    /* transition: opacity .2s; */
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+#description-text {
+    background: rgba(255,255,255,.1);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    height: 100%;
+    padding: 8px 8px 28px;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.save-button {
+    align-items: center;
+    display: flex;
+    grid-area: save-button;
+    justify-self: flex-end;
+    padding: 0 24px;
+    background-color: #fff;
+    color:#181818;
+    border: 2px solid transparent;
+    border-radius: 500px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+#edit-playlist-errors {
+    color: red;
+    padding: 0 1rem;
+}

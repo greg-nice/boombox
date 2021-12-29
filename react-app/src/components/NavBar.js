@@ -2,41 +2,42 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import LogoutButton from './auth/LogoutButton';
+// import LogoutButton from './auth/LogoutButton';
 import './NavBar.css';
 import { login } from '../store/session';
+import ProfileButton from './ProfileButton';
+import { getSuserPlaylists } from '../store/playlists';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleDemoClick = (e) => {
+    (async () => {
+      e.preventDefault();
 
-    const email = "demo@aa.io";
-    const password = 'password';
+      const email = "demo@aa.io";
+      const password = 'password';
 
-    return dispatch(login(email, password));
+      await dispatch(login(email, password));
+      await dispatch(getSuserPlaylists());
+      // REDIRECT TO HOME PAGE IF ON LOGIN OR SIGNUP PAGES
+    })();
   }
-
-
-
-  // swap this out for a real react component
-  let ProfileButton 
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        {ProfileButton && <ProfileButton />}
-        <LogoutButton />
+        <ProfileButton user={sessionUser}/>
+        {/* <LogoutButton /> */}
       </>
     )
   } else {
     sessionLinks = (
       <>
         <div id="login-buttons-group">
-          <button id="demo-button"><span id="demo-span" onClick={handleClick}>Demo</span></button>
+          <button id="demo-button"><span id="demo-span" onClick={(e) => handleDemoClick(e)}>Demo</span></button>
           <button id="signup-button">
             <NavLink id="signup-link" to='/sign-up' exact={true}>
               Sign Up
