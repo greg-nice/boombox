@@ -168,6 +168,8 @@
     overflow-y: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-decoration: none;
+    color: rgba(255, 255, 255, .9);
 }
 
 .playlist-song-dropdown-wrapper {
@@ -204,4 +206,9 @@
 
 .song-nav-link:hover {
     text-decoration:underline;
+}
+
+.menu-link {
+    color: rgba(255, 255, 255, .9);
+    text-decoration: none;
 }

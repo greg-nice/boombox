@@ -85,11 +85,12 @@ class User(db.Model, UserMixin):
             'playlists': list(filter(lambda playlist: playlist["public"] == True, [playlist.to_dict() for playlist in self.playlists])),
             'following': [followed.to_safe() for followed in self.following],
             'followers': [follower.to_safe() for follower in self.followers],
-            # 'followed_playlists': [playlist.name for playlist in self.followed_playlists]
+            'followed_playlists': [playlist.name for playlist in self.followed_playlists]
         }
 
     def to_safe(self):
         return {
             'id': self.id,
             'username': self.username,
+            'profile_pic': self.profile_pic
         }

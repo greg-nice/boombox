@@ -37,5 +37,6 @@ class Playlist(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'playlist_songs': [list_song.to_dict() for list_song in self.list_songs],
-            'user': self.user.to_dict()
+            'user': self.user.to_safe(),
+            'list_followers': {follower.id: follower.to_safe() for follower in self.list_followers}
         }

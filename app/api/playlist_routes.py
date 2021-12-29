@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Playlist, Playlist_Song
+from app.models import User, Playlist, Playlist_Song
 from app.forms import PlaylistForm
 from app.models.db import db
 import datetime
@@ -160,3 +160,31 @@ def delete_playlist_song(id, playlist_song_id):
         db.session.commit()
         return updated_playlist.to_dict()
 
+
+#ADD SESSION USER AS FOLLOWER TO A PLAYLIST
+
+@playlist_routes.route('/<int:id>/follow', methods=["POST"])
+@login_required
+def add_playlist_follow(id):
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    playlist = Playlist.query.get(id)
+    if user and playlist:
+        playlist.list_followers.append(user)
+        db.session.commit()
+        return user.to_safe()
+
+
+#DELETE SESSION USER AS FOLLOWER TO A PLAYLIST
+
+@playlist_routes.route('/<int:id>/follow', methods=["DELETE"])
+@login_required
+def delete_playlist_follow(id):
+    user_id = current_user.id
+    user = User.query.get(user_id)
+    playlist = Playlist.query.get(id)
+    if user and playlist:
+        playlist.list_followers.remove(user)
+        db.session.commit()
+        return str(user.id)
+        

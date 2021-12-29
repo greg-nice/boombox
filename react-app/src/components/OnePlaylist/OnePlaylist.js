@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link, useParams } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } from '../../store/playlists';
-import { getPlaylist } from '../../store/playlist';
+import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk } from '../../store/queue';
 import './OnePlaylist.css'
 import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
@@ -31,6 +31,18 @@ const OnePlaylistView = () => {
 
     const handleDummyPlaylistPlayClick = () => {
         // displays popup message to non-logged in user suggesting login/signup
+    }
+
+    const handleLikePlaylistClick = () => {
+        (async () => {
+            await dispatch(addPlaylistFollow(playlist.id))
+        })();
+    }
+
+    const handleUnlikePlaylistClick = () => {
+        (async () => {
+            await dispatch(unfollowPlaylist(playlist.id))
+        })();
     }
 
     const handlePlaylistEditClick = () => {
@@ -162,7 +174,7 @@ const OnePlaylistView = () => {
             <div className="playlist-title-tile-container">
                 <div className="playlist-image-container">
                     {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}
-                    {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>}
+                    {/* {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>} */}
                 </div>
                 <div>
                     <div className="playlist-name-container"><h1>{playlist.name}</h1></div>
@@ -178,7 +190,8 @@ const OnePlaylistView = () => {
             <div className="playlist-playbutton-section-container">
                 {sessionUser && <div><button onClick={() => handlePlaylistPlayClick(playlist)}>Play</button></div>}
                 {!sessionUser && <div><button onClick={() => handleDummyPlaylistPlayClick(playlist)}>Play</button></div>}
-                {sessionUser && sessionUser.id !== playlist.user_id && <div><button>[Like]</button></div>}
+                {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
+                {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
                 {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>}
                 {sessionUser && sessionUser.id === playlist.user_id && <div><button onClick ={() => handlePlaylistEditClick(setShowPlaylistEditModal)}>Edit details</button></div>}
                 {sessionUser && sessionUser.id === playlist.user_id && <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>}
@@ -226,8 +239,8 @@ const OnePlaylistView = () => {
                         <div className='song-nav-dropdown'>
                             <ul className='song-nav-menu-options-list'>
                                 <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>
-                                <li className="menu-list-item"><Link to={`/artists/${playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId})[0].song.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
-                                <li className="menu-list-item"><Link to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li>
+                                <li className="menu-list-item"><Link className="menu-link" to={`/artists/${playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId})[0].song.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
+                                <li className="menu-list-item"><Link className="menu-link" to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li>
                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>
                                 {sessionUser && sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>}
                                 <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>

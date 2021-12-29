@@ -6,7 +6,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar/SideBar.js';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+// import UsersList from './components/UsersList';
 // import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
@@ -16,6 +16,8 @@ import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
 import './App.css';
+import Collections from './components/Collections';
+import TeaserBar from './components/TeaserBar/TeaserBar';
 
 function App() {
   const sessionUser = useSelector(state => state.session.user);
@@ -40,6 +42,7 @@ function App() {
       <div className="top-container">
         <SideBar className="side-bar"/>
         {sessionUser && <NowPlaying className="now-playing-bar"/>}
+        {!sessionUser && <TeaserBar />}
         <div className="main-view">
           <NavBar className="top-bar"/>
           <Switch>
@@ -49,9 +52,9 @@ function App() {
             <Route path='/sign-up' exact={true}>
               <SignUpForm />
             </Route>
-            <ProtectedRoute path='/users' exact={true} >
+            {/* <ProtectedRoute path='/users' exact={true} >
               <UsersList/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
             {/* <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute> */}
@@ -67,6 +70,9 @@ function App() {
             <Route path='/users/:userId' exact={true}>
               <OneUser />
             </Route>
+            <ProtectedRoute path='/collections' exact={true}>
+              <Collections />
+            </ProtectedRoute>
           </Switch>
         </div>
       </div>
