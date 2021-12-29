@@ -23,9 +23,9 @@ def seed_playlists_songs():
     )
 
     fight = Playlist_Song(
-        playlist_id=1,
+        playlist_id=3,
         song_id=4,
-        order=4
+        order=1
     )
 
     people = Playlist_Song(
