@@ -28,7 +28,9 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getSuserPlaylists());
+      if (sessionUser) {
+        await dispatch(getSuserPlaylists());
+      }
       setLoaded(true);
     })();
   }, [dispatch]);
