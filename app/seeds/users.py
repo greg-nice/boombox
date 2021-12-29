@@ -16,6 +16,13 @@ def seed_users():
 
     db.session.commit()
 
+    demo.followers.append(bobbie)
+    demo.followers.append(marnie)
+    demo.following.append(bobbie)
+    demo.following.append(marnie)
+
+    db.session.commit()
+
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
