@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 const Collections = () => {
     return (
-        <Redirect to="/collections/songs" />
+        <Redirect to="/collections/playlists" />
     )
 }
 

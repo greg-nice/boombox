@@ -18,6 +18,7 @@ import { getSuserPlaylists } from './store/playlists';
 import './App.css';
 import Collections from './components/Collections';
 import TeaserBar from './components/TeaserBar/TeaserBar';
+import FollowedPlaylists from './components/FollowedPlaylists/FollowedPlaylists';
 
 function App() {
   const sessionUser = useSelector(state => state.session.user);
@@ -72,6 +73,9 @@ function App() {
             </Route>
             <ProtectedRoute path='/collections' exact={true}>
               <Collections />
+            </ProtectedRoute>
+            <ProtectedRoute path='/collections/playlists' exact={true}>
+              <FollowedPlaylists />
             </ProtectedRoute>
           </Switch>
         </div>

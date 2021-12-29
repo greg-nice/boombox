@@ -7,6 +7,7 @@ import userPlaylistsReducer from './playlists';
 import queueReducer from './queue';
 import userReducer from './user';
 import followsReducer from './follows';
+import followedPlaylistsReducer from './followedPlaylists';
 
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   queue: queueReducer,
   user: userReducer,
   follows: followsReducer,
+  followedPlaylists: followedPlaylistsReducer
 });
 
 
