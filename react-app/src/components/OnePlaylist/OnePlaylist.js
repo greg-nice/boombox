@@ -192,7 +192,7 @@ const OnePlaylistView = () => {
                 {!sessionUser && <div><button onClick={() => handleDummyPlaylistPlayClick(playlist)}>Play</button></div>}
                 {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
                 {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
-                {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>}
+                {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
                 {sessionUser && sessionUser.id === playlist.user_id && <div><button onClick ={() => handlePlaylistEditClick(setShowPlaylistEditModal)}>Edit details</button></div>}
                 {sessionUser && sessionUser.id === playlist.user_id && <div><button onClick={() => handleDeletePlaylistClick(playlist.id)}>Delete</button></div>}
             </div>
