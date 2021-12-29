@@ -11,7 +11,7 @@ const OneUser = () => {
     const [userLoaded, setUserLoaded] = useState(false);
     const user = useSelector(state => state.user);
     const sessionUser = useSelector(state => state.session.user);
-    const followers = useSelector(state => state.follows.followers);
+    // const followers = useSelector(state => state.follows.followers);
     const following = useSelector(state => state.follows.following);
 
     useEffect(() => {
