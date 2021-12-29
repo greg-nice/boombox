@@ -46,7 +46,7 @@ const SideBar = () => {
                 </div>
                 <div className="sidebar-subcontainer">
                     <div className="sidebar-item"><span onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></div>
-                    <div className="sidebar-item"><Link className="sidebar-link" to='/collections/tracks'>Liked Songs</Link></div>
+                    <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div>
                 </div>
                 <div className="sidebar-subcontainer" id="playlists-subcontainer">
                     {playlists.map(playlist => {

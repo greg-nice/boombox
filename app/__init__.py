@@ -6,6 +6,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .models import db, User
+from .api.followed_playlist_routes import followed_playlist_routes
 from .api.follows_routes import follows_routes
 from .api.playlist_routes import playlist_routes
 from .api.user_routes import user_routes
@@ -31,6 +32,7 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+app.register_blueprint(followed_playlist_routes, url_prefix='/api/followed-playlists')
 app.register_blueprint(follows_routes, url_prefix='/api/follows')
 app.register_blueprint(playlist_routes, url_prefix='/api/playlists')
 app.register_blueprint(user_routes, url_prefix='/api/users')
