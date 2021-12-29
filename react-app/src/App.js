@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -18,6 +18,7 @@ import { getSuserPlaylists } from './store/playlists';
 import './App.css';
 
 function App() {
+  const sessionUser = useSelector(state => state.session.user);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ function App() {
     <BrowserRouter>
       <div className="top-container">
         <SideBar className="side-bar"/>
-        <NowPlaying className="now-playing-bar"/>
+        {sessionUser && <NowPlaying className="now-playing-bar"/>}
         <div className="main-view">
           <NavBar className="top-bar"/>
           <Switch>
@@ -57,15 +58,15 @@ function App() {
             <ProtectedRoute path='/' exact={true} >
               <HomePage />
             </ProtectedRoute>
-            <ProtectedRoute path='/playlists/:playlistId' exact={true}>
+            <Route path='/playlists/:playlistId' exact={true}>
               <OnePlaylist />
-            </ProtectedRoute>
-            <ProtectedRoute path='/albums/:albumId' exact={true}>
+            </Route>
+            <Route path='/albums/:albumId' exact={true}>
               <OneAlbum />
-            </ProtectedRoute>
-            <ProtectedRoute path='/users/:userId' exact={true}>
+            </Route>
+            <Route path='/users/:userId' exact={true}>
               <OneUser />
-            </ProtectedRoute>
+            </Route>
           </Switch>
         </div>
       </div>

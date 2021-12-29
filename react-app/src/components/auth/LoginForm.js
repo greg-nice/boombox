@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { getSuserPlaylists } from '../../store/playlists';
+// import { getSuserPlaylists } from '../../store/playlists';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    // (async (e) => {
+      e.preventDefault();
+      const data = await dispatch(login(email, password));
+      if (data) {
+        setErrors(data);
+      }
+      await dispatch(getSuserPlaylists());
+    //   } else {
+    //     await dispatch(getSuserPlaylists());
+    //     setIsLoaded(true);
+    //   }
+    // })();
   };
 
   const updateEmail = (e) => {

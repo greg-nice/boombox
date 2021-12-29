@@ -4,6 +4,7 @@ const LOAD_SUSER_PLAYLISTS = "playlists/LOAD_SUSER_PLAYLISTS";
 const ADD_ONE_SUSER_PLAYLIST = "playlists/ADD_ONE_SUSER_PLAYLIST";
 const REMOVE_SUSER_PLAYLIST = "playlists/REMOVE_SUSER_PLAYLIST";
 const UPDATE_ONE_SUSER_PLAYLIST = "playlists/UPDATE_ONE_SUSER_PLAYLIST";
+const CLEAR_SUSER_PLAYLISTS = "playlists/CLEAR_SUSER_PLAYLISTS";
 // const ADD_SUSER_PLAYLIST_SONG = "playlists/ADD_SUSER_PLAYLIST_SONG";
 
 // ACTION CREATORS
@@ -26,6 +27,10 @@ const remove = (playlistId) => ({
 const update = (playlist) => ({
     type: UPDATE_ONE_SUSER_PLAYLIST,
     playlist
+})
+
+const clear = () => ({
+    type: CLEAR_SUSER_PLAYLISTS
 })
 
 // THUNK ACTION CREATORS
@@ -114,6 +119,12 @@ export const updateSuserPlaylist = (playlistData) => async (dispatch) => {
     }
 }
 
+// REMOVE all playlists from store
+
+export const clearSuserPlaylists = () => async (dispatch) => {
+    dispatch(clear());
+}
+
 export 
 
 
@@ -149,6 +160,8 @@ export default function userPlaylistsReducer(state=initialState, action) {
             let playlists = Object.values(newState);
             return [ ...playlists ]
         }
+        case CLEAR_SUSER_PLAYLISTS:
+            return [];
         default:
             return state;
     }

@@ -36,7 +36,7 @@ const OneUser = () => {
         })();
     }
 
-    if (!userLoaded || !user)
+    if (!userLoaded || !user )
         return null;
 
     return (
@@ -48,8 +48,8 @@ const OneUser = () => {
             <div>{user.followers.length} {user.followers.length === 1 ? "follower" : "followers"}</div>
             <div>{user.following.length} following</div>
             <div>
-                {sessionUser.id !== user.id && following[`${user.id}`] && <button onClick={() => handleUnfollowClick(user.id)}>Following</button>}
-                {sessionUser.id !== user.id && !following[`${user.id}`] && <button onClick={() => handleFollowClick(user.id)}>Follow</button>}
+                {sessionUser && sessionUser.id !== user.id && following[`${user.id}`] && <button onClick={() => handleUnfollowClick(user.id)}>Following</button>}
+                {sessionUser && sessionUser.id !== user.id && !following[`${user.id}`] && <button onClick={() => handleFollowClick(user.id)}>Follow</button>}
             </div>
             <div>Public Playlists
                 {user.playlists.length > 0 && user.playlists.map(playlist => {
