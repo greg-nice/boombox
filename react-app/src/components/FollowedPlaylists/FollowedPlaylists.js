@@ -24,7 +24,7 @@ const FollowedPlaylists = () => {
     return (
         <div>
             <h1>Playlists You Follow</h1>
-            {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length && followedPlaylistsArr.map(playlist => {
+            {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
                 return (
                     <Link key={playlist.id} to={`/playlists/${playlist.id}`}><div>{playlist.name}</div></Link>
                 )
