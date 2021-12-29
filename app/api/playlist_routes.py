@@ -36,27 +36,27 @@ def get_one_playlist(id):
     return {"errors": ["Playlist does not exist"]}
 
 
-# CREATE NEW PLAYLIST
-@playlist_routes.route('/', methods=["POST"])
-@login_required
-def create_playlist():
-    user_id = current_user.id
-    form = PlaylistForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+# # CREATE NEW PLAYLIST
+# @playlist_routes.route('/', methods=["POST"])
+# @login_required
+# def create_playlist():
+#     user_id = current_user.id
+#     form = PlaylistForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-# make sure this works if the session user doesn't provide all the fields
-    if form.validate_on_submit():
-        new_playlist = Playlist(
-            user_id=user_id,
-            name=form.data["name"],
-            pic=form.data["pic"],
-            description=form.data["description"],
-            public=form.data["public"]
-        )
-        db.session.add(new_playlist)
-        db.session.commit()
-        return new_playlist.to_dict()
-    return {"errors": validation_errors_to_error_messages(form.errors)}
+# # make sure this works if the session user doesn't provide all the fields
+#     if form.validate_on_submit():
+#         new_playlist = Playlist(
+#             user_id=user_id,
+#             name=form.data["name"],
+#             pic=form.data["pic"],
+#             description=form.data["description"],
+#             public=form.data["public"]
+#         )
+#         db.session.add(new_playlist)
+#         db.session.commit()
+#         return new_playlist.to_dict()
+#     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # CREATE NEW PLAYLIST SIMPLE
@@ -89,6 +89,7 @@ def update_playlist(id):
 
         updated_playlist.name=form.data["name"]
         updated_playlist.description=form.data["description"]
+        # updated_playlist.created_at=datetime.datetime.now
 
         db.session.commit()
         return updated_playlist.to_dict()
@@ -104,13 +105,13 @@ def delete_one_playlist(id):
     db.session.commit()
     return {"delete": id}
 
-# is this route ever used?? if not, delete it
-# GET PLAYLIST_SONGS
-@playlist_routes.route('/<int:id>/playlists_songs')
-def get_playlist_songs(id):
-    playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
-    if playlist_songs:
-        return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
+# # is this route ever used?? if not, delete it
+# # GET PLAYLIST_SONGS
+# @playlist_routes.route('/<int:id>/playlists_songs')
+# def get_playlist_songs(id):
+#     playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
+#     if playlist_songs:
+#         return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
 
 # ADD SONG TO PLAYLIST
 

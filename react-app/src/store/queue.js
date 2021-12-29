@@ -62,10 +62,13 @@ export const lazyLoadPlaylistSongThunk = (playlistName, playlistSong) => async (
 export const eagerLoadPlaylistFromSongThunk = (playlist, playlistSongOrder) => async (dispatch) => {
     dispatch(eagerLoadPlaylistFromSong(playlist, playlistSongOrder))
 }
+// try eager loading the whole playlist and returning the playlistsong order and in the component setting the current song to that number - 1
+// the above won't work because the now-playing component won't have access to the return value, which goes to the OnePlaylist component
 
 export const eagerLoadPlaylistThunk = (playlist) => async (dispatch) => {
     dispatch(eagerLoadPlaylist(playlist))
 }
+
 
 // QUEUE REDUCER
 
