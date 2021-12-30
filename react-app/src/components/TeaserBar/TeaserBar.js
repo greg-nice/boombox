@@ -3,15 +3,22 @@
 // import { useSelector } from 'react-redux';
 
 // Link to = {`/playlists/${playlist.id}`} ??
+import './TeaserBar.css'
 
 export default function TeaserBar() {
     return (
         <div className="now-playing-bar">
-            <div className="now-playing-bar-inner-wrapper">
-                <div className="song-info-container"></div>
-                <div>HELLO!</div>
-                <div className="placeholder"></div>
-            </div>
+            <footer className="teaser-bar-component">
+                <div className="teaser-bar-inner-wrapper">
+                    <div className="teaser-message-container">
+                        <p className="message-heading">Preview of BOOMBOX</p>
+                        <p className="message-body">Sign up to play songs, make playlists, and follow other music fans.</p>
+                    </div>
+                    <button className="teaser-signup-button">
+                        Sign up free
+                    </button>
+                </div>
+            </footer>
         </div>
     )
 }

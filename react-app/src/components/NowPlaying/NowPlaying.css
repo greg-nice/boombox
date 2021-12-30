@@ -1,4 +1,17 @@
-.now-playing-bar { 
+.now-playing-bar {
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    z-index: 4;
+    line-height: 1.6;
+    color:rgb(179,179,179);
+    background-color: #181818;
+    grid-area: now-playing-bar;
+}
+
+.now-playing-bar-component { 
     background-color: #181818;
     box-sizing: border-box;
     display: flex;

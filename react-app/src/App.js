@@ -43,7 +43,7 @@ function App() {
       <div className="top-container">
         <SideBar className="side-bar"/>
         {sessionUser && <NowPlaying className="now-playing-bar"/>}
-        {!sessionUser && <TeaserBar />}
+        {!sessionUser && <TeaserBar className="now-playing-bar"/>}
         <div className="main-view">
           <NavBar className="top-bar"/>
           <Switch>
