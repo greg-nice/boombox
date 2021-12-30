@@ -16,3 +16,40 @@
     text-align:center;
     color:black;
 }
+
+.signup-button-from-signup-container {
+    display:flex;
+    justify-content: space-around;
+    margin-top:12px;
+    margin-bottom:24px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.signup-button-from-signup {
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 700;
+    background-color: transparent;
+    border:0;
+    border-radius: 500px;
+    text-align: center;
+    display: inline-block;
+    position:relative;
+    text-decoration: none;
+    vertical-align: middle;
+    align-self: center;
+    padding:0;
+    background-color: #1ed760;
+    cursor:pointer;
+}
+
+.signup-button-from-signup:hover {
+    background-color: #1fdf64;
+}
+
+.signup-button-inner-div {
+    padding:16px 48px;
+}
