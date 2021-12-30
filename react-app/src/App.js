@@ -41,11 +41,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="top-container">
-        <SideBar className="side-bar"/>
-        {sessionUser && <NowPlaying className="now-playing-bar"/>}
-        {!sessionUser && <TeaserBar className="now-playing-bar"/>}
+
+        <SideBar />
+        {sessionUser && <NowPlaying />}
+        {!sessionUser && <TeaserBar />}
         <div className="main-view">
-          <NavBar className="top-bar"/>
+          <NavBar />
           <Switch>
             <Route path='/login' exact={true}>
               <LoginForm />

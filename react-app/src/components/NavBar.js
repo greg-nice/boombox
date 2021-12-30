@@ -56,14 +56,15 @@ const NavBar = () => {
   return (
     <div className="top-bar">
       <header className="top-bar-and-user-menu">
-        <div>
+        <div className="style-setting-div"><div className="inner-style-setting-div"></div></div>
+        <div></div>
+        <div></div>
+        {/* <div>
           <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
             Users
           </NavLink>
-        </div>
-        <div>
-          {sessionLinks}
-        </div>
+        </div> */}
+        {sessionLinks}
       </header>
     </div>
   );

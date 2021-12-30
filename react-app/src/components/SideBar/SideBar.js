@@ -35,26 +35,32 @@ const SideBar = () => {
         return (
             <div className="side-bar">
                 <div className="sidebar-container">
-                    <div id="home-button-container">
-                        <NavLink id="boombox-logo-link" className="nav-link" to='/' exact={true}>
+                    <div className="logo-button-container">
+                        <NavLink className="boombox-logo-link" to='/' exact={true}>
                             {"BOOMBOX"}
                         </NavLink>
                     </div>
-                    <div className="sidebar-subcontainer">
-                        <div className="sidebar-item"><Link className="sidebar-link" to="/">Home</Link></div>
+                    <ul className="sidebar-buttons-container">
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Home</span></Link></li>
                         {/* <div className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></div> */}
-                        <div className="sidebar-item"><Link className="sidebar-link" to="/collections">Your Library</Link></div>
-                    </div>
-                    <div className="sidebar-subcontainer">
-                        <div className="sidebar-item"><span onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></div>
-                        {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
-                    </div>
-                    <div className="sidebar-subcontainer" id="playlists-subcontainer">
-                        {playlists.map(playlist => {
-                            return (
-                                <div className="sidebar-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
-                            )
-                        })}
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Your Library</span></Link></li>
+                    </ul>
+                    <div className="rootlist-container">
+                        <div className="rootlist-container-inner">
+                            <button className="rootlist-item"><div className="rootlist-button-icon-container">XXXXX</div><span className="rootlist-button-text-span" onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></button>
+                            {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
+                            <div className="border-container">
+                                <hr id="hr"></hr>
+                                <div id="border-div"></div>
+                            </div>
+                            <div id="playlists-container">
+                                {playlists.map(playlist => {
+                                    return (
+                                        <div className="playlist-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                                    )
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
