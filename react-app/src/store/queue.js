@@ -7,7 +7,7 @@ const LAZY_LOAD_PLAYLIST_SONG = "queue/LAZY_LOAD_PLAYLIST_SONG";
 // const LAZY_CLEAR_QUEUE = "queue/LAZY_CLEAR_QUEUE";
 const EAGER_LOAD_PLAYLIST_FROM_SONG = "queue/EAGER_LOAD_PLAYLIST_FROM_SONG";
 const EAGER_LOAD_PLAYLIST = "queue/EAGER_LOAD_PLAYLIST"
-// const EAGER_CLEAR_QUEUE = "queue/EAGER_CLEAR_QUEUE";
+const EAGER_CLEAR_QUEUE = "queue/EAGER_CLEAR_QUEUE";
 
 // ACTION CREATORS
 
@@ -43,6 +43,10 @@ const eagerLoadPlaylist = (playlist) => ({
     playlist
 })
 
+const eagerClearQueue = () => ({
+    type: EAGER_CLEAR_QUEUE
+})
+
 // const eagerLoadAlbumSong
 
 // const eagerLoadAlbum
@@ -67,6 +71,10 @@ export const eagerLoadPlaylistFromSongThunk = (playlist, playlistSongOrder) => a
 
 export const eagerLoadPlaylistThunk = (playlist) => async (dispatch) => {
     dispatch(eagerLoadPlaylist(playlist))
+}
+
+export const eagerClearQueueThunk = () => async (dispatch) => {
+    dispatch(eagerClearQueue())
 }
 
 
@@ -103,6 +111,8 @@ export default function queueReducer(state = initialState, action) {
             })
             return newState;
         }
+        case EAGER_CLEAR_QUEUE:
+            return [];
         default:
             return state;
     }
