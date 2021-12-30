@@ -1,0 +1,18 @@
+.signup-homelink {
+    background-size:100%;
+    display: inline-block;
+    max-width: 100%;
+    width: 200px;
+    text-decoration:none;
+    color:#222326;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.marketing-text {
+    font-size:32px;
+    font-weight:700;
+    letter-spacing: -1.28px;
+    text-align:center;
+    color:black;
+}

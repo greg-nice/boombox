@@ -19,7 +19,7 @@ import { getSuserFollowedPlaylists } from './store/followedPlaylists';
 import './App.css';
 import Collections from './components/Collections';
 import TeaserBar from './components/TeaserBar/TeaserBar';
-import FollowedPlaylists from './components/FollowedPlaylists/FollowedPlaylists';
+import PlaylistsCollection from './components/PlaylistsCollection/PlaylistsCollection';
 
 function App() {
   const sessionUser = useSelector(state => state.session.user);
@@ -49,29 +49,31 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="top-container">
 
+      <div className="top-container">
+        <Route path='/login' exact={true}>
+          <LoginForm />
+        </Route>
+        <Route path='/sign-up' exact={true}>
+          <SignUpForm />
+        </Route>
         <SideBar />
         {sessionUser && <NowPlaying />}
         {!sessionUser && <TeaserBar />}
         <div className="main-view">
           <NavBar />
           <Switch>
-            <Route path='/login' exact={true}>
-              <LoginForm />
-            </Route>
-            <Route path='/sign-up' exact={true}>
-              <SignUpForm />
-            </Route>
+
+
             {/* <ProtectedRoute path='/users' exact={true} >
               <UsersList/>
             </ProtectedRoute> */}
             {/* <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute> */}
-            <ProtectedRoute path='/' exact={true} >
+            <Route path='/' exact={true} >
               <HomePage />
-            </ProtectedRoute>
+            </Route>
             <Route path='/playlists/:playlistId' exact={true}>
               <OnePlaylist />
             </Route>
@@ -85,7 +87,7 @@ function App() {
               <Collections />
             </ProtectedRoute>
             <ProtectedRoute path='/collections/playlists' exact={true}>
-              <FollowedPlaylists />
+              <PlaylistsCollection />
             </ProtectedRoute>
           </Switch>
         </div>

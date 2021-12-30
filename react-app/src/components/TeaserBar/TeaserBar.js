@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { useSelector } from 'react-redux';
 
 // Link to = {`/playlists/${playlist.id}`} ??
@@ -15,9 +15,9 @@ export default function TeaserBar() {
                         <p className="message-heading">Preview of BOOMBOX</p>
                         <p className="message-body">Sign up to play songs, make playlists, and follow other music fans.</p>
                     </div>
-                    <button className="teaser-signup-button">
+                    <Link to="/sign-up"><button className="teaser-signup-button">
                         Sign up
-                    </button>
+                    </button></Link>
                 </div>
             </footer>
         </div>
