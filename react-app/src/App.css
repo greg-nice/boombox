@@ -32,6 +32,7 @@
     width: 100%;
 }
 
+/* CHECK
 .side-bar {
     box-sizing: border-box;
     display:flex;
@@ -44,8 +45,9 @@
     background-color: rgb(0,0,0);
     color: rgb(179,179,179);
     grid-area: side-bar;
-}
+} */
 
+/* CHECK
 .now-playing-bar {
     box-sizing: border-box;
     display: block;
@@ -55,9 +57,9 @@
     z-index: 4;
     line-height: 1.6;
     color:rgb(179,179,179);
-    background-color: rgb(24,24,24);
+    background-color: #181818;
     grid-area: now-playing-bar;
-}
+} */
 
 .main-view {
     box-sizing: border-box;
@@ -69,4 +71,6 @@
     width: 100%;
     line-height: 1.6;
     grid-area: main-view;
+    min-height: 0;
+    color:rgb(179, 179, 179)
 }

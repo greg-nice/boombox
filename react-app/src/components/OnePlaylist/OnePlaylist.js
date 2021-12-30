@@ -205,9 +205,7 @@ const OnePlaylistView = () => {
             <div className="playlist-table">
                 {playlist.playlist_songs.length > 0 && (
                     <div className="playlist-row">
-                        <div className="row-element header"><div>#</div></div>
-                        <div className="row-element header"><div>Title</div></div>
-                        <div className="row-element header"><div>Artist</div></div>
+                        <div className="row-element header first-column"><div>#</div><div>Title</div></div>
                         <div className="row-element header"><div>Album</div></div>
                         <div className="row-element header"><div>Date Added</div></div>
                         <div className="row-element header"><div>Length</div></div>
@@ -216,14 +214,19 @@ const OnePlaylistView = () => {
                 )}
                 {playlist.playlist_songs.map(playlist_song => {
                     return (
-                        <div className="playlist-row" key={playlist_song.id}>
-                            <div className="row-element" id="song-order" onClick={() => handleSongPlayClick(playlist, playlist_song.order)}><div>{playlist_song.order}</div></div>
-                            <div className="row-element"><div id="title-in-row">{playlist_song.song.title}</div></div>
-                            <div className="row-element"><div><Link className="song-nav-link" to={`/artists/${playlist_song.song.artist_id}`}>{playlist_song.song.artist}</Link></div></div>
+                        <div className="playlist-row playlist-song-row" key={playlist_song.id} onDoubleClick={() => handleSongPlayClick(playlist, playlist_song.order)}>
+                            <div className="row-element first-column">
+                                <div><span onClick={() => handleSongPlayClick(playlist, playlist_song.order)}>{playlist_song.order}</span></div>
+                                <div className="album-cover-container"><img className="table-album-cover" src={playlist_song.song.albumDetails.pic} alt=""></img></div>
+                                <div>
+                                    <div id="title-in-row">{playlist_song.song.title}</div>
+                                    <div><Link className="song-nav-link" to={`/artists/${playlist_song.song.artist_id}`}>{playlist_song.song.artist}</Link></div>
+                                </div>
+                            </div>
                             <div className="row-element"><div><Link className="song-nav-link" to={`/albums/${playlist_song.song.album_id}`}>{playlist_song.song.album}</Link></div></div>
                             <div className="row-element"><div>{dateAdded(playlist_song.created_at)}</div></div>
                             <div className="row-element">
-                                <div>{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
+                                <div className="song-length-text">{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
                                 <div>
                                     <button className="song-nav-dropdown-button" onClick={() => openSongMenuClick(playlist_song.song.id, playlist_song.id)}>. . .
                                     </button>

@@ -13,6 +13,7 @@ export default function NowPlaying() {
     // const [autoPlay, setAutoPlay] = useState(true)
     const player = useRef();
     const audiofunction = () => {
+        console.log("WHATUP!")
         player.current.audio.current.pause()
     }
 
@@ -56,13 +57,13 @@ export default function NowPlaying() {
                 };
             }}
             
-            onClickNext={() => {
+            onClickNext={async () => {
                 if (currentSong < queue.length - 1) {
                     setCurrentSong((currentSong) => currentSong + 1)
                 } else if (currentSong === queue.length - 1) {
-                    setCurrentSong(0);
-                    audiofunction();
-                }
+                    await setCurrentSong(0);
+                    await audiofunction();
+                };
             }}
             onClickPrevious={() => {
                 if (currentSong > 0) {
@@ -138,12 +139,14 @@ export default function NowPlaying() {
 
     return (
         <div className="now-playing-bar">
-            <div className="now-playing-bar-inner-wrapper">
-                <div className="song-info-container">
-                    {songInfo}
+            <div className="now-playing-bar-component">
+                <div className="now-playing-bar-inner-wrapper">
+                    <div className="song-info-container">
+                        {songInfo}
+                    </div>
+                    {Player()}
+                    <div className="placeholder"></div>
                 </div>
-                {Player()}
-                <div className="placeholder"></div>
             </div>
         </div>
     )

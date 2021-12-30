@@ -64,11 +64,12 @@
 }
 
 .playlist-table {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
     font-size: small;
     color: rgb(179, 179, 179);
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 24px;
 }
 
 .header {
@@ -77,14 +78,21 @@
 
 .playlist-row {
     display: flex;
-    width: 100%;
     justify-content: space-between;
-    padding:1rem;
-    gap: 10px;
+}
+
+.playlist-song-row {
+    border-radius: 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.playlist-song-row:hover {
+    background-color: rgb(40, 40, 40)
 }
 
 .row-element {
-    width: 125px;
+    width: 150px;
     display: flex;
     gap: 1rem;
 }
@@ -211,4 +219,27 @@
 .menu-link {
     color: rgba(255, 255, 255, .9);
     text-decoration: none;
+}
+
+.album-cover-container {
+    height: 42px;
+    width: 42px;
+    overflow: hidden;
+}
+
+.table-album-cover {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-position: center center;
+}
+
+.song-length-text {
+    width: 25px;
+    margin-right: 2rem;
+}
+
+.first-column {
+    width: 250px;
+    padding-left: 1rem;
 }
