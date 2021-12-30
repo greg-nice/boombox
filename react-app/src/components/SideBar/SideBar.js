@@ -86,21 +86,25 @@ const SideBar = () => {
         return (
             <div className="side-bar">
                 <div className="sidebar-container">
-                    <div id="home-button-container">
-                        <NavLink id="boombox-logo-link" className="nav-link" to='/' exact={true}>
+                    <div className="logo-button-container">
+                        <NavLink className="boombox-logo-link" to='/' exact={true}>
                             {"BOOMBOX"}
                         </NavLink>
                     </div>
-                    <div className="sidebar-subcontainer">
-                        <div className="sidebar-item"><Link className="sidebar-link" to="/">Home</Link></div>
-                        <div className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></div>
-                        <div className="sidebar-item">Your Library</div>
-                    </div>
-                    <div className="sidebar-subcontainer">
-                        <div className="sidebar-item"><span>Create Playlist</span></div>
-                        <div className="sidebar-item">Liked Songs</div>
-                    </div>
-                    <div className="sidebar-subcontainer" id="playlists-subcontainer">
+                    <ul className="sidebar-buttons-container">
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Home</span></Link></li>
+                        {/* <li className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></li> */}
+                        <li className="sidebar-item"><div className="sidebar-link"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Your Library</span></div></li>
+                    </ul>
+                    <div className="rootlist-container">
+                        <div className="rootlist-container-inner">
+                            <button className="rootlist-item"><div className="rootlist-button-icon-container">XXXXX</div><span className="rootlist-button-text-span">Create Playlist</span></button>
+                            {/* <div className="sidebar-item">Liked Songs</div> */}
+                            <div className="border-container">
+                                <hr id="hr"></hr>
+                                <div id="border-div"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
