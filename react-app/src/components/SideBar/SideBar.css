@@ -75,10 +75,6 @@
     cursor:default;
 }
 
-.sidebar-item:hover {
-    color:white;
-}
-
 .sidebar-link {
     align-items: center;
     border-radius: 4px;
@@ -90,6 +86,7 @@
     user-select:none;
     text-decoration: none;
     box-sizing: border-box;
+    color:#b3b3b3
 }
 
 .sidebar-link:hover {
@@ -100,14 +97,13 @@
     display:block;
     height:24px;
     width:24px;
-    color:#b3b3b3;
     cursor:pointer;
     overflow: hidden;
 }
 
-.sidebar-link-icon:hover {
+/* .sidebar-link-icon:hover {
     color:#fff;
-}
+} */
 
 .sidebar-link-text-span {
     overflow: hidden;
@@ -117,13 +113,12 @@
     font-weight: 700;
     letter-spacing: normal;
     line-height: 16px;
-    color:#b3b3b3;
     box-sizing: border-box;
 }
 
-.sidebar-link-text-span:hover {
+/* .sidebar-link-text-span:hover {
     color:#fff;
-}
+} */
 
 /* #playlists-subcontainer {
     border-top:1px solid darkgray;
@@ -174,6 +169,10 @@
     box-sizing: border-box; */
 }
 
+.rootlist-item:hover {
+    color:white;
+}
+
 .rootlist-button-icon-container {
     margin-right: 16px;
     align-items: center;
@@ -195,9 +194,9 @@
     overflow: hidden; */
 }
 
-.rootlist-button-icon-container:hover {
+/* .rootlist-button-icon-container:hover {
     color:white;
-}
+} */
 
 .rootlist-button-text-span {
     text-align: left;
@@ -207,12 +206,13 @@
     font-weight: 700;
     letter-spacing: normal;
     line-height: 16px;
-    color:rgb(179,179,179);
+    /* color:rgb(179,179,179); */
 }
-
+/* 
 .rootlist-button-text-span:hover {
     color:white;
-}
+} */
+
 .border-container {
     position:relative;
     display:block;
@@ -250,16 +250,23 @@
     margin:0;
     box-sizing: border-box;
     display:block;
+    width:100%;
 }
 
 .playlist-item {
     padding-left: 24px;
     padding-right: 24px;
-    display: flex;
     position: relative;
     box-sizing: border-box;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    word-break: break-all;
+    width:100%;
+    cursor:pointer;
 }
 
 .playlist-item:hover {
