@@ -1,0 +1,135 @@
+.login-top-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    z-index: 9999;
+}
+
+.login-second-top-container {
+    box-sizing: border-box;
+    display: block;
+    color:#222326;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight:400;
+    width:100%;
+}
+
+.login-header-container {
+    box-sizing: border-box;
+    display: block;
+}
+
+.head {
+    border-bottom: 1px solid #d9dadc;
+    padding: 25px 0 10px;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.homelink {
+    background-size:100%;
+    display: inline-block;
+    max-width: 100%;
+    width: 200px;
+    text-decoration:none;
+    color:#222326;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.login-main-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+}
+
+.login-content-container {
+    margin:0 auto;
+    max-width:450px;
+    box-sizing: border-box;
+}
+
+.login-errors-container {
+    color:red
+}
+
+.login-form {
+    box-sizing: border-box;
+    display: block;
+    margin-top:0;
+}
+
+.sign-up-section {
+    box-sizing: border-box;
+    display:block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.h2-wrapper {
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+.sign-up-h2 {
+    font-size: 18px;
+    letter-spacing:normal;
+    margin-top:12px;
+    margin-bottom:12px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-align:center;
+    box-sizing: border-box;
+}
+
+.sign-up-button-container {
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #222326;
+    position:relative;
+    min-height:1px;
+    padding-left:15px;
+    padding-right:15px;
+    font-weight: 400;
+}
+
+
+
+.sign-up-link-from-login {
+    color:#616467;
+    box-shadow: inset 0 0 0 2px #616467;
+    background-color: transparent;
+    font-size: 14px;
+    line-height: 14px;
+    border-radius: 500px;
+    border-width: 0;
+    text-transform: uppercase;
+    display:block;
+    width:100%;
+    border-color:#ccc;
+    margin-bottom: 0;
+    font-weight:700;
+    letter-spacing: 2px;
+    text-align:center;
+    cursor:pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+    box-sizing: border-box;
+    padding:16px 14px 18px;
+}
+
+.sign-up-link-from-login:hover {
+    color:white;
+    background-color: #616467;
+}

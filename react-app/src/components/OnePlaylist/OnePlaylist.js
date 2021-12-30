@@ -6,6 +6,7 @@ import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/pl
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk , eagerClearQueueThunk} from '../../store/queue';
 import './OnePlaylist.css'
 import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
+import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
 
 
 const OnePlaylistView = () => {
@@ -36,13 +37,15 @@ const OnePlaylistView = () => {
 
     const handleLikePlaylistClick = () => {
         (async () => {
-            await dispatch(addPlaylistFollow(playlist.id))
+            await dispatch(addPlaylistFollow(playlist.id));
+            await dispatch(getSuserFollowedPlaylists());
         })();
     }
 
     const handleUnlikePlaylistClick = () => {
         (async () => {
-            await dispatch(unfollowPlaylist(playlist.id))
+            await dispatch(unfollowPlaylist(playlist.id));
+            await dispatch(getSuserFollowedPlaylists());
         })();
     }
 
