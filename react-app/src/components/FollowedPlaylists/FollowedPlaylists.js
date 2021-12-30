@@ -8,18 +8,18 @@ const FollowedPlaylists = () => {
     // const sessionUser = useSelector(state => state.session.user);
     const followedPlaylists = useSelector(state => state.followedPlaylists)
     const followedPlaylistsArr = Object.values(followedPlaylists);
-    const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
-    const dispatch = useDispatch();
+    // const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        (async () => {
-            await dispatch(getSuserFollowedPlaylists());
-            setPlaylistsLoaded(true)
-        })();
-    }, [dispatch])
+    // useEffect(() => {
+    //     (async () => {
+    //         await dispatch(getSuserFollowedPlaylists());
+    //         setPlaylistsLoaded(true)
+    //     })();
+    // }, [dispatch])
 
-    if (!playlistsLoaded)
-        return null;
+    // if (!playlistsLoaded)
+    //     return null;
 
     return (
         <div>

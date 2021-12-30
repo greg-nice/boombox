@@ -3,6 +3,7 @@
 // import { useSelector } from 'react-redux';
 
 // Link to = {`/playlists/${playlist.id}`} ??
+import React from 'react';
 import './TeaserBar.css'
 
 export default function TeaserBar() {
@@ -15,7 +16,7 @@ export default function TeaserBar() {
                         <p className="message-body">Sign up to play songs, make playlists, and follow other music fans.</p>
                     </div>
                     <button className="teaser-signup-button">
-                        Sign up free
+                        Sign up
                     </button>
                 </div>
             </footer>

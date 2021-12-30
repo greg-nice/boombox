@@ -15,6 +15,7 @@ import OneUser from './components/OneUser/OneUser.js';
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
+import { getSuserFollowedPlaylists } from './store/followedPlaylists';
 import './App.css';
 import Collections from './components/Collections';
 import TeaserBar from './components/TeaserBar/TeaserBar';
@@ -25,10 +26,18 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  if (sessionUser) {
+    console.log(sessionUser);
+    (async () => {
+      await dispatch(getSuserPlaylists());
+      await dispatch(getSuserFollowedPlaylists());
+    })();
+  }
+
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getSuserPlaylists());
+      // await dispatch(getSuserPlaylists());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -41,11 +50,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="top-container">
-        <SideBar className="side-bar"/>
-        {sessionUser && <NowPlaying className="now-playing-bar"/>}
-        {!sessionUser && <TeaserBar className="now-playing-bar"/>}
+
+        <SideBar />
+        {sessionUser && <NowPlaying />}
+        {!sessionUser && <TeaserBar />}
         <div className="main-view">
-          <NavBar className="top-bar"/>
+          <NavBar />
           <Switch>
             <Route path='/login' exact={true}>
               <LoginForm />
