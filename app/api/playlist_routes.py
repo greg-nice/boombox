@@ -21,10 +21,18 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def get_sessionuser_playlists():
     user_id = current_user.id
-    playlists = Playlist.query.filter(Playlist.user_id == user_id).all()
-    if playlists:
-        return {playlist.id: playlist.to_dict() for playlist in playlists}
-    # else??
+    print("^^^^^^^^^^^", user_id)
+    # playlists = Playlist.query.filter(Playlist.user_id == user_id).all()
+    # print("PLAYLISTSSSSSS", playlists)
+    # if playlists:
+    #     return {playlist.id: playlist.to_dict() for playlist in playlists}
+    # elif len(playlists) == 0:
+    #     print("USER HAS NO PLAYLISTS!!!")
+    #     return {}
+    # else handle errors??
+    user = User.query.get(user_id)
+    if user:
+        return {playlist.id: playlist.to_dict() for playlist in user.playlists}
 
 
 # GET ONE PLAYLIST
