@@ -22,6 +22,7 @@ const OnePlaylistView = () => {
     const [showPlaylistEditModal, setShowPlaylistEditModal] = useState(false);
     const [songId, setSongId] = useState(null);
     const [playlistSongId, setPlaylistSongId] = useState(null);
+    const [showDummyPlayModal, setShowDummyPlayModal] = useState(false)
     // const [isLoaded, setIsLoaded] = useState(true);
 
     const handlePlaylistPlayClick = (playlist) => {
@@ -31,9 +32,18 @@ const OnePlaylistView = () => {
         })();
     }
 
-    const handleDummyPlaylistPlayClick = () => {
-        // displays popup message to non-logged in user suggesting login/signup
+    const handleDummyPlayModal = () => {
+        setShowDummyPlayModal(!showDummyPlayModal);
     }
+
+    useEffect(() => {
+        if (showDummyPlayModal) {
+            document.addEventListener('click', handleDummyPlayModal);
+            return () => document.removeEventListener('click', handleDummyPlayModal);
+        } else {
+            return;
+        }
+    }, [showDummyPlayModal]);
 
     const handleLikePlaylistClick = () => {
         (async () => {
@@ -194,7 +204,26 @@ const OnePlaylistView = () => {
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-playbutton-section-container">
                 {sessionUser && <div><button onClick={() => handlePlaylistPlayClick(playlist)}>Play</button></div>}
-                {!sessionUser && <div><button onClick={() => handleDummyPlaylistPlayClick(playlist)}>Play</button></div>}
+                {!sessionUser && <div><button onClick={handleDummyPlayModal}>Play</button></div>}
+                {showDummyPlayModal && (
+                    <div className="dummy-play-modal-top-div">
+                        <div className="dummy-play-modal-second-div">
+                            <div className="dummy-play-content-container">
+                                <div className="dummy-play-album-cover-container">
+                                    <img className="dummy-play-cover" src={playlist.pic} alt=''></img>
+                                </div>
+                                <div className="dummy-play-modal-text-container">
+                                    <h2 className="dummy-play-heading">Start listening with a free Boombox account</h2>
+                                    <button className="dummy-play-signin-button" onClick={() => history.push("/sign-up")}>SIGN UP FREE</button>
+                                    <p className="dummy-play-login-prompt">Already have an account? <Link className="dummy-play-login-link" to="/login">Log in</Link></p>
+                                </div>
+                            </div>
+                            <div className="dummy-play-close-box">
+                                <button className="dummy-play-close-button">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
                 {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
                 {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}

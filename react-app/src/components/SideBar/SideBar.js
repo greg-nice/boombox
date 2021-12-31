@@ -27,7 +27,7 @@ const SideBar = () => {
     useEffect(() => {
         if (showLibraryModal) {
             document.addEventListener('click', handleLibraryModal);
-            return () => document.removeEventListener('click', handleLibraryModal)
+            return () => document.removeEventListener('click', handleLibraryModal);
         } else {
             return;
         }
