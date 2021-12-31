@@ -96,7 +96,10 @@ def update_playlist(id):
         updated_playlist = Playlist.query.get(id)
 
         updated_playlist.name=form.data["name"]
-        updated_playlist.description=form.data["description"]
+        if form.data["description"] == "":
+            updated_playlist.description=None
+        else:    
+            updated_playlist.description=form.data["description"]
         # updated_playlist.created_at=datetime.datetime.now
 
         db.session.commit()

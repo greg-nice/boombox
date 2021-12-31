@@ -7,7 +7,7 @@ import './PlaylistEditModal.css';
 
 const PlaylistEditModal = ({playlist, handlePlaylistEditClick}) => {
     const [name, setName] = useState(playlist.name);
-    const [description, setDescription] = useState(playlist.description);
+    const [description, setDescription] = useState(playlist.description ? playlist.description : "");
     const [validationErrors, setValidationErrors] = useState([]);
     const dispatch = useDispatch();
 
@@ -15,6 +15,8 @@ const PlaylistEditModal = ({playlist, handlePlaylistEditClick}) => {
         const validationErrors = [];
 
         if (!name) validationErrors.push("Name can't be blank.");
+        if (name.length > 100) validationErrors.push("Name can't be more than 100 characters.")
+        if (description.length > 255) validationErrors.push("Description can't be more than 255 characters.")
 
         return validationErrors;
     }
@@ -27,6 +29,7 @@ const PlaylistEditModal = ({playlist, handlePlaylistEditClick}) => {
                 setValidationErrors(errors);
             } else {
                 // console.log("11111111", playlist);
+
                 const playlistData = {
                     ...playlist,
                     name,
