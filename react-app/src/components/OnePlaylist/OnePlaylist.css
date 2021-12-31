@@ -380,6 +380,7 @@
     position:absolute;
     margin-top:24px;
     width:100%;
+    font-weight:400;
 }
 
 .dummy-play-close-button {
@@ -387,7 +388,7 @@
     border:none;
     color:#fff;
     display:block;
-    font-weight: 400;
+    font-weight: inherit;
     text-transform: none;
     padding: 13px;
     border-radius: 500px;
@@ -400,4 +401,12 @@
     box-sizing: border-box;
     align-items: flex-start;
     width:100%;
+}
+
+.dummy-play-close-box:hover {
+    font-weight:bold;
+}
+
+.song-number-span {
+    cursor:pointer;
 }

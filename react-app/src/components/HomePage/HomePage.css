@@ -4,9 +4,33 @@
     padding-right: 16px;
     padding-left: 16px;
     padding-top: 24px;
+    overflow-y: scroll;
+    right: 0;
+}
+
+.playlist-row {
+    display:flex;
+    justify-items: flex-start;
+}
+
+/* .playlist-container {
+} */
+
+.cover-container {
+    height: 165px;
+    width: 165px;
+    overflow:hidden;
+}
+
+.playlist-cover {
+    object-fit: cover;
+    object-position: center center;
+    height:100%;
+    width:100%;
 }
 
 .playlist-link {
     cursor:pointer;
     color:white;
 }
+
