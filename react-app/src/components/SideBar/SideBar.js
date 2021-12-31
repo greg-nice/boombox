@@ -80,13 +80,19 @@ const SideBar = () => {
                         </NavLink>
                     </div>
                     <ul className="sidebar-buttons-container">
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Home</span></Link></li>
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span class="material-icons-outlined">
+                            home
+                        </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
                         {/* <div className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></div> */}
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Your Library</span></Link></li>
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon"><span class="material-icons-outlined">
+                            stacked_bar_chart
+                        </span></div><span className="sidebar-link-text-span">Your Library</span></Link></li>
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
-                            <button className="rootlist-item"><div className="rootlist-button-icon-container">XXXXX</div><span className="rootlist-button-text-span" onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></button>
+                            <button className="rootlist-item"><div className="rootlist-button-icon-container"><span class="material-icons-outlined">
+                                add_circle_outline
+                            </span></div><span className="rootlist-button-text-span" onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></button>
                             {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
                             <div className="border-container">
                                 <hr id="hr"></hr>
