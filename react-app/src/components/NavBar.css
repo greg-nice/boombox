@@ -199,8 +199,6 @@
     display: block;
     margin-inline-end: 6px;
     box-sizing: border-box;
-    height: 16px;
-    width: 16px;
     overflow: hidden;
     color:#fff;
     cursor: pointer;
