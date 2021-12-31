@@ -273,6 +273,142 @@
     color:white;
 }
 
+.library-modal-top-div {
+    z-index: 5;
+    position: absolute;
+    inset: 0 auto auto 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    list-style: none;
+}
 
+.library-modal-content-container {
+    max-width: 336px;
+    background-color: #0d72ea;
+    border-radius: 8px;
+    box-shadow:0 4px 40px rgb(0 0 0 / 30%);
+    color:#fff;
+    font-size:14px;
+    line-height: 1.4;
+    outline: 0;
+    position: relative;
+    text-align:start;
+    transform:translate3d(173px, 139px, 0px);
+}
 
+.library-modal-content {
+    padding:16px;
+    position:relative;
+    box-sizing: border-box;
+}
 
+.library-modal-content-inner-wrapper {
+    max-width: 336px;
+    min-width: 300px;
+    position: relative;
+    z-index: 1;
+}
+
+.library-modal-heading-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:8px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.libary-modal-heading {
+    margin:0;
+    width:100%;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.library-modal-text-body {
+    margin:0;
+    white-space: pre-wrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height:16px;
+}
+
+.library-modal-button-section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin-top:24px;
+}
+
+.not-now-button {
+    background-color:transparent;
+    color:#fff;
+    border:2px solid transparent;
+    border-radius:500px;
+    cursor:pointer;
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    padding: 8px 34px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.login-button-from-library-modal {
+    background-color:#1db954;
+    color:#fff;
+    border:2px solid transparent;
+    border-radius:500px;
+    cursor:pointer;
+    display:inline-block;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    padding: 8px 34px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.library-modal-arrow {
+    position:absolute;
+    top:0;
+    transform: translate3d(0px, 12px, 0px);
+    left:0;
+    color:#0d72ea;
+    height:16px;
+    width:16px;
+}
+
+.library-modal-arrow::before {
+    border-width: 8px 8px 8px 0;
+    left:-7px;
+    border-color:transparent #0d72ea transparent transparent;
+    transform-origin: center right;
+    border-style:solid;
+    content: "";
+    position:absolute;
+}
+
+.create-playlist-modal-content-container {
+    max-width: 336px;
+    background-color: #0d72ea;
+    border-radius: 8px;
+    box-shadow:0 4px 40px rgb(0 0 0 / 30%);
+    color:#fff;
+    font-size:14px;
+    line-height: 1.4;
+    outline: 0;
+    position: relative;
+    text-align:start;
+    transform:translate3d(173px, 0, 0px);
+}

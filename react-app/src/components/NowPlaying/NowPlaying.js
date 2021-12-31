@@ -13,7 +13,7 @@ export default function NowPlaying() {
     // const [autoPlay, setAutoPlay] = useState(true)
     const player = useRef();
     const audiofunction = () => {
-        console.log("WHATUP!")
+        // console.log("WHATUP!")
         player.current.audio.current.pause()
     }
 
@@ -43,7 +43,7 @@ export default function NowPlaying() {
             src={src}
             // src=""
             ref={player}
-            onPlay={e => console.log("onPlay", song ? song : null)}
+            onPlay={e => console.log("onPlay", song ? song : null, queue)}
             showSkipControls={true}
             showJumpControls={false}
             onEnded={() => {
