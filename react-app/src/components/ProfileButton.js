@@ -20,8 +20,7 @@ const ProfileButton = ({ user }) => {
         if (showMenu) {
             document.addEventListener('click', handleMenu);
             return () => document.removeEventListener('click', handleMenu);
-        }
-        else {
+        } else {
             return;
         }
     }, [showMenu]);
