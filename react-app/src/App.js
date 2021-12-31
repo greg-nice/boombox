@@ -27,7 +27,7 @@ function App() {
   const dispatch = useDispatch();
 
   if (sessionUser) {
-    console.log(sessionUser);
+    // console.log(sessionUser);
     (async () => {
       await dispatch(getSuserPlaylists());
       await dispatch(getSuserFollowedPlaylists());
