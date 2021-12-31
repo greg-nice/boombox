@@ -244,11 +244,11 @@ const OnePlaylistView = () => {
                         {/* <div className="row-element header"><div>Options</div></div> */}
                     </div>
                 )}
-                {playlist.playlist_songs.map(playlist_song => {
+                {sessionUser && playlist.playlist_songs.map(playlist_song => {
                     return (
                         <div className="playlist-row playlist-song-row" key={playlist_song.id} onDoubleClick={() => handleSongPlayClick(playlist, playlist_song.order)}>
                             <div className="row-element first-column">
-                                <div><span onClick={() => handleSongPlayClick(playlist, playlist_song.order)}>{playlist_song.order}</span></div>
+                                <div><span className="song-number-span" onClick={() => handleSongPlayClick(playlist, playlist_song.order)}>{playlist_song.order}</span></div>
                                 <div className="album-cover-container"><img className="table-album-cover" src={playlist_song.song.albumDetails.pic} alt=""></img></div>
                                 <div>
                                     <div id="title-in-row">{playlist_song.song.title}</div>
@@ -264,6 +264,28 @@ const OnePlaylistView = () => {
                                     </button>
 
                                 </div>}
+                            </div>
+                            {/* <div className="row-element">
+                                
+                            </div> */}
+                        </div>
+                    )
+                })}
+                {!sessionUser && playlist.playlist_songs.map(playlist_song => {
+                    return (
+                        <div className="playlist-row playlist-song-row" key={playlist_song.id} onDoubleClick={handleDummyPlayModal}>
+                            <div className="row-element first-column">
+                                <div><span className="song-number-span" onClick={handleDummyPlayModal}>{playlist_song.order}</span></div>
+                                <div className="album-cover-container"><img className="table-album-cover" src={playlist_song.song.albumDetails.pic} alt=""></img></div>
+                                <div>
+                                    <div id="title-in-row">{playlist_song.song.title}</div>
+                                    <div><Link className="song-nav-link" to={`/artists/${playlist_song.song.artist_id}`}>{playlist_song.song.artist}</Link></div>
+                                </div>
+                            </div>
+                            <div className="row-element"><div><Link className="song-nav-link" to={`/albums/${playlist_song.song.album_id}`}>{playlist_song.song.album}</Link></div></div>
+                            <div className="row-element"><div>{dateAdded(playlist_song.created_at)}</div></div>
+                            <div className="row-element">
+                                <div className="song-length-text">{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
                             </div>
                             {/* <div className="row-element">
                                 

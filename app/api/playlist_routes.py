@@ -15,6 +15,21 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+# GET FEATURED PLAYLIST
+@playlist_routes.route('/featured')
+def get_featured_playlists():
+    plists = []
+    featured_list1 = Playlist.query.get(1)# playlist number)
+    featured_list2 = Playlist.query.get(2)# playlist number)
+    featured_list3 = Playlist.query.get(3)# playlist number)
+    featured_list4 = Playlist.query.get(4)# playlist number)
+    plists.append(featured_list1)
+    plists.append(featured_list2)
+    plists.append(featured_list3)
+    plists.append(featured_list4)
+    featured_playlists = {plist.id: plist.to_dict() for plist in plists}
+    return featured_playlists
+
 
 # GET ALL OF SESSION USER'S PLAYLISTS
 @playlist_routes.route('/')
@@ -42,6 +57,9 @@ def get_one_playlist(id):
     if playlist:
         return playlist.to_dict()
     return {"errors": ["Playlist does not exist"]}
+
+
+
 
 
 # # CREATE NEW PLAYLIST
@@ -72,8 +90,10 @@ def get_one_playlist(id):
 @login_required
 def create_simple_playlist():
     user_id = current_user.id
+    user = User.query.get(user_id)
     new_playlist = Playlist(
-        user_id=user_id
+        user_id=user_id,
+        name="My Playlist #{}".format(str(len(user.playlists) + 1) if user.playlists else "1") 
     )
     db.session.add(new_playlist)
     db.session.commit()
