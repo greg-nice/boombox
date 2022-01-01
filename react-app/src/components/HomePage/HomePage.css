@@ -32,5 +32,26 @@
 .playlist-link {
     cursor:pointer;
     color:white;
+    padding: 0 16px;
+    text-overflow: ellipsis;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
+    gap: 24px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-container {
+  max-width: 216px;
+  padding: 16px;
+  width: 150px;
+  height: 150px;
+}

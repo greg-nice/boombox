@@ -80,17 +80,17 @@ const SideBar = () => {
                         </NavLink>
                     </div>
                     <ul className="sidebar-buttons-container">
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span class="material-icons-outlined">
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             home
                         </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
                         {/* <div className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></div> */}
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon"><span class="material-icons-outlined">
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             stacked_bar_chart
                         </span></div><span className="sidebar-link-text-span">Your Library</span></Link></li>
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
-                            <button className="rootlist-item"><div className="rootlist-button-icon-container"><span class="material-icons-outlined">
+                            <button className="rootlist-item"><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
                                 add_circle_outline
                             </span></div><span className="rootlist-button-text-span" onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></button>
                             {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
@@ -126,11 +126,15 @@ const SideBar = () => {
                         </NavLink>
                     </div>
                     <ul className="sidebar-buttons-container">
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon">XXXXX</div><span className="sidebar-link-text-span">Home</span></Link></li>
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
+                            home
+                        </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
                         {/* <li className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></li> */}
                         <li className="sidebar-item">
                             <div className="sidebar-link" onClick={handleLibraryModal}>
-                                <div className="sidebar-link-icon">XXXXX</div>
+                                <div className="sidebar-link-icon"><span className="material-icons-outlined">
+                                    stacked_bar_chart
+                                </span></div>
                                 <span className="sidebar-link-text-span">Your Library</span>
                             </div>
                             {showLibraryModal && (
@@ -144,8 +148,8 @@ const SideBar = () => {
                                                     </div>
                                                     <p className="library-modal-text-body">Log in to see saved songs and playlists in Your Library.</p>
                                                     <div className="library-modal-button-section">
-                                                        <button class="not-now-button" onClick={handleLibraryModal}>Not now</button>
-                                                        <button class="login-button-from-library-modal" onClick={() => history.push("/login")}>Log in</button>
+                                                        <button className="not-now-button" onClick={handleLibraryModal}>Not now</button>
+                                                        <button className="login-button-from-library-modal" onClick={() => history.push("/login")}>Log in</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,7 +162,9 @@ const SideBar = () => {
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
-                            <button className="rootlist-item" onClick={handleCreatePlaylistModal}><div className="rootlist-button-icon-container">XXXXX</div><span className="rootlist-button-text-span">Create Playlist</span></button>
+                            <button className="rootlist-item" onClick={handleCreatePlaylistModal}><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
+                                add_circle_outline
+                            </span></div><span className="rootlist-button-text-span">Create Playlist</span></button>
                             {showCreatePlaylistModal && (
                                 <div className="library-modal-top-div">
                                     <div className="create-playlist-modal-content-container">
@@ -170,8 +176,8 @@ const SideBar = () => {
                                                     </div>
                                                     <p className="library-modal-text-body">Log in to share and create playlists.</p>
                                                     <div className="library-modal-button-section">
-                                                        <button class="not-now-button" onClick={handleCreatePlaylistModal}>Not now</button>
-                                                        <button class="login-button-from-library-modal" onClick={() => history.push("/login")}>Log in</button>
+                                                        <button className="not-now-button" onClick={handleCreatePlaylistModal}>Not now</button>
+                                                        <button className="login-button-from-library-modal" onClick={() => history.push("/login")}>Log in</button>
                                                     </div>
                                                 </div>
                                             </div>

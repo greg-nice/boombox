@@ -36,8 +36,13 @@ const OneUser = () => {
         })();
     }
 
-    if (!userLoaded || !user )
+    if (userLoaded && Object.keys(user).length === 0) {
+        return "User does not exist."
+    }
+
+    if (!userLoaded || !user ) {
         return null;
+    }
 
     return (
         <main>

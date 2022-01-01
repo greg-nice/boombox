@@ -34,7 +34,7 @@ const ProfileButton = ({ user }) => {
                     </div>
                 </div>
                 <span className="profile-button-span">{user.username}</span>
-                <div className="profile-button-dropdown-icon"><span class="material-icons-outlined">
+                <div className="profile-button-dropdown-icon"><span className="material-icons-outlined">
                     expand_more
                 </span></div>
             </button>

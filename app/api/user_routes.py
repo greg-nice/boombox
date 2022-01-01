@@ -24,7 +24,10 @@ def users():
 # @login_required
 def user(id):
     user = User.query.get(id)
-    return user.to_mydict()
+    if user:
+        return user.to_mydict()
+    else:
+        return {}
 
 
 # #GET ALL OF ANY USER'S PLAYLISTS

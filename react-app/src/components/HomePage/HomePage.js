@@ -44,21 +44,21 @@ const HomePage = () => {
             <div className="homepage-container">
                 <h1>Hello, {user.username}!</h1>
                 {playlists.length === 0 && "<== Click 'Create Playlist' to start a new playlist"}
-                <div className="playlist-row">
+                {true && <ul className="grid-container">
                     {playlists.map((playlist, i) => {
-                        if (i < 4) {
+                        if (true) {
                             return (
-                                <div className="paylist-container" key={playlist.id}>
+                                <li className="grid-item" key={playlist.id}>
                                     <div className="cover-container" onClick={() => handlePlaylistClick(playlist.id)}><img className="playlist-cover" src={playlist.pic}></img></div>
                                     <div className="playlist-link" onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
-                                </div>
+                                </li>
                             )
                         }
                     })}
-                </div>
+                </ul>}
                 {featuredPlaylistsLoaded && featuredPlaylists && (
                     <div>
-                        <h1>Featured Playlists</h1>
+                        <h2>Featured Playlists</h2>
                         <div className="playlist-row">
                             {featuredPlaylists.map(playlist => {
                                 return (

@@ -13,8 +13,6 @@ def get_suser_follows():
     user_id = current_user.id
     user = User.query.get(user_id)
     user = user.to_mydict()
-    print("ZZZZZZZZZOOOOOWWWW", user["followers"])
-    print("WWWWWWOWWWWWWWWWWW", user["following"])
     follows = {}
     if user:
         follows["followers"] = {follower["id"]: follower for follower in user["followers"]}
@@ -36,7 +34,7 @@ def add_suser_followed(followedId):
         return followed.to_safe()
     # else?
 
-#DELETE ONE USER FROM SUSER'S FOLLOWING LIST
+#UPDATE FOLLOW/DELETE ONE USER FROM SUSER'S FOLLOWING LIST
 
 @follows_routes.route('/following/<int:followedId>', methods=["DELETE"])
 @login_required
