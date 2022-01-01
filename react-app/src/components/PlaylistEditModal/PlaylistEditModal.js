@@ -53,7 +53,9 @@ const PlaylistEditModal = ({playlist, handlePlaylistEditClick}) => {
             <div className="modal-content">
                 <div className='heading-container'>
                     <h1 className='heading-text'>Edit details</h1>
-                    <button className='close-button' onClick={() => handlePlaylistEditClick()}>X</button>
+                    <button className='close-button' onClick={() => handlePlaylistEditClick()}><span className="material-icons-outlined">
+                        close
+                    </span></button>
                 </div>
                 <div className='details-container'>
                     <div className="playlist-pic-container">

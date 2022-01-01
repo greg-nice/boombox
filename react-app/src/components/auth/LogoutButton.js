@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 // import { clearPlaylist } from "../../store/playlist";
 import { clearSuserPlaylists } from "../../store/playlists";
+import { eagerClearQueueThunk } from '../../store/queue';
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {
-    await dispatch(clearSuserPlaylists())
+    await dispatch(clearSuserPlaylists());
+    await dispatch(eagerClearQueueThunk());
     await dispatch(logout());
     //clear Queue?
   };

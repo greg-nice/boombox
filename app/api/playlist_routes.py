@@ -207,7 +207,7 @@ def add_playlist_follow(id):
         return user.to_safe()
 
 
-#DELETE SESSION USER AS FOLLOWER TO A PLAYLIST
+#UPDATE PLAYLIST FOLLOW / DELETE SESSION USER AS FOLLOWER TO A PLAYLIST
 
 @playlist_routes.route('/<int:id>/follow', methods=["DELETE"])
 @login_required
