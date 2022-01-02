@@ -10,7 +10,7 @@ class Playlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(100), default="My New Playlist", nullable=False)
-    pic = db.Column(db.String(255), default="https://dbdzm869oupei.cloudfront.net/img/vinylrugs/preview/57823.png")
+    pic = db.Column(db.String(255), default="https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg")
     description = db.Column(db.String(255))
     public = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
