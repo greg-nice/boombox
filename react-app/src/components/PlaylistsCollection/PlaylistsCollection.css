@@ -17,6 +17,7 @@
     width:100%;
     min-width: 100px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .library-item-content-container {
@@ -54,7 +55,7 @@
 }
 
 .library-playlist-title-container {
-    min-height: 48px;
+    min-height: 62px;
 }
 
 .library-playlist-title-link {

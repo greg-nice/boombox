@@ -52,7 +52,7 @@ const PlaylistsCollection = () => {
                     <div className="library-grid-container">
                         {sorted.map(playlist => {
                             return (
-                                <div className="library-item-container" key={playlist.id}>
+                                <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
                                     <div className="library-item-content-container">
                                         <div className="library-item-cover-pic-container">
                                             <div className="library-item-cover-pic-wrapper">
@@ -61,8 +61,8 @@ const PlaylistsCollection = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="library-playlist-title-container" onClick={() => handlePlaylistClick(playlist.id)}>
-                                            <Link className="library-playlist-title-link">
+                                        <div className="library-playlist-title-container">
+                                            <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
                                                 <div className="library-playlist-title-text">{playlist.name}</div>
                                             </Link>
                                         </div>
@@ -76,14 +76,28 @@ const PlaylistsCollection = () => {
             {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 &&
                 <div>
                     <h2>Playlists You Follow</h2>
-                    {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
-                        return (
-                            <div className="playlist-container" key={playlist.id}>
-                                <div className="cover-pic-container"><img className="playlist-cover" src={playlist.pic} alt=""></img></div>
-                                <div className="playlist-link" onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
-                            </div>
-                        )
-                    })}
+                    <div className="library-grid-container">
+                        {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
+                            return (
+                                <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                    <div className="library-item-content-container">
+                                        <div className="library-item-cover-pic-container">
+                                            <div className="library-item-cover-pic-wrapper">
+                                                <div>
+                                                    <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="library-playlist-title-container">
+                                            <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                <div className="library-playlist-title-text">{playlist.name}</div>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             }
         </div>
