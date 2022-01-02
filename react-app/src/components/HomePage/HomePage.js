@@ -6,7 +6,7 @@ import { useHistory, Link } from 'react-router-dom';
 // import { getSuserPlaylists } from '../../store/playlists';
 import './HomePage.css';
 
-const HomePage = () => {
+const HomePage = ( ) => {
     // const dispatch = useDispatch();
     const history = useHistory();
     // const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
@@ -14,6 +14,10 @@ const HomePage = () => {
     const playlists = useSelector(state => state.userPlaylists);
     const [featuredPlaylistsLoaded, setFeaturedPlaylistsLoaded] = useState(false);
     const [featuredPlaylists, setFeaturedPlaylists] = useState("");
+    const [shuffled, setShuffled] = useState([])
+    const sessionUser = useSelector(state => state.session.user);
+    // const [loadedCount, setLoadedCount] = useState(0);
+    // const [loaded, setLoaded] = useState(false);
     // const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -38,38 +42,96 @@ const HomePage = () => {
         history.push(`/playlists/${playlistId}`)
     }
 
+    // useEffect(() => {
+    //     (async () => {
+    //         console.log("before", loadedCount);
+    //         await setLoadedCount(loadedCount + 1);
+    //     })();
+    // }, [playlists])
+
+    useEffect(() => {
+        let unshuffled = [...playlists];
+
+        let shuffled = unshuffled
+            .map((playlist) => ({ playlist, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ playlist }) => playlist)
+
+        setShuffled(shuffled);
+        console.log("changed")
+    }, [playlists.length]) 
+
     // if (user && playlistsLoaded) {
-    if (user && playlists) {
+    if (user && shuffled && playlists.length !== 0) {
         return (
             <div className="homepage-container">
-                <h1>Hello, {user.username}!</h1>
-                {playlists.length === 0 && "<== Click 'Create Playlist' to start a new playlist"}
-                {true && <ul className="grid-container">
-                    {playlists.map((playlist, i) => {
-                        if (true) {
-                            return (
-                                <li className="grid-item" key={playlist.id}>
-                                    <div className="cover-container" onClick={() => handlePlaylistClick(playlist.id)}><img className="playlist-cover" src={playlist.pic}></img></div>
-                                    <div className="playlist-link" onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
-                                </li>
-                            )
-                        }
-                    })}
-                </ul>}
-                {featuredPlaylistsLoaded && featuredPlaylists && (
-                    <div>
-                        <h2>Featured Playlists</h2>
-                        <div className="playlist-row">
-                            {featuredPlaylists.map(playlist => {
+                <h1 className="homepage-h1">Hello, {user.username}!</h1>
+                {true && (
+                    <section className="homepage-row-container">
+                        <div className="homepage-heading-container">
+                            <div className="homepage-heading-second-container">
+                                <div className="homepage-heading-third-container">
+                                    <h2 className="homepage-h2">Jump back in</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="library-grid-container homepage-grid">
+                            {shuffled.map((playlist, i) => {
                                 return (
-                                    <div className="playlist-container" key={playlist.id}>
-                                        <div className="cover-container" onClick={() => handlePlaylistClick(playlist.id)}><img className="playlist-cover" src={playlist.pic}></img></div>
-                                        <div className="playlist-link" onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                                    <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                        <div className="library-item-content-container">
+                                            <div className="library-item-cover-pic-container">
+                                                <div className="library-item-cover-pic-wrapper">
+                                                    <div>
+                                                        <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="library-playlist-title-container">
+                                                <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                    <div className="library-playlist-title-text">{playlist.name}</div>
+                                                </Link>
+                                                <div className="homepage-session-user-name">By {sessionUser.username}</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 )
                             })}
                         </div>
-                    </div>
+                    </section>
+                )}
+                {featuredPlaylistsLoaded && featuredPlaylists && (
+                    <section className="homepage-row-container">
+                        <div className="homepage-heading-container">
+                            <div className="homepage-heading-second-container">
+                                <div className="homepage-heading-third-container">
+                                    <h2 className="homepage-h2">Featured Playlists</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="library-grid-container homepage-grid">
+                            {featuredPlaylists.map(playlist => {
+                                return (
+                                    <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                        <div className="library-item-content-container">
+                                            <div className="library-item-cover-pic-container">
+                                                <div className="library-item-cover-pic-wrapper">
+                                                    <div>
+                                                        <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="library-playlist-title-container">
+                                                <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                    <div className="library-playlist-title-text">{playlist.name}</div>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </section>
                 )}
             </div>
         )
@@ -77,19 +139,37 @@ const HomePage = () => {
         return (
             <div className="homepage-container">
                 {featuredPlaylists && (
-                    <div>
-                        <h1>Featured Playlists</h1>
-                        <div className="playlist-row">
+                    <section className="homepage-row-container">
+                        <div className="homepage-heading-container">
+                            <div className="homepage-heading-second-container">
+                                <div className="homepage-heading-third-container">
+                                    <h2 className="homepage-h2">Featured Playlists</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="library-grid-container homepage-grid">
                             {featuredPlaylists.map(playlist => {
                                 return (
-                                    <div className="playlist-container">
-                                        <div className="cover-container" onClick={() => handlePlaylistClick(playlist.id)}><img className="playlist-cover" src={playlist.pic}></img></div>
-                                        <div className="playlist-link" onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                                    <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                        <div className="library-item-content-container">
+                                            <div className="library-item-cover-pic-container">
+                                                <div className="library-item-cover-pic-wrapper">
+                                                    <div>
+                                                        <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="library-playlist-title-container">
+                                                <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                    <div className="library-playlist-title-text">{playlist.name}</div>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 )
                             })}
                         </div>
-                    </div>
+                    </section>
                 )}
             </div>
         );
