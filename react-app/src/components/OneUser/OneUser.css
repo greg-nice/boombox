@@ -1,0 +1,209 @@
+.profile-page-container {
+    /* overflow-y: scroll; */
+    width: calc(100vw - 242px);
+    overflow-x:hidden;
+}
+
+.profile-page-second-container {
+    margin-top: -64px;
+}
+
+.profile-top-section-container {
+    height:30vh;
+    max-height: 500px;
+    min-height: 340px;
+    color:#fff;
+    display: flex;
+    /* is max-width none ok? */
+    width:100%;
+    overflow: hidden;
+    padding-bottom: 24px;
+    position:relative;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.profile-top-section-background-color {
+    background-color: rgb(83,83,83);
+    display: block;
+    height:100%;
+    left:0;
+    top:0;
+    position:absolute;
+    width:100%;
+}
+
+.profile-top-section-gradient {
+    background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.profile-top-section-pic-container {
+    align-self:flex-end;
+    height: 192px;
+    margin-inline-end: 24px;
+    min-width: 192px;
+    width: 192px;
+}
+
+.profile-pic-second-container {
+    display: flex;
+    height: inherit;
+    position: relative;
+}
+
+.profile-pic-third-container {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-page-pic {
+    border-radius: 50%;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+    object-position: center center;
+}
+
+.profile-top-section-content-container {
+    align-content:space-between;
+    display:flex;
+    flex:1;
+    flex-flow:column;
+    justify-content: flex-end;
+    z-index:0;
+    visibility: visible;
+}
+
+.profile-page-h2 {
+    font-weight:700;
+    font-size:12px;
+    margin-top:4px;
+    text-transform:uppercase;
+    align-items: center;
+    display:flex;
+    line-height: 16px;
+}
+
+.profile-username-span {
+    overflow:hidden;
+    text-align: left;
+    width:100%;
+    word-break:break-word;
+}
+
+.profile-username-h1-wrapper {
+    padding:0;
+    text-align: inherit;
+    white-space: unset;
+    width:100%;
+    background-color:transparent;
+    color:#fff;
+    border:2px solid transparent;
+    border-radius: 500px;
+    display:inline-block;
+}
+
+.profile-username-inner-span {
+    border:0;
+    margin:0;
+    padding:0;
+    text-align: inherit;
+    white-space: unset;
+}
+
+.profile-page-h1 {
+    padding: .08rem 0;
+    width:100;
+    font-size:72px;
+    line-height:72px;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    text-transform: none;
+    margin:0;
+}
+
+.profile-data-section {
+    align-items: center;
+    display:flex;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.profile-playlist-count {
+    color:rgba(255,255,255,.7);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.profile-followers-span {
+    color:rgba(255,255,255,.7);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.profile-followers-span::before {
+    content: "•";
+    margin: 0px 4px;
+}
+
+.profile-followers-inner-span {
+    color: #fff;
+}
+
+.profile-page-section-wrapper {
+    margin-top:40px;
+    margin-left:32px;
+    margin-right:32px;
+}
+
+.profile-page-row-container {
+    display:flex;
+    flex-direction: column;
+    margin-bottom:16px;
+    min-height: 300px;
+    min-width:100%;
+    position: relative;
+    margin:0;
+    max-width: 100%;
+}
+
+.playlist-page-user-profile-pic {
+    border-radius:50%;
+    /* border-radius: 2px; */
+    height: 100%;
+    left: 0;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    border:0;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.profile-page-follow-cover-pic-wrapper {
+    background-color:#181818;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+    padding-bottom: 100%;
+    position: relative;
+    width:100%;
+    box-sizing: border-box;
+}
