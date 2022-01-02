@@ -7,4 +7,4 @@ artist_routes = Blueprint('artists', __name__)
 def get_album(id):
     artist = Artist.query.get(id)
     if artist:
-        return artist.to_mydict()
+        return artist.to_dict()

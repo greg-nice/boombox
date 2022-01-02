@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import './OneArtist.css';
 
@@ -18,6 +18,7 @@ const OneArtist = () => {
                 const artist = await response.json();
                 setArtist(artist);
                 setArtistLoaded(true);
+                console.log(artist)
             }
         })();
     }, [artistId])
@@ -30,7 +31,16 @@ const OneArtist = () => {
     }
 
     return (
-        <div className="artist-page-container"><img className="artist-main-pic"src={artist.pic} alt=""></img></div>
+        <div className="artist-page-container">
+            <img className="artist-main-pic"src={artist.pic} alt=""></img>
+            {artist.albums.map(album => {
+                return (
+                    <div key={album.id}>
+                        <Link to={`/albums/${album.id}`}>{album.title}</Link>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
