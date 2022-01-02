@@ -1,0 +1,132 @@
+.profile-page-wrapper {
+    margin-top: -64px;
+    color:green;
+}
+
+.profile-top-section-container {
+    height:30vh;
+    max-height: 500px;
+    min-height: 340px;
+    color:#fff;
+    display: flex;
+    max-width: none;
+    overflow: hidden;
+    padding-bottom: 24px;
+    position:relative;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.profile-top-section-background-color {
+    background-color: rgb(83,83,83);
+    display: block;
+    height:100%;
+    left:0;
+    top:0;
+    position:absolute;
+    width:100%;
+}
+
+.profile-top-section-gradient {
+    background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.profile-top-section-pic-container {
+    align-self:flex-end;
+    height: 192px;
+    margin-inline-end: 24px;
+    min-width: 192px;
+    width: 192px;
+}
+
+.profile-pic-second-container {
+    display: flex;
+    height: inherit;
+    position: relative;
+}
+
+.profile-pic-third-container {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-page-pic {
+    border-radius: 50%;
+    box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+    object-position: center center;
+}
+
+.profile-top-section-content-container {
+    align-content:space-between;
+    display:flex;
+    flex:1;
+    flex-flow:column;
+    justify-content: flex-end;
+    z-index:0;
+    visibility: visible;
+}
+
+.profile-page-h2 {
+    font-weight:700;
+    font-size:12px;
+    margin-top:4px;
+    text-transform:uppercase;
+    align-items: center;
+    display:flex;
+    line-height: 16px;
+}
+
+.profile-username-span {
+    overflow:hidden;
+    text-align: left;
+    width:100%;
+    word-break:break-word;
+}
+
+.profile-username-h1-wrapper {
+    padding:0;
+    text-align: inherit;
+    white-space: unset;
+    width:100%;
+    background-color:transparent;
+    color:#fff;
+    border:2px solid transparent;
+    border-radius: 500px;
+    display:inline-block;
+}
+
+.profile-username-inner-span {
+    
+}
+
+.profile-page-h1 {
+    padding: .08em 0;
+    width:100;
+    font-size:72px;
+    line-height:72px;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    text-transform: none;
+}
+
+.profile-data-section {
+    align-items: center;
+    display:flex;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.profile-playlist-count {
+
+}
