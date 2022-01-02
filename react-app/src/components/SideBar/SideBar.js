@@ -90,9 +90,9 @@ const SideBar = () => {
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
-                            <button className="rootlist-item"><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
+                            <button className="rootlist-item" onClick={() => handleCreatePlaylistClick()}><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
                                 add_circle_outline
-                            </span></div><span className="rootlist-button-text-span" onClick={() => handleCreatePlaylistClick()}>Create Playlist</span></button>
+                            </span></div><span className="rootlist-button-text-span">Create Playlist</span></button>
                             {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
                             <div className="border-container">
                                 <hr id="hr"></hr>
