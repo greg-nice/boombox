@@ -26,7 +26,7 @@ const OneAlbum = () => {
             if (response.ok) {
                 const album = await response.json();
                 album.songs.sort((a, b) => a.song_num - b.song_num)
-                setAlbum(album)
+                setAlbum(album);
                 setAlbumLoaded(true);
                 console.log(album)
             }

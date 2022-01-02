@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint
 from app.models import Album
 
 album_routes = Blueprint('albums', __name__)

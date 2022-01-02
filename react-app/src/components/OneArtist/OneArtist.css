@@ -1,0 +1,7 @@
+.artist-page-container {
+    overflow-y: scroll;
+}
+
+.artist-main-pic {
+    width: 100%
+}
