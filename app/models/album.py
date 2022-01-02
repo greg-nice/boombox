@@ -27,3 +27,13 @@ class Album(db.Model):
             "artist_id": self.artist_id,
             "pic": self.pic
         }
+
+    def to_mydict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "artist_id": self.artist_id,
+            "pic": self.pic,
+            "artist": self.artist.to_mydict(),
+            "songs": [song.to_dict() for song in self.songs]
+        }

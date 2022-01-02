@@ -15,6 +15,8 @@ const OneUser = () => {
     const following = useSelector(state => state.follows.following);
     const history = useHistory();
 
+    window.scrollTo(0, 0);
+
     useEffect(() => {
         (async () => {
             await dispatch(getUser(userId));

@@ -18,3 +18,10 @@ class Artist(db.Model):
         secondary=users_artists,
         back_populates="followed_artists"
     )
+
+    def to_mydict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "pic": self.pic,
+        }
