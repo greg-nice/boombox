@@ -391,3 +391,8 @@
     width: 100%;
     background:rgba(255, 255, 255, .3)
 }
+
+.album-length-info.dot-before::before {
+    content: "•";
+    margin: 0px 4px;
+}

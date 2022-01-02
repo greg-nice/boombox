@@ -93,9 +93,9 @@ const OneAlbum = () => {
         }
     }, [showSongMenu]);
 
-    const playlistDuration = (playlist) => {
-        const duration = playlist.playlist_songs.reduce((accum, playlist_song) => {
-            return accum += playlist_song.song.length;
+    const albumDuration = (album) => {
+        const duration = album.songs.reduce((accum, song) => {
+            return accum += song.length;
         }, 0)
         if (Math.floor(duration / 60 / 60) >= 1) {
             return `${Math.floor(duration / 60 / 60)} hr, ${Math.floor(duration / 60 % 60)} min, ${duration % 60} sec`
@@ -137,8 +137,8 @@ const OneAlbum = () => {
                                         </div> */}
                                         <Link className="artist-name" to={`/artists/id`}>{album.artist.name}</Link>
                                     </div>
-                                    <span className="album-year-info">• year •</span>
-                                    <span className="album-length-info"># songs, <span>duration</span></span>
+                                    {/* <span className="album-year-info">• year •</span> */}
+                                    <span className="album-length-info dot-before">{album.songs.length} {album.songs.length === 1 ? "song" : "songs"}, <span>{albumDuration(album)}</span></span>
                                 </div>
                             </div>
                         </div>
