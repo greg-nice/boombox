@@ -74,7 +74,7 @@ const HomePage = ( ) => {
     if (user && sorted && playlists.length !== 0) {
         return (
             <div className="homepage-container">
-                <h1 className="homepage-h1">Hello, {user.username}!</h1>
+                <h1 className="homepage-h1">Hello, {user.username}</h1>
                 {true && (
                     <section className="homepage-row-container">
                         <div className="homepage-heading-container">
