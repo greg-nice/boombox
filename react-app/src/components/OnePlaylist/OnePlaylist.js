@@ -218,7 +218,7 @@ const OnePlaylistView = () => {
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-playbutton-section-container">
-                {sessionUser && <div><div onClick={() => handlePlaylistPlayClick(playlist)}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
+                {sessionUser && <div className="playbutton-container"><div onClick={() => handlePlaylistPlayClick(playlist)}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
                     play_circle_filled
                 </span></div></div>}
                 {!sessionUser && <div><div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
@@ -243,8 +243,8 @@ const OnePlaylistView = () => {
                         </div>
                     </div>
                 )}
-                {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
-                {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
+                {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
+                {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
                 {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
                 {sessionUser && sessionUser.id === playlist.user_id && <div>
                     <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}><span className="material-icons-outlined md-36">

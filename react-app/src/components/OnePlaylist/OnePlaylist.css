@@ -451,3 +451,28 @@
     box-sizing: border-box;
     /* background-color: red; */
 }
+
+.following-button {
+    margin-left:24px;
+    margin-right: 24px;
+    border-color:#fff;
+    background-color: transparent;
+    border-width:1px;
+    border-style:solid;
+    border-color:#fff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 16px;
+    padding: 7px 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.playbutton-container {
+    height: 54px;
+    width: 54px;
+}
