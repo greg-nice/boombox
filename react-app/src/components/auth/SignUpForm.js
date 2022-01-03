@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useHistory} from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
 
@@ -12,6 +12,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const validate = () => {
     const validationErrors = [];
@@ -58,6 +59,10 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  const handleClick = () => {
+    history.push("/login")
+  }
 
   if (user) {
     return <Redirect to='/' />;
@@ -124,8 +129,11 @@ const SignUpForm = () => {
                 <button className="signup-button-from-signup" type='submit'><div className="signup-button-inner-div">Sign Up</div></button>
               </div>
             </form>
-            <div className="sign-up-section">
-              <div className='h2-wrapper'><h2 className="sign-up-h2">Have an account? <Link to="/login">Log in</Link></h2></div>
+            <div id="login-link-container-div">
+              <div className='h2-wrapper'>
+                <span className="sign-up-h2">Have an account?</span>
+                <span className="login-link-span" onClick={handleClick}>Log in</span>
+              </div>
               {/* <div className="sign-up-button-container"></div> */}
             </div>
           </div>

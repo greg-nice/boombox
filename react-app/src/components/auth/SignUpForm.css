@@ -53,3 +53,18 @@
 .signup-button-inner-div {
     padding:16px 48px;
 }
+
+.login-link-span {
+    margin-inline-start: 4px;
+    text-decoration: underline;
+}
+
+.login-link-span:hover {
+    cursor:pointer
+}
+
+#login-link-container-div {
+    display: flex;
+    justify-content: space-around;
+}
+
