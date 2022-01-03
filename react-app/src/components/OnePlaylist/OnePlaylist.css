@@ -34,18 +34,24 @@
     color:white;
 }
 
-.playlist-stats {
+/* .playlist-stats {
     font-size: smaller;
-}
+} */
 
 #playlist-stats {
-    color: rgb(179,179,179);
-    font-weight: lighter;
+    color: rgba(255,255,255,.7);
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
 }
 
 .username-link {
     color: white;
     text-decoration: none;
+    display: inline-block;
 }
 
 .username-link:hover {
@@ -476,3 +482,15 @@
     height: 54px;
     width: 54px;
 }
+
+#username-span {
+    user-select: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    color: #fff;
+    text-decoration: none;
+}
+

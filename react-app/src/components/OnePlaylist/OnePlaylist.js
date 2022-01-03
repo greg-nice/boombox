@@ -207,11 +207,14 @@ const OnePlaylistView = () => {
                     {/* {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>} */}
                 </div>
                 <div>
+                    <h2 className="h2-type">Playlist</h2>
                     <div className="playlist-name-container"><h1>{playlist.name}</h1></div>
-                    <div>{playlist.description}</div>
-                    <div className="playlist-stats">
-                        <Link className="username-link" to={`/users/${playlist.user.id}`}><span id="username-span">{playlist.user.username}</span></Link>{Object.keys(playlist.list_followers).length !== 0 && <span id="playlist-stats"> • {Object.keys(playlist.list_followers).length} {Object.keys(playlist.list_followers).length === 1 ? "like" : "likes"}</span>}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
-                        {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
+                    <div>
+                        <div>{playlist.description}</div>
+                        <div className="playlist-stats">
+                            <Link className="username-link" to={`/users/${playlist.user.id}`}><span id="username-span">{playlist.user.username}</span></Link>{Object.keys(playlist.list_followers).length !== 0 && <span id="playlist-stats"> • {Object.keys(playlist.list_followers).length} {Object.keys(playlist.list_followers).length === 1 ? "like" : "likes"}</span>}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
+                            {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
+                        </div>
                     </div>
                 </div>
             </div>
