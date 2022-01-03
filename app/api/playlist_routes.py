@@ -126,6 +126,26 @@ def update_playlist(id):
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
+# make playlist public
+@playlist_routes.route('/<int:id>/public', methods=["PUT"])
+@login_required
+def make_playlist_public(id):
+    updated_playlist = Playlist.query.get(id)
+    if updated_playlist:
+        updated_playlist.public=True
+        db.session.commit()
+        return updated_playlist.to_dict()
+
+# make playlist private
+@playlist_routes.route('/<int:id>/private', methods=["PUT"])
+@login_required
+def make_playlist_private(id):
+    updated_playlist = Playlist.query.get(id)
+    if updated_playlist:
+        updated_playlist.public=False
+        db.session.commit()
+        return updated_playlist.to_dict()
+
 
 # DELETE ONE PLAYLIST
 @playlist_routes.route('/<int:id>', methods=["DELETE"])

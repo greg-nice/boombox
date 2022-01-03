@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link, useParams } from 'react-router-dom';
-import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong } from '../../store/playlists';
+import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate } from '../../store/playlists';
 import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk , eagerClearQueueThunk} from '../../store/queue';
 import './OnePlaylist.css'
@@ -179,6 +179,20 @@ const OnePlaylistView = () => {
         return datetimeObj;
     }
 
+    const handlePlaylistPublicClick = () => {
+        (async () => {
+            await dispatch(makePlaylistPublic(playlistId));
+            await dispatch(getPlaylist(playlistId))
+        })();
+    }
+
+    const handlePlaylistPrivateClick = () => {
+        (async () => {
+            await dispatch(makePlaylistPrivate(playlistId));
+            await dispatch(getPlaylist(playlistId))
+        })();
+    }
+
         //     duration += playlist_song.length;
         //     console.log(playlist_song.song);
         // }
@@ -261,6 +275,8 @@ const OnePlaylistView = () => {
                 <div className="playlist-dropdown-wrapper">
                     <div className="song-nav-dropdown">
                         <ul className="song-nav-menu-options-list">
+                            {playlist.public === false && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handlePlaylistPublicClick()}><span className="menu-button-span">Make playlist Public</span></button></li>}
+                            {playlist.public === true && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handlePlaylistPrivateClick()}><span className="menu-button-span">Make playlist Private</span></button></li>}
                             <li className="menu-list-item"><button className="menu-list-button" onClick={() => handlePlaylistEditClick(setShowPlaylistEditModal)}><span className="menu-button-span">Edit details</span></button></li>
                             <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistClick(playlist.id)}><span className="menu-button-span">Delete</span></button></li>
                         </ul>
