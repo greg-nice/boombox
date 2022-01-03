@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import AboutButton from './AboutButton';
 
 const ProfileButton = ({ user }) => {
     // const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const ProfileButton = ({ user }) => {
 
     return (
         <div className='nav-profile-button-container'>
+            <AboutButton />
             <button className='nav-profile-button' onClick={handleMenu}>
                 <div className="artist-profile-pic-container">
                     <div className="artist-profile-pic-wrapper">

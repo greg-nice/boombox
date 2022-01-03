@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { login } from '../store/session';
 import ProfileButton from './ProfileButton';
+import AboutButton from './AboutButton';
 import { getSuserPlaylists } from '../store/playlists';
 
 const NavBar = () => {
@@ -37,6 +38,7 @@ const NavBar = () => {
     sessionLinks = (
       <>
         <div id="login-buttons-group">
+          <AboutButton />
           <button id="demo-button"><span id="demo-span" onClick={(e) => handleDemoClick(e)}>Demo</span></button>
           <button id="signup-button">
             <NavLink id="signup-link" to='/sign-up' exact={true}>

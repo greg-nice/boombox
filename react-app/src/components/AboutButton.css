@@ -1,0 +1,108 @@
+.about-button {
+    border: 2px;
+    padding: 8px 34px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    color: white;
+    background-color: rgb(24, 24, 24);
+    text-decoration: none;
+    border-top-left-radius: 500px;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+    border-bottom-left-radius: 500px;
+    font-family: Helvetica, Arial, sans-serif;
+    cursor:pointer;
+}
+
+.about-button:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+.about-span {
+    cursor:pointer;
+    text-decoration: none;
+    color:white;
+}
+
+.about-dropdown {
+    z-index: 9999;
+    position: absolute;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    transform:translateX(-82px)
+}
+
+.about-dropdown-second-container {
+    min-width: 200px;
+    color:rgb(179, 179, 179);
+}
+
+.about-dropdown-visible-container {
+    background-color:#282828;
+    border-radius: 4px;
+    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    max-height: calc(100vh - 24px);
+    /* max-width: 350px;
+    min-width: 160px; */
+    overflow-y: auto;
+    padding: 4px;
+    box-sizing: border-box;
+    margin:16px 0;
+}
+
+.about-icon {
+    width:20px;
+    object-position: center center;
+}
+
+.content-container {
+    padding:12px 8px 28px 12px;
+}
+
+/* .content-container:hover {
+    color:white;
+    background: rgb(114, 114, 114);
+} */
+
+a {
+    text-decoration: none;
+    color:rgb(114, 114, 114);
+    display:flex;
+}
+
+.github-span:hover {
+    color:whitesmoke
+}
+
+.on-hover.link {
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+    height:fit-content;
+}
+
+#icons-container {
+    display:flex;
+    flex-direction: column;
+    gap:6px;
+}
+
+.about-icon.linkedin {
+    width:24px;
+    height:auto;
+}
+
+.icon-image-container{
+    height:fit-content;
+    width:30px;
+}
+
