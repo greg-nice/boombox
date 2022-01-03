@@ -119,6 +119,32 @@ export const updateSuserPlaylist = (playlistData) => async (dispatch) => {
     }
 }
 
+// EDIT a session user playlist to make Public
+
+export const makePlaylistPublic = (playlistId) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}/public`, {
+        method: 'PUT'
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    }
+}
+
+// EDIT a session user playlist to make Private
+
+export const makePlaylistPrivate = (playlistId) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}/private`, {
+        method: 'PUT'
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    }
+}
+
 // REMOVE all playlists from store
 
 export const clearSuserPlaylists = () => async (dispatch) => {
