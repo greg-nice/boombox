@@ -14,11 +14,12 @@ const HomePage = ( ) => {
     const playlists = useSelector(state => state.userPlaylists);
     const [featuredPlaylistsLoaded, setFeaturedPlaylistsLoaded] = useState(false);
     const [featuredPlaylists, setFeaturedPlaylists] = useState("");
-    const [shuffled, setShuffled] = useState([])
+    // const [shuffled, setShuffled] = useState([])
     const sessionUser = useSelector(state => state.session.user);
     // const [loadedCount, setLoadedCount] = useState(0);
     // const [loaded, setLoaded] = useState(false);
     // const dispatch = useDispatch();
+    const [sorted, setSorted] = useState("");
 
     // useEffect(() => {
     //     (async () => {
@@ -42,6 +43,14 @@ const HomePage = ( ) => {
         history.push(`/playlists/${playlistId}`)
     }
 
+    useEffect(() => {
+        (async () => {
+            const unsorted = [...playlists];
+            const sorted = unsorted.sort((a, b) => b.id - a.id);
+            setSorted(sorted);
+        })();
+    }, [playlists])
+
     // useEffect(() => {
     //     (async () => {
     //         console.log("before", loadedCount);
@@ -49,23 +58,23 @@ const HomePage = ( ) => {
     //     })();
     // }, [playlists])
 
-    useEffect(() => {
-        let unshuffled = [...playlists];
+    // useEffect(() => {
+    //     let unshuffled = [...playlists];
 
-        let shuffled = unshuffled
-            .map((playlist) => ({ playlist, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ playlist }) => playlist)
+    //     let shuffled = unshuffled
+    //         .map((playlist) => ({ playlist, sort: Math.random() }))
+    //         .sort((a, b) => a.sort - b.sort)
+    //         .map(({ playlist }) => playlist)
 
-        setShuffled(shuffled);
-        console.log("changed")
-    }, [playlists.length]) 
+    //     setShuffled(shuffled);
+    //     console.log("changed")
+    // }, [playlists.length]) 
 
     // if (user && playlistsLoaded) {
-    if (user && shuffled && playlists.length !== 0) {
+    if (user && sorted && playlists.length !== 0) {
         return (
             <div className="homepage-container">
-                <h1 className="homepage-h1">Hello, {user.username}!</h1>
+                <h1 className="homepage-h1">Hello, {user.username}</h1>
                 {true && (
                     <section className="homepage-row-container">
                         <div className="homepage-heading-container">
@@ -76,7 +85,7 @@ const HomePage = ( ) => {
                             </div>
                         </div>
                         <div className="library-grid-container homepage-grid">
-                            {shuffled.map((playlist, i) => {
+                            {sorted.map((playlist, i) => {
                                 return (
                                     <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
                                         <div className="library-item-content-container">

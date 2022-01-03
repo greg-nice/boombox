@@ -84,9 +84,9 @@ const OneUser = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    {sessionUser && sessionUser.id !== user.id && following[`${user.id}`] && <button onClick={() => handleUnfollowClick(user.id)}>Following</button>}
-                    {sessionUser && sessionUser.id !== user.id && !following[`${user.id}`] && <button onClick={() => handleFollowClick(user.id)}>Follow</button>}
+                <div className="following-button-section">
+                    {sessionUser && sessionUser.id !== user.id && following[`${user.id}`] && <button className="following-button" onClick={() => handleUnfollowClick(user.id)}>Following</button>}
+                    {sessionUser && sessionUser.id !== user.id && !following[`${user.id}`] && <button className="following-button" onClick={() => handleFollowClick(user.id)}>Follow</button>}
                 </div>
                 <div className="profile-page-section-wrapper">
                     <section className="profile-page-row-container">

@@ -292,6 +292,10 @@
     text-decoration: none;
 }
 
+.artist-name:hover {
+    text-decoration: underline;
+}
+
 .album-year-info {
     color:rgba(255,255,255,.7);
     white-space: nowrap;
