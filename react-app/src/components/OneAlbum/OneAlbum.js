@@ -113,7 +113,7 @@ const OneAlbum = () => {
     return (
         <div>
             <div className="os-content">
-                <div className="scroll-child-spacer"></div>
+                {/* <div className="scroll-child-spacer"></div> */}
                 <div className="scroll-child">
                     <div className="presentation">
                         <div className="content-spacing">
