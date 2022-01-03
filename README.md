@@ -117,75 +117,59 @@ Playlist Page (logged-in user)
 
 # Backend routes
 
-1. Users
+## Users
 
-GET user
-/api/users/:id
-
-2. Playlists
-
-GET session user's playlists
-/api/playlists/
-
-GET featured playlists
-/api/playlists/featured
-
-GET one playlist
-/api/playlists/:id
-
-POST - create playlist
-/api/playlists/simple
-
-PUT - update playlist name/description
-/api/playlists/:id
-
-PATCH - add song to playlist
-/api/playlists/:id
-
-DELETE song from playlist
-/api/playlists/:playlistId/playlist_songs/:playlist_songId
-
-DELETE playlist
-/api/playlists/:id
+* GET /api/users/:id - get user
 
 
-3. User Follows
+## Playlists
 
-GET session user's follows (followers & following)
-/api/follows
+* GET /api/playlists/ - get session user's playlists
 
-POST - add one user to session user's following list
-/api/following/:id
+* GET /api/playlists/featured - get featured playlists
 
-DELETE - delete one user from session user's following list
-/api/following/:id
+* GET /api/playlists/:id - get one playlist
+
+* POST /api/playlists/simple - create playlist
+
+* PUT /api/playlists/:id - update playlist name/description
+
+* PUT /api/playlists/:id/public - make playlist public
+
+* PUT /api/playlists/:id/private - make playlist private
+
+* PATCH /api/playlists/:id - add song to playlist
+
+* DELETE /api/playlists/:id/playlist_songs/:id - delete song from playlist
+
+* DELETE /api/playlists/:id - delete playlist
+
+## User Follows
+
+* GET /api/follows - get session user's follows (followers & following)
+
+* POST /api/following/:id - add one user to session user's following list
+
+* DELETE /api/following/:id - delete one user from session user's following list
 
 
+## Playlist Follows
 
-4. Playlist Follows
+* GET /api/followed-playlists - get playlists followed by session user
 
-GET playlists followed by session user
-/api/followed-playlists
+* POST /api/playlists/:id/follow - add session user as follower of playlist
 
-POST - add session user as follower of playlist
-/api/playlists/:id/follow
+* DELETE /api/playlists/:id/follow - delete session user as follower of playlist
 
-DELETE - delete session user as follower of playlist
-/api/playlists/:id/follow
+## Albums
 
+* GET /api/albums/:id - album
 
-5. Albums
+## Artists
 
-GET album
-/api/albums/:id
+* GET /api/artists/:id - artist
 
-
-6. Artists
-
-GET artist
-/api/artists/:id
-
-7. Auth routes came pre-built with starter
+### Auth routes (pre-built with starter)
 
 <br>
 <br>
