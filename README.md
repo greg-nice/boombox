@@ -65,7 +65,7 @@ Playlist Page (logged-in user)
 <br>
 <br>
 
-# Front End Routes - Logged In
+# Frontend routes
 ```
     <BrowserRouter>
       <div className="top-container">
