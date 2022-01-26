@@ -14,6 +14,8 @@ import OneAlbum from './components/OneAlbum/OneAlbum.js';
 import OneArtist from './components/OneArtist/OneArtist';
 import OneUser from './components/OneUser/OneUser.js';
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
+import SearchPage from './components/SearchPage/SearchPage.js';
+import { SearchProvider } from './context/SearchContext';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
 import { getSuserFollowedPlaylists } from './store/followedPlaylists';
@@ -77,8 +79,6 @@ function App() {
         <div className="main-view">
           <NavBar />
           <Switch>
-
-
             {/* <ProtectedRoute path='/users' exact={true} >
               <UsersList/>
             </ProtectedRoute> */}
@@ -87,6 +87,9 @@ function App() {
             </ProtectedRoute> */}
             <Route path='/' exact={true} >
               <HomePage />
+            </Route>
+            <Route path='/search' exact={true}>
+              <SearchPage />
             </Route>
             <Route path='/playlists/:playlistId' exact={true}>
               <OnePlaylist />

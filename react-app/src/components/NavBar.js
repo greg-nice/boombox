@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import LogoutButton from './auth/LogoutButton';
@@ -8,10 +8,12 @@ import { login } from '../store/session';
 import ProfileButton from './ProfileButton';
 import AboutButton from './AboutButton';
 import { getSuserPlaylists } from '../store/playlists';
+import { SearchContext } from '../context/SearchContext';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const { searchOn, setSearchOn } = useContext(SearchContext);
 
   const handleDemoClick = (e) => {
     (async () => {
@@ -59,13 +61,44 @@ const NavBar = () => {
     <div className="top-bar">
       <header className="top-bar-and-user-menu">
         <div className="style-setting-div"><div className="inner-style-setting-div"></div></div>
-        <div></div>
-        <div></div>
+        {/* <div></div>
+        <div></div> */}
         {/* <div>
           <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
             Users
           </NavLink>
         </div> */}
+        {!searchOn && (
+          <div></div>
+        )}
+        {searchOn && (
+          <div className='searchbar-container'>
+            <div className="searchbar-content">
+              <div className="searchbar-content-2">
+                <form>
+                  <input
+                  className="searchbar-input"
+                  placeholder="Artists, songs, or playlists"
+                  maxlength="800"
+                  >
+                  </input>
+                </form>
+                <div className="searchbar-icons-container">
+                  <span className="search-icon-span">
+                    <span class="material-icons">
+                      search
+                    </span>
+                  </span>
+                  <button className="clear-search-button">
+                    <span class="material-icons">
+                      clear
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         {sessionLinks}
       </header>
     </div>
