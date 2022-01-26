@@ -176,7 +176,8 @@ const OnePlaylistView = () => {
 
     const dateAdded = (datetimeObj) => {
         // const now = new Date();
-        return datetimeObj;
+        const newObj = datetimeObj.split(" ").slice(1, 4);
+        return newObj[1] + " " + newObj[0] + ", " + newObj[2];
     }
 
     const handlePlaylistPublicClick = () => {
