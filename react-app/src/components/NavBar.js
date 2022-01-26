@@ -1,6 +1,6 @@
 
-import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import LogoutButton from './auth/LogoutButton';
 import './NavBar.css';
@@ -13,7 +13,9 @@ import { SearchContext } from '../context/SearchContext';
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const { searchOn, setSearchOn } = useContext(SearchContext);
+  const { searchOn, setSearchOn, query, setQuery } = useContext(SearchContext);
+  const history = useHistory();
+  // const { query, setQuery } = useContext(SearchContext);
 
   const handleDemoClick = (e) => {
     (async () => {
@@ -27,6 +29,36 @@ const NavBar = () => {
       // REDIRECT TO HOME PAGE IF ON LOGIN OR SIGNUP PAGES
     })();
   }
+
+  // const currentPage = window.location.pathname
+
+  // const checkPage = () => {
+  //   if (window.location.pathname === "/search") {
+  //     setSearchOn(true);
+  //   } else {
+  //     setSearchOn(false)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   checkPage();
+  // }, [history]);
+
+  useEffect(() => {
+    history.listen(location => {
+      if (location.pathname === "/search") {
+        setSearchOn(true);
+        return
+      } else {
+        setSearchOn(false);
+        return;
+      }
+    });
+    if (window.location.pathname === "/search") {
+      setSearchOn(true);
+      return;
+    }
+  }, [history]);
 
   let sessionLinks;
   if (sessionUser) {
@@ -68,32 +100,35 @@ const NavBar = () => {
             Users
           </NavLink>
         </div> */}
-        {!searchOn && (
+        {!searchOn  && (
           <div></div>
         )}
         {searchOn && (
           <div className='searchbar-container'>
             <div className="searchbar-content">
               <div className="searchbar-content-2">
-                <form>
+                <form className="searchbar-form">
                   <input
                   className="searchbar-input"
+                  type="text"
                   placeholder="Artists, songs, or playlists"
-                  maxlength="800"
-                  >
-                  </input>
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  />
                 </form>
                 <div className="searchbar-icons-container">
                   <span className="search-icon-span">
-                    <span class="material-icons">
+                    <span className="material-icons">
                       search
                     </span>
                   </span>
-                  <button className="clear-search-button">
-                    <span class="material-icons">
-                      clear
-                    </span>
-                  </button>
+                  {query && (
+                    <button className="clear-search-button" onClick={() => setQuery("")}>
+                      <span className="material-icons">
+                        clear
+                      </span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
