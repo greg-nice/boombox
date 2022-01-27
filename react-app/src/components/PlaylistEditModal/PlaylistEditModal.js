@@ -62,6 +62,15 @@ const PlaylistEditModal = ({playlist, handlePlaylistEditClick}) => {
                         <div className="playlist-pic-wrapper">
                             <img className="playlist-pic" src={playlist.pic} alt=""></img>
                         </div>
+                        <div className="playlist-pic-options-button-container">
+                            <button className="playlist-pic-options-button">
+                                <div className="playlist-pic-options-icon">
+                                    <span className="material-icons">
+                                        more_horiz
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                     <div className="title-container">
                   
