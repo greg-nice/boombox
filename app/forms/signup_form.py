@@ -23,6 +23,6 @@ def username_exists(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists, Length(4, 20, "Username must be between 4 and 20 characters")])
+        'username', validators=[DataRequired(), username_exists, Length(4, 20, "Username must be between 4 and 20 characters.")])
     email = StringField('email', validators=[DataRequired(), user_exists, Length(6, 255, "Email must be between 6 and 255 characters.")])
     password = StringField('password', validators=[DataRequired(), Length(8, 25, "Password must be between 8 and 25 characters.")])

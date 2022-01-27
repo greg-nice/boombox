@@ -6,6 +6,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
 from .models import db, User
+from .api.search_routes import search_routes
 from .api.artist_routes import artist_routes
 from .api.album_routes import album_routes
 from .api.followed_playlist_routes import followed_playlist_routes
@@ -34,6 +35,7 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
+app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(artist_routes, url_prefix='/api/artists')
 app.register_blueprint(album_routes, url_prefix='/api/albums')
 app.register_blueprint(followed_playlist_routes, url_prefix='/api/followed-playlists')
@@ -68,8 +70,7 @@ def inject_csrf_token(response):
         'csrf_token',
         generate_csrf(),
         secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-        samesite='Strict' if os.environ.get(
-            'FLASK_ENV') == 'production' else None,
+        samesite='Strict' if os.environ.get('FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
 

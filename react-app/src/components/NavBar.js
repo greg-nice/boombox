@@ -50,6 +50,7 @@ const NavBar = () => {
         setSearchOn(true);
         return
       } else {
+        setQuery("");
         setSearchOn(false);
         return;
       }
