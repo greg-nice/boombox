@@ -1,5 +1,5 @@
 .searchpage-top-container {
-
+    overflow-y: auto;
 }
 
 .searchpage-content-container {
