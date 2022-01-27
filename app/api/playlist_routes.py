@@ -4,6 +4,10 @@ from app.models import User, Playlist, Playlist_Song
 from app.forms import PlaylistForm
 from app.models.db import db
 import datetime
+import boto3
+import botocore
+from app.config import Config
+from app.aws_s3 import upload_file_to_s3
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -125,6 +129,19 @@ def update_playlist(id):
         db.session.commit()
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
+
+# update playlist pic
+@playlist_routes.route('/<int:id>/pic', methods=["PUT"])
+@login_required
+def update_playlist_pic(id):
+    updated_playlist = Playlist.query.get(id)
+    if updated_playlist:
+        file = request.files["file"]
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        if file_url:
+            updated_playlist.pic = file_url
+            db.session.commit()
+            return updated_playlist.to_dict()
 
 # make playlist public
 @playlist_routes.route('/<int:id>/public', methods=["PUT"])
