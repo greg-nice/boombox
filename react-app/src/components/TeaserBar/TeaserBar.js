@@ -12,7 +12,7 @@ export default function TeaserBar() {
     const history = useHistory();
     
     const handleBarClick = () => {
-        history.push("/sign-up");
+        history.push("/signup");
     }
 
     return (
@@ -23,7 +23,7 @@ export default function TeaserBar() {
                         <p className="message-heading">Preview of BOOMBOX</p>
                         <p className="message-body">Sign up to play songs, make playlists, and follow other music fans.</p>
                     </div>
-                    <Link to="/sign-up"><button className="teaser-signup-button">
+                    <Link to="/signup"><button className="teaser-signup-button">
                         Sign up
                     </button></Link>
                 </div>

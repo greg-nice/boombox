@@ -81,7 +81,7 @@ const LoginForm = () => {
             </form>
             <div className="sign-up-section">
               <div className='h2-wrapper'><h2 className="sign-up-h2">Don't have an account?</h2></div>
-              <div className="sign-up-button-container"><Link className="sign-up-link-from-login" to="/sign-up">Sign up for BOOMBOX</Link></div>
+              <div className="sign-up-button-container"><Link className="sign-up-link-from-login" to="/signup">Sign up for BOOMBOX</Link></div>
             </div>
           </div>
         </div>

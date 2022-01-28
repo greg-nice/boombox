@@ -251,7 +251,7 @@ const OnePlaylistView = () => {
                                 </div>
                                 <div className="dummy-play-modal-text-container">
                                     <h2 className="dummy-play-heading">Start listening with a free Boombox account</h2>
-                                    <button className="dummy-play-signin-button" onClick={() => history.push("/sign-up")}>SIGN UP FREE</button>
+                                    <button className="dummy-play-signin-button" onClick={() => history.push("/signup")}>SIGN UP FREE</button>
                                     <p className="dummy-play-login-prompt">Already have an account? <Link className="dummy-play-login-link" to="/login">Log in</Link></p>
                                 </div>
                             </div>
