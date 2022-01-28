@@ -176,7 +176,8 @@ const OnePlaylistView = () => {
 
     const dateAdded = (datetimeObj) => {
         // const now = new Date();
-        return datetimeObj;
+        const newObj = datetimeObj.split(" ").slice(1, 4);
+        return newObj[1] + " " + newObj[0] + ", " + newObj[2];
     }
 
     const handlePlaylistPublicClick = () => {
@@ -322,7 +323,9 @@ const OnePlaylistView = () => {
                         <div className="row-element header first-column"><div>#</div><div>Title</div></div>
                         <div className="row-element header"><div>Album</div></div>
                         <div className="row-element header"><div>Date Added</div></div>
-                        <div className="row-element header"><div>Length</div></div>
+                        <div className="row-element header"><div><span class="material-icons md-18">
+                            schedule
+                        </span></div></div>
                         {/* <div className="row-element header"><div>Options</div></div> */}
                     </div>
                 )}
