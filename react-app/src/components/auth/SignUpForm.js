@@ -85,7 +85,7 @@ const SignUpForm = () => {
           </div>
           <form className="login-form" onSubmit={onSignUp}>
             <div className="signup-form-input-row-container">
-               <div className="signup-form-label-container">
+              <div className="signup-form-label-container">
                 <label className="signup-form-label">What's your email?</label>
               </div>
               <input
@@ -142,13 +142,10 @@ const SignUpForm = () => {
               <button className="signup-button-from-signup" type='submit'><div className="signup-button-inner-div">Sign Up</div></button>
             </div>
           </form>
-          <div id="login-link-container-div">
-            <div className='h2-wrapper'>
-              <span className="sign-up-h2">Have an account?</span>
-              <span className="login-link-span" onClick={handleClick}>Log in</span>
-            </div>
+          <p id="login-link-container-p">
+              <span>Have an account? <span className="login-link-span" onClick={handleClick}>Log in</span>.</span>
             {/* <div className="sign-up-button-container"></div> */}
-          </div>
+          </p>
           
         </div>
       </div>

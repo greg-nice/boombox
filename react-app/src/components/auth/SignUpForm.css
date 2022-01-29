@@ -162,17 +162,27 @@
     padding:16px 48px;
 }
 
+#login-link-container-p {
+    box-sizing: border-box;
+    display: block;
+    padding:0 0 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    color:black;
+    text-align: center;
+}
+
 .login-link-span {
-    margin-inline-start: 4px;
+    /* margin-inline-start: 4px; */
     text-decoration: underline;
+    color:rgb(29, 185, 84);
+    cursor:pointer;
 }
 
 .login-link-span:hover {
-    cursor:pointer
+    color: rgb(30, 215, 96);
 }
-
-#login-link-container-div {
-    display: flex;
-    justify-content: space-around;
-}
-
