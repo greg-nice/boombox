@@ -71,11 +71,11 @@ const HomePage = ( ) => {
     // }, [playlists.length]) 
 
     // if (user && playlistsLoaded) {
-    if (user && sorted && playlists.length !== 0) {
+    if (user) {
         return (
             <div className="homepage-container">
                 <h1 className="homepage-h1">Hello, {user.username}</h1>
-                {true && (
+                {sorted && playlists.length !== 0 && (
                     <section className="homepage-row-container">
                         <div className="homepage-heading-container">
                             <div className="homepage-heading-second-container">
