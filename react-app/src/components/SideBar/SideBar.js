@@ -83,7 +83,9 @@ const SideBar = () => {
                         <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             home
                         </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
-                        {/* <div className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></div> */}
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/search"><div className="sidebar-link-icon"><span className="material-icons">
+                            search
+                        </span></div><span className="sidebar-link-text-span">Search</span></Link></li>
                         <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             stacked_bar_chart
                         </span></div><span className="sidebar-link-text-span">Your Library</span></Link></li>
@@ -129,7 +131,9 @@ const SideBar = () => {
                         <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             home
                         </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
-                        {/* <li className="sidebar-item"><Link className="sidebar-link" to="/search">Search</Link></li> */}
+                        <li className="sidebar-item"><Link className="sidebar-link" to="/search"><div className="sidebar-link-icon"><span className="material-icons">
+                            search
+                        </span></div><span className="sidebar-link-text-span">Search</span></Link></li>
                         <li className="sidebar-item">
                             <div className="sidebar-link" onClick={handleLibraryModal}>
                                 <div className="sidebar-link-icon"><span className="material-icons-outlined">

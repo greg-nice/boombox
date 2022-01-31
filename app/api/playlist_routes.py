@@ -4,6 +4,10 @@ from app.models import User, Playlist, Playlist_Song
 from app.forms import PlaylistForm
 from app.models.db import db
 import datetime
+import boto3
+import botocore
+from app.config import Config
+from app.aws_s3 import upload_file_to_s3
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -126,6 +130,20 @@ def update_playlist(id):
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
+
+# update playlist pic
+@playlist_routes.route('/<int:id>/pic', methods=["PUT"])
+@login_required
+def update_playlist_pic(id):
+    updated_playlist = Playlist.query.get(id)
+    if updated_playlist:
+        file = request.files["file"]
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        if file_url:
+            updated_playlist.pic = file_url
+            db.session.commit()
+            return updated_playlist.to_dict()
+
 # use default playlist pic
 @playlist_routes.route('/<int:id>/resetpic', methods=["PUT"])
 @login_required
@@ -135,6 +153,7 @@ def reset_playlist_pic(id):
         updated_playlist.pic = "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg"
         db.session.commit()
         return updated_playlist.to_dict()
+
 
 # make playlist public
 @playlist_routes.route('/<int:id>/public', methods=["PUT"])

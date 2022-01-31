@@ -135,7 +135,7 @@ const OneAlbum = () => {
                                                 <img className="artist-profile-pic" alt=""></img>
                                             </div>
                                         </div> */}
-                                        <Link className="artist-name" to={`/artists/id`}>{album.artist.name}</Link>
+                                        <Link className="artist-name" to={`/artists/${album.artist.id}`}>{album.artist.name}</Link>
                                     </div>
                                     {/* <span className="album-year-info">• year •</span> */}
                                     <span className="album-length-info dot-before">{album.songs.length} {album.songs.length === 1 ? "song" : "songs"}, <span>{albumDuration(album)}</span></span>

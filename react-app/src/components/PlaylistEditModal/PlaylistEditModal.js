@@ -10,6 +10,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
     const [name, setName] = useState(playlist.name);
     const [description, setDescription] = useState(playlist.description ? playlist.description : "");
     const [validationErrors, setValidationErrors] = useState([]);
+    const [showUploadModal, setShowUploadModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
