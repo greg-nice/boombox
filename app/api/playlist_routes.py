@@ -130,6 +130,7 @@ def update_playlist(id):
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
+
 # update playlist pic
 @playlist_routes.route('/<int:id>/pic', methods=["PUT"])
 @login_required
@@ -142,6 +143,17 @@ def update_playlist_pic(id):
             updated_playlist.pic = file_url
             db.session.commit()
             return updated_playlist.to_dict()
+
+# use default playlist pic
+@playlist_routes.route('/<int:id>/resetpic', methods=["PUT"])
+@login_required
+def reset_playlist_pic(id):
+    updated_playlist = Playlist.query.get(id)
+    if updated_playlist:
+        updated_playlist.pic = "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg"
+        db.session.commit()
+        return updated_playlist.to_dict()
+
 
 # make playlist public
 @playlist_routes.route('/<int:id>/public', methods=["PUT"])

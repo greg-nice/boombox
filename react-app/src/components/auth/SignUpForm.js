@@ -69,74 +69,84 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="login-top-container">
-      <div className='login-second-top-container'>
-        <div className="login-header-container">
-          <div className="head">
+    <div className="signup-top-container">
+      <div className='signup-second-top-container'>
+        <div className="signup-header-container">
             <Link className="signup-homelink" to="/">BOOMBOX</Link>
-            <br></br>
-            <br></br>
-            <span className="marketing-text">Sign up to start listening.</span>
-            <br></br>
-          </div>
+            <span className="marketing-text">Sign up for free to start listening.</span>
         </div>
-        <div className="login-main-container">
-          <div className="login-content-container">
-            <div className="login-errors-container">
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
-            <form className="login-form" onSubmit={onSignUp}>
-              <div>
-                <label>User Name</label>
-                <input
-                  type='text'
-                  name='username'
-                  onChange={updateUsername}
-                  value={username}
-                ></input>
-              </div>
-              <div>
-                <label>Email</label>
-                <input
-                  type='text'
-                  name='email'
-                  onChange={updateEmail}
-                  value={email}
-                ></input>
-              </div>
-              <div>
-                <label>Password</label>
-                <input
-                  type='password'
-                  name='password'
-                  onChange={updatePassword}
-                  value={password}
-                ></input>
-              </div>
-              <div>
-                <label>Repeat Password</label>
-                <input
-                  type='password'
-                  name='repeat_password'
-                  onChange={updateRepeatPassword}
-                  value={repeatPassword}
-                  required={true}
-                ></input>
-              </div>
-              <div className="signup-button-from-signup-container">
-                <button className="signup-button-from-signup" type='submit'><div className="signup-button-inner-div">Sign Up</div></button>
-              </div>
-            </form>
-            <div id="login-link-container-div">
-              <div className='h2-wrapper'>
-                <span className="sign-up-h2">Have an account?</span>
-                <span className="login-link-span" onClick={handleClick}>Log in</span>
-              </div>
-              {/* <div className="sign-up-button-container"></div> */}
-            </div>
+        <div className="signup-main-container">
+        
+          <h2 className="signup-with-email-text">Sign up with your email address</h2>
+          <div className="login-errors-container">
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
           </div>
+          <form className="login-form" onSubmit={onSignUp}>
+            <div className="signup-form-input-row-container">
+              <div className="signup-form-label-container">
+                <label className="signup-form-label">What's your email?</label>
+              </div>
+              <input
+                className="signup-form-input"
+                type='text'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                placeholder='Enter your email.'
+              ></input>
+            </div>
+            <div className="signup-form-input-row-container">
+              <div className="signup-form-label-container">
+                <label className="signup-form-label">Create a password</label>
+              </div>
+              <input
+                className="signup-form-input"
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+                placeholder='Create a password.'
+              ></input>
+            </div>
+            <div className="signup-form-input-row-container">
+              <div className="signup-form-label-container">
+                <label className="signup-form-label">Confirm your password</label>
+              </div>
+              <input
+                className="signup-form-input"
+                type='password'
+                name='repeat_password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                placeholder='Enter your password again.'
+              ></input>
+            </div>
+            <div className="signup-form-input-row-container">
+              <div className="signup-form-label-container">
+                <label className="signup-form-label">What should we call you?</label>
+              </div>
+              <input
+                className="signup-form-input"
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                value={username}
+                placeholder='Enter a profile name.'
+              ></input>
+              <div className='signup-form-profile-input-message'>This appears on your profile.</div>
+            </div>
+            <div className="signup-button-from-signup-container">
+              <button className="signup-button-from-signup" type='submit'><div className="signup-button-inner-div">Sign Up</div></button>
+            </div>
+          </form>
+          <p id="login-link-container-p">
+              <span>Have an account? <span className="login-link-span" onClick={handleClick}>Log in</span>.</span>
+            {/* <div className="sign-up-button-container"></div> */}
+          </p>
+          
         </div>
       </div>
     </div>

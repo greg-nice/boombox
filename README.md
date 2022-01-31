@@ -65,14 +65,14 @@ Playlist Page (logged-in user)
 <br>
 <br>
 
-# Front End Routes - Logged In
+# Frontend routes
 ```
     <BrowserRouter>
       <div className="top-container">
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
         <SideBar />

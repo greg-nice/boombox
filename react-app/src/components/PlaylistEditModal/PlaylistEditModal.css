@@ -89,6 +89,46 @@
     object-position: center center;
 }
 
+.playlist-pic-options-button-container {
+    right: 8px;
+    height: 32px;
+    position:absolute;
+    top: 8px;
+    width: 32px;
+    display: block;
+    box-sizing: border-box;
+}
+
+#playlist-pic-options-button {
+    align-items: center;
+    background-color: rgba(0, 0, 0, .7);
+    border:none;
+    border-radius: 500px;
+    color:#b3b3b3;
+    display:flex;
+    justify-content: center;
+    padding:8px;
+    text-decoration: none;
+    box-sizing: border-box;
+    opacity:0
+}
+
+#playlist-pic-options-button:hover {
+    color:white;
+}
+
+.playlist-pic-options-icon {
+    opacity:inherit;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+
 .details-container {
     grid-gap:16px;
     display: grid;

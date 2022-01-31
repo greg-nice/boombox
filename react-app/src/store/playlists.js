@@ -119,6 +119,19 @@ export const updateSuserPlaylist = (playlistData) => async (dispatch) => {
     }
 }
 
+// EDIT a session user playlist to use the default cover pic
+export const deleteSuserPlaylistPic = (playlistId) => async (dispatch) => {
+    console.log(playlistId);
+    const response = await fetch(`/api/playlists/${playlistId}/resetpic`, {
+        method: 'PUT'
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    }
+}
+
 // EDIT a session user playlist to make Public
 
 export const makePlaylistPublic = (playlistId) => async (dispatch) => {
