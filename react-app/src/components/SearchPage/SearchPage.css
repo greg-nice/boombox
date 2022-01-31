@@ -1,7 +1,186 @@
 .searchpage-top-container {
-    overflow-y: auto;
+    padding:0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y:auto;
+}
+
+.searchpage-spacer {
+    height: 64px;
+    position: sticky;
+    top:0;
 }
 
 .searchpage-content-container {
+    min-height: calc((100vh - 64px) - 90px - 519px);
+    scroll-behavior: smooth;
+    isolation: isolate;
+    padding-bottom: 32px;
+    box-sizing: border-box;
+}
+
+.searchpage-content-spacing {
     padding:0 32px;
+    margin:0;
+    max-width: 1955px;
+    box-sizing: border-box;
+}
+
+.searchpage-grid-container {
+    margin-top: 16px;
+    display: grid;
+    grid-gap:24px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.grid-search-results {
+    row-gap:32px;
+    grid-column:1/-1;
+    grid-gap:24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.searchpage-results-shelf {
+    grid-column: 1/-1;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    min-height: 300px;
+    min-width: 100%;
+    position: relative;
+}
+
+.searchpage-shelf-heading-div {
+    grid-column: 1/-1;
+}
+
+.searchpage-shelf-heading-div-2 {
+    align-items: flex-end;
+    display:flex;
+    margin-bottom: 16px;
+}
+
+.searchpage-shelf-heading-div-3 {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.searchpage-heading-h2 {
+    font-size:24px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 28px;
+    margin:0;
+    padding:0;
+    color:#fff;
+}
+
+.searchpage-shelf-grid {
+    grid-auto-rows: 0;
+    grid-template-rows: 1fr;
+    overflow-y: hidden;
+    grid-gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.searchpage-shelf-oneresult {
+    background: #181818;
+    border-radius: 4px;
+    flex:1;
+    isolation: isolate;
+    padding:16px;
+    position:relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchpage-shelf-oneresult-2 {
+    height: 100%;
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+.searchpage-shelf-oneresult-pic-container {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.searchpage-result-pic-wrapper {
+    border-radius: 50%;
+    background-color:#333;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 50%);
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.searchpage-result-pic {
+    border-radius: 50%;
+    height:100%;
+    left:0;
+    top:0;
+    position: absolute;
+    width:100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.searchpage-shelf-oneresult-text-container {
+    min-height: 62px;
+}
+
+.searchpage-shelf-oneresult-resultlink {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+    color:#fff;
+    text-decoration: none;
+    border:0;
+    margin:0;
+    padding:0;
+    cursor:pointer;
+}
+
+.searchpage-shelf-oneresult-resultlink-inner-div {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 24px;
+}
+
+.searchpage-shelf-oneresult-text-resulttype {
+    color:rgb(179, 179, 179);
+    margin-top: 4px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+}
+
+.searchpage-shelf-oneresult-albumartistlink {
+    color:rgb(179, 179, 179);
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+}
+
+.searchpage-shelf-oneresult-albumartistlink:hover {
+    text-decoration: underline;
 }

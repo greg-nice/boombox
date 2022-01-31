@@ -15,7 +15,6 @@ import OneArtist from './components/OneArtist/OneArtist';
 import OneUser from './components/OneUser/OneUser.js';
 import NowPlaying from './components/NowPlaying/NowPlaying.js';
 import SearchPage from './components/SearchPage/SearchPage.js';
-import { SearchProvider } from './context/SearchContext';
 import { authenticate } from './store/session';
 import { getSuserPlaylists } from './store/playlists';
 import { getSuserFollowedPlaylists } from './store/followedPlaylists';
@@ -73,11 +72,11 @@ function App() {
         <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
+        <NavBar />
         <SideBar />
         {sessionUser && <NowPlaying />}
         {!sessionUser && <TeaserBar />}
         <div className="main-view">
-          <NavBar />
           <Switch>
             {/* <ProtectedRoute path='/users' exact={true} >
               <UsersList/>

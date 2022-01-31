@@ -49,7 +49,7 @@ def results():
         return {
             'songs': [song.to_dict() for song in songs],
             'artists': [artist.to_dict() for artist in artists],
-            'albums': [album.to_dict() for album in albums],
+            'albums': [album.to_mydict() for album in albums],
             'playlists': [playlist.to_dict() for playlist in playlists],
             'users': [user.to_safe() for user in users],
         }
