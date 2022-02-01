@@ -45,61 +45,64 @@ const PlaylistsCollection = () => {
     }
 
     return (
-        <div className="homepage-container">
-            {userPlaylists && userPlaylists.length > 0 && sorted &&
-                <div>
-                    <h2>Your Playlists</h2>
-                    <div className="library-grid-container">
-                        {sorted.map(playlist => {
-                            return (
-                                <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
-                                    <div className="library-item-content-container">
-                                        <div className="library-item-cover-pic-container">
-                                            <div className="library-item-cover-pic-wrapper">
-                                                <div>
-                                                    <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+        <div className='homepage-top-container'>
+            <div className='searchpage-spacer'></div>
+            <div className="homepage-container">
+                {userPlaylists && userPlaylists.length > 0 && sorted &&
+                    <div>
+                        <h2>Your Playlists</h2>
+                        <div className="library-grid-container">
+                            {sorted.map(playlist => {
+                                return (
+                                    <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                        <div className="library-item-content-container">
+                                            <div className="library-item-cover-pic-container">
+                                                <div className="library-item-cover-pic-wrapper">
+                                                    <div>
+                                                        <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="library-playlist-title-container">
-                                            <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
-                                                <div className="library-playlist-title-text">{playlist.name}</div>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            }
-            {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 &&
-                <div>
-                    <h2>Playlists You Follow</h2>
-                    <div className="library-grid-container">
-                        {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
-                            return (
-                                <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
-                                    <div className="library-item-content-container">
-                                        <div className="library-item-cover-pic-container">
-                                            <div className="library-item-cover-pic-wrapper">
-                                                <div>
-                                                    <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
-                                                </div>
+                                            <div className="library-playlist-title-container">
+                                                <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                    <div className="library-playlist-title-text">{playlist.name}</div>
+                                                </Link>
                                             </div>
                                         </div>
-                                        <div className="library-playlist-title-container">
-                                            <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
-                                                <div className="library-playlist-title-text">{playlist.name}</div>
-                                            </Link>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                }
+                {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 &&
+                    <div>
+                        <h2>Playlists You Follow</h2>
+                        <div className="library-grid-container">
+                            {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
+                                return (
+                                    <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
+                                        <div className="library-item-content-container">
+                                            <div className="library-item-cover-pic-container">
+                                                <div className="library-item-cover-pic-wrapper">
+                                                    <div>
+                                                        <img className="library-playlist-cover" src={playlist.pic} alt=""></img>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="library-playlist-title-container">
+                                                <Link className="library-playlist-title-link" to={`/playlists/${playlist.id}`}>
+                                                    <div className="library-playlist-title-text">{playlist.name}</div>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     )
 }
