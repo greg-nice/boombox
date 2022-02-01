@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './AboutButton.css';
 import gitHub from './GitHub-Mark.png';
 import linkedIn from './LI-Bug.svg.original.svg';
@@ -30,7 +29,7 @@ const AboutButton = () => {
                         <div className="about-dropdown-visible-container">
                             <div className="content-container">
                                 <p className="on-hover">Developed By:</p>
-                                <p className="on-hover">Greg Gomes</p>
+                                <p className="on-hover"><a href="https://greg-nice.github.io/"><span className="name-span">Greg Gomes</span></a></p>
                                 <div id="icons-container">
                                     <div className="on-hover link">
                                         <a href="https://github.com/greg-nice"><div className="icon-image-container"><img className="about-icon" src={gitHub} alt=""></img></div><span className="github-span">GitHub</span></a>
