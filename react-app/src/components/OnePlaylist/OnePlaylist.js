@@ -215,7 +215,7 @@ const OnePlaylistView = () => {
 
     return (
         <div className="one-playlist-view">
-            {/* {playlist.id} */}
+            <div className='searchpage-spacer'></div>
             <div className="playlist-title-tile-container">
                 <div className="playlist-image-container">
                     {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}

@@ -31,15 +31,18 @@ const OneArtist = () => {
     }
 
     return (
-        <div className="artist-page-container">
-            <img className="artist-main-pic"src={artist.pic} alt=""></img>
-            {artist.albums.map(album => {
-                return (
-                    <div key={album.id}>
-                        <Link to={`/albums/${album.id}`}>{album.title}</Link>
-                    </div>
-                )
-            })}
+        <div className="searchpage-top-container">
+            <div className='searchpage-spacer'></div>
+            <div className="artist-page-container">
+                <img className="artist-main-pic"src={artist.pic} alt=""></img>
+                {artist.albums.map(album => {
+                    return (
+                        <div key={album.id}>
+                            <Link to={`/albums/${album.id}`}>{album.title}</Link>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }

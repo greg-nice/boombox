@@ -1,3 +1,7 @@
+.homepage-top-container {
+    overflow-y: scroll;
+}
+
 .homepage-container {
     color:white;
     background-color: #121212;
@@ -5,7 +9,7 @@
     padding-left: 16px;
     padding-top: 24px;
     padding-bottom: 48px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     right: 0;
 }
 
