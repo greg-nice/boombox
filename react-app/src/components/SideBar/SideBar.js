@@ -136,11 +136,16 @@ const SideBar = () => {
                         </span></div><span className="sidebar-link-text-span">Search</span></Link></li>
                         <li className="sidebar-item">
                             <div className="sidebar-link" onClick={handleLibraryModal}>
-                                <div className="sidebar-link-icon"><span className="material-icons-outlined">
-                                    stacked_bar_chart
-                                </span></div>
-                                <span className="sidebar-link-text-span">Your Library</span>
+                                <div className="sidebar-link-icon">
+                                    <span className="material-icons-outlined">
+                                        stacked_bar_chart
+                                    </span>
+                                </div>
+                                <span className="sidebar-link-text-span">
+                                    Your Library
+                                </span>
                             </div>
+                        </li>
                             {showLibraryModal && (
                                 <div className="library-modal-top-div">
                                     <div className="library-modal-content-container">
@@ -162,13 +167,20 @@ const SideBar = () => {
                                     </div>
                                 </div>
                             )}
-                        </li>
+                        
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
-                            <button className="rootlist-item" onClick={handleCreatePlaylistModal}><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
-                                add_circle_outline
-                            </span></div><span className="rootlist-button-text-span">Create Playlist</span></button>
+                            <button className="rootlist-item" onClick={handleCreatePlaylistModal}>
+                                <div className="rootlist-button-icon-container">
+                                    <span className="material-icons-outlined">
+                                        add_circle_outline
+                                    </span>
+                                </div>
+                                <span className="rootlist-button-text-span">
+                                    Create Playlist
+                                </span>
+                            </button>
                             {showCreatePlaylistModal && (
                                 <div className="library-modal-top-div">
                                     <div className="create-playlist-modal-content-container">
