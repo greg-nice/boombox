@@ -32,21 +32,45 @@ function SearchPage() {
             <div className="searchpage-spacer"></div>
             <div className="searchpage-content-container">
                 <div className="searchpage-content-spacing">
-                    {!query && <h1>Enter search above</h1>}
+                    {/* {!query && <h2>Enter search above</h2>} */}
                     <div className="searchpage-grid-container">
                         {/* {!query && <h1>Enter search above</h1>} */}
                         {query && results && (
                             <div className="grid-search-results">
                                 {results.songs.length > 0 && (
-                                    <section>
-                                        <div>
-                                            <h3>Songs</h3>
+                                    <section className="searchpage-song-results-shelf">
+                                        <div className="searchpage-shelf-heading-div">
+                                            <div className="searchpage-shelf-heading-div-2">
+                                                <div className="searchpage-shelf-heading-div-3">
+                                                    <h2 className="searchpage-heading-h2">Songs</h2>
+                                                </div>
+                                            </div>
                                         </div>
-                                        {results.songs.map(song => {
-                                            return (
-                                                <div key={song.id}><Link to={`/albums/${song.album_id}`}>{song.title}</Link></div>
-                                            )
-                                        })}
+                                        <div className="searchpage-songs-shelf-grid">
+                                            <div className="searchpage-songs-shelf-grid-2">
+                                                {results.songs.slice(0, 4).map(song => {
+                                                    return (
+                                                        <div className="tracklist-row" key={song.id}>
+                                                            <div className="track-picnameartist-container">
+                                                                <div className="track-pic-container">
+                                                                    <img className="track-pic-img" src={song.albumDetails.pic} alt=""></img>
+                                                                </div>
+                                                                <div className="track-nameartist-container">
+                                                                    <div className="track-name-text-div"><Link className="track-name-link" to={`/albums/${song.album_id}`}>{song.title}</Link></div>
+                                                                    <Link to={`/artists/${song.artist_id}`}><span className="track-artist-text-span">{song.artist}</span></Link>
+                                                                </div>
+                                                            </div>
+                                                            <div className="track-duration-container">
+                                                                <div className="track-favorite-button-placeholder"></div>
+                                                                <div className="track-duration-text-div">{Math.floor(song.length / 60)}:{song.length % 60 >= 10 ? song.length % 60 : "0" + song.length % 60}</div>
+                                                                {/* {Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60} */}
+                                                                <div className="track-option-menu-placeholder"></div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
                                     </section>
                                 )}
                                 {results.artists.length > 0 && (
