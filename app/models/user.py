@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(255), default="https://image.pngaaa.com/189/734189-middle.png")
+    profile_pic = db.Column(db.String(255), default="https://media.discordapp.net/attachments/920418592820957228/938207079045414942/734189-middle.png")
     hashed_password = db.Column(db.String(255), nullable=False)
 
     playlists = db.relationship("Playlist", back_populates="user", cascade="all, delete-orphan")
