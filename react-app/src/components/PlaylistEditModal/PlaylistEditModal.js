@@ -9,6 +9,8 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
     const [showPicEditMenu, setShowPicEditMenu] = useState(false);
     const [name, setName] = useState(playlist.name);
     const [description, setDescription] = useState(playlist.description ? playlist.description : "");
+    const [pic, setPic] = useState(playlist.pic)
+    const [resetPic, setResetPic] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showUploadModal, setShowUploadModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
@@ -42,8 +44,12 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                 // console.log("22222222", playlistData);
 
                 await dispatch(updateSuserPlaylist(playlistData));
+                if (resetPic) {
+                    await dispatch(deleteSuserPlaylistPic(playlist.id));
+                }
                 await dispatch(getPlaylist(playlist.id));
                 setValidationErrors([]);
+                setResetPic(false);
                 handlePlaylistEditClick();
             }
         })();
@@ -86,8 +92,10 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
     const handleRemovePhotoClick = (e) => {
         (async () => {
             e.preventDefault();
-            await dispatch(deleteSuserPlaylistPic(playlist.id));
-            await dispatch(getPlaylist(playlist.id));
+            setResetPic(true);
+            setPic("https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg")
+            // await dispatch(deleteSuserPlaylistPic(playlist.id));
+            // await dispatch(getPlaylist(playlist.id));
         })();
     }
 
@@ -105,7 +113,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                 <div className='details-container'>
                     <div className="playlist-pic-container">
                         <div className="playlist-pic-wrapper" id="picwrap">
-                            <img className="playlist-pic" src={playlist.pic} alt=""></img>
+                            <img className="playlist-pic" src={pic} alt=""></img>
                         </div>
                         {sessionUser && (
                             <div className="playlist-pic-options-button-container">
