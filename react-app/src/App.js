@@ -26,37 +26,22 @@ import PlaylistsCollection from './components/PlaylistsCollection/PlaylistsColle
 function App() {
   const sessionUser = useSelector(state => state.session.user);
   const [loaded, setLoaded] = useState(false);
-  // const [playlistsLoaded, setPlaylistsLoaded] = useState(true);
   const dispatch = useDispatch();
-  // const [loadedCount, setLoadedCount] = useState(0);
 
   if (sessionUser) {
     // console.log(sessionUser);
     (async () => {
       await dispatch(getSuserPlaylists());
       await dispatch(getSuserFollowedPlaylists());
-      // setLoadedCount(loadedCount + 1)
-      // console.log(loadedCount);
-      // setPlaylistsLoaded(true);
     })();
   }
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      // await dispatch(getSuserPlaylists());
       setLoaded(true);
     })();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     console.log("before", loadedCount);
-  //     await setLoadedCount(loadedCount + 1);
-  //     console.log("after", loadedCount);
-  //   })();
-  //   return;
-  // },[dispatch])
 
   if (!loaded) {
     return null;
