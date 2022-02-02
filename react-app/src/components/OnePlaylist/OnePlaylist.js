@@ -236,41 +236,43 @@ const OnePlaylistView = () => {
             {/* {playlist.public} */}
             {/* <div>{playlist.playlist_songs}</div> */}
             <div className="playlist-playbutton-section-container">
-                {sessionUser && <div className="playbutton-container"><div onClick={() => handlePlaylistPlayClick(playlist)}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
-                    play_circle_filled
-                </span></div></div>}
-                {!sessionUser && <div><div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
-                    play_circle_filled
-                </span></div></div>}
-                {showDummyPlayModal && (
-                    <div className="dummy-play-modal-top-div">
-                        <div className="dummy-play-modal-second-div">
-                            <div className="dummy-play-content-container">
-                                <div className="dummy-play-album-cover-container">
-                                    <img className="dummy-play-cover" src={playlist.pic} alt=''></img>
+                <div className="action-bar-row">
+                    {sessionUser && <div onClick={() => handlePlaylistPlayClick(playlist)}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
+                        play_circle_filled
+                    </span></div>}
+                    {!sessionUser && <div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
+                        play_circle_filled
+                    </span></div>}
+                    {showDummyPlayModal && (
+                        <div className="dummy-play-modal-top-div">
+                            <div className="dummy-play-modal-second-div">
+                                <div className="dummy-play-content-container">
+                                    <div className="dummy-play-album-cover-container">
+                                        <img className="dummy-play-cover" src={playlist.pic} alt=''></img>
+                                    </div>
+                                    <div className="dummy-play-modal-text-container">
+                                        <h2 className="dummy-play-heading">Start listening with a free Boombox account</h2>
+                                        <button className="dummy-play-signin-button" onClick={() => history.push("/signup")}>SIGN UP FREE</button>
+                                        <p className="dummy-play-login-prompt">Already have an account? <Link className="dummy-play-login-link" to="/login">Log in</Link></p>
+                                    </div>
                                 </div>
-                                <div className="dummy-play-modal-text-container">
-                                    <h2 className="dummy-play-heading">Start listening with a free Boombox account</h2>
-                                    <button className="dummy-play-signin-button" onClick={() => history.push("/signup")}>SIGN UP FREE</button>
-                                    <p className="dummy-play-login-prompt">Already have an account? <Link className="dummy-play-login-link" to="/login">Log in</Link></p>
+                                <div className="dummy-play-close-box">
+                                    <button className="dummy-play-close-button">Close</button>
                                 </div>
-                            </div>
-                            <div className="dummy-play-close-box">
-                                <button className="dummy-play-close-button">Close</button>
                             </div>
                         </div>
-                    </div>
-                )}
-                {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
-                {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
-                {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
-                {sessionUser && sessionUser.id === playlist.user_id && <div>
-                    <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}><span className="material-icons-outlined md-36">
-                        more_horiz
-                    </span>
-                    </button>
-                    
-                </div>}
+                    )}
+                    {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
+                    {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
+                    {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
+                    {sessionUser && sessionUser.id === playlist.user_id && <div>
+                        <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}><span className="material-icons-outlined md-36">
+                            more_horiz
+                        </span>
+                        </button>
+                        
+                    </div>}
+                </div>
             </div>
             {showPlaylistButtonsModal && (
                 <div className="playlist-dropdown-wrapper">
