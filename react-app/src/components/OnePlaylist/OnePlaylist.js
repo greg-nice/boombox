@@ -266,9 +266,10 @@ const OnePlaylistView = () => {
                     {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
                     {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
                     {sessionUser && sessionUser.id === playlist.user_id && <div>
-                        <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}><span className="material-icons-outlined md-36">
-                            more_horiz
-                        </span>
+                        <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}>
+                            <span className="material-icons-outlined md-36">
+                                more_horiz
+                            </span>
                         </button>
                         
                     </div>}
