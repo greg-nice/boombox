@@ -9,7 +9,7 @@ const AboutButton = () => {
 
     const handleAbout = () => {
         setShowAbout(!showAbout);
-    }
+    };
 
     useEffect(() => {
         if (showAbout) {
@@ -18,7 +18,7 @@ const AboutButton = () => {
         } else {
             return;
         }
-    }, [showAbout])
+    }, [showAbout]);
 
     return (
         <div>
@@ -45,6 +45,6 @@ const AboutButton = () => {
             )}
         </div>
     )
-}
+};
 
 export default AboutButton;
