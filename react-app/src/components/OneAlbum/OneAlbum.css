@@ -400,3 +400,8 @@
     content: "•";
     margin: 0px 4px;
 }
+
+#album-play-button-from-one-album {
+    color:#1db954;
+    cursor:pointer;
+}

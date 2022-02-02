@@ -3,6 +3,7 @@ import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import './OneAlbum.css';
 import { addSuserPlaylistSong } from '../../store/playlists';
+import { eagerLoadAlbumThunk, eagerClearQueueThunk, eagerLoadAlbumFromSongThunk, lazyLoadAlbumSongThunk } from '../../store/queue';
 
 
 
@@ -28,10 +29,31 @@ const OneAlbum = () => {
                 album.songs.sort((a, b) => a.song_num - b.song_num)
                 setAlbum(album);
                 setAlbumLoaded(true);
-                console.log(album)
+                console.log("ALBUM!!!!!!!", album)
             }
         })();
     }, []);
+
+    const handleAlbumPlayClick = (album) => {
+        (async () => {
+            await dispatch(eagerClearQueueThunk());
+            await dispatch(eagerLoadAlbumThunk(album));
+        })();
+    }
+
+    const handleAlbumSongPlayClick = (album, songIndex) => {
+        (async () => {
+            await dispatch(eagerClearQueueThunk());
+            await dispatch(eagerLoadAlbumFromSongThunk(album, songIndex));
+        })();
+    }
+
+    // const handleSongPlayClick = (album, playlistSongOrder) => {
+    //     (async () => {
+    //         await dispatch(eagerClearQueueThunk());
+    //         await dispatch(eagerLoadPlaylistFromSongThunk(playlist, playlistSongOrder));
+    //     })();
+    // }
 
     const handleDummyPlayModal = () => {
         setShowDummyPlayModal(!showDummyPlayModal);
@@ -62,6 +84,12 @@ const OneAlbum = () => {
     const handleAddSongClick = (playlistId, songId) => {
         (async () => {
             await dispatch(addSuserPlaylistSong(playlistId, songId));
+        })();
+    }
+
+    const handleAddAlbumSongToQueueClick = (song) => {
+        (async () => {
+            await dispatch(lazyLoadAlbumSongThunk(song));
         })();
     }
 
@@ -144,9 +172,9 @@ const OneAlbum = () => {
                         </div>
                         <div className="second-background-color"></div>
                         <div className="playlist-playbutton-section-container">
-                            {/* {sessionUser && <div><div><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
+                            {sessionUser && <div className="playbutton-container"><div onClick={() => handleAlbumPlayClick(album)}><span className="material-icons-outlined md-48" id="album-play-button-from-one-album">
                                 play_circle_filled
-                            </span></div></div>} */}
+                            </span></div></div>}
                             {!sessionUser && <div><div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
                                 play_circle_filled
                             </span></div></div>}
@@ -191,7 +219,7 @@ const OneAlbum = () => {
                             <div className='song-nav-dropdown-wrapper'>
                                 <div className='song-nav-dropdown'>
                                     <ul className='song-nav-menu-options-list'>
-                                        {/* {sessionUser && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId }))}><span className="menu-button-span">Add to queue</span></button></li>} */}
+                                        {sessionUser && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddAlbumSongToQueueClick(album.songs.filter(song => song.id === songId)[0])}><span className="menu-button-span">Add to queue</span></button></li>}
                                         <li className="menu-list-item"><Link className="menu-link" to={`/artists/${album.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
                                         {/* <li className="menu-list-item"><Link className="menu-link" to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li> */}
                                         {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li> */}
@@ -228,9 +256,9 @@ const OneAlbum = () => {
                             )}
                             {sessionUser && album.songs.map(song => {
                                 return (
-                                    <div className="playlist-row playlist-song-row" key={song.id}>
+                                    <div className="playlist-row playlist-song-row" key={song.id} onDoubleClick={() => handleAlbumSongPlayClick(album, album.songs.indexOf(song))}>
                                         <div className="row-element first-column">
-                                            <div><span className="song-number-span">{song.song_num}</span></div>
+                                            <div><span className="song-number-span" onClick={() => handleAlbumSongPlayClick(album, album.songs.indexOf(song))}>{song.song_num}</span></div>
                                             {/* <div className="album-cover-container"><img className="table-album-cover" src={song.albumDetails.pic} alt=""></img></div> */}
                                             <div>
                                                 <div id="title-in-row">{song.title}</div>
