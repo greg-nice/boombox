@@ -172,12 +172,12 @@ const OneAlbum = () => {
                         </div>
                         <div className="second-background-color"></div>
                         <div className="playlist-playbutton-section-container">
-                            {sessionUser && <div className="playbutton-container"><div onClick={() => handleAlbumPlayClick(album)}><span className="material-icons-outlined md-48" id="album-play-button-from-one-album">
+                            {sessionUser && <div onClick={() => handleAlbumPlayClick(album)}><span className="material-icons-outlined md-48" id="album-play-button-from-one-album">
                                 play_circle_filled
-                            </span></div></div>}
-                            {!sessionUser && <div><div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
+                            </span></div>}
+                            {!sessionUser && <div onClick={handleDummyPlayModal}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
                                 play_circle_filled
-                            </span></div></div>}
+                            </span></div>}
                             {showDummyPlayModal && (
                                 <div className="dummy-play-modal-top-div">
                                     <div className="dummy-play-modal-second-div">

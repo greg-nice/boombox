@@ -1,4 +1,4 @@
-.main-view-container {
+/* .main-view-container {
     flex: 1;
     min-height: 0;
     position: relative;
@@ -95,7 +95,7 @@
     right: 0;
     top: 0;
     overflow-x: hidden;
-}
+} */
 
 .os-content {
     padding: 0;
@@ -115,13 +115,13 @@
 }
 
 .scroll-child {
-    min-height:calc(((100vh - 64px) - 90px) - 519px);
+    /* min-height:calc(((100vh - 64px) - 90px) - 519px);
     scroll-behavior: smooth;
     isolation: isolate;
     padding-bottom:32px;
     visibility:visible;
     display:block;
-    box-sizing:border-box;
+    box-sizing:border-box; */
 }
 
 .presentation {
