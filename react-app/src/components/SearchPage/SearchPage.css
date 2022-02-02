@@ -46,12 +46,14 @@
     grid-column:1/-1;
     position:relative;
     display: block;
+    margin-bottom:16px;
 }
 
 .searchpage-songs-shelf-grid {
     grid-gap:24px;
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-bottom:16px;
 }
 
 .searchpage-songs-shelf-grid-2 {

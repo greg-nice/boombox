@@ -50,7 +50,7 @@ const PlaylistsCollection = () => {
             <div className="homepage-container">
                 {userPlaylists && userPlaylists.length > 0 && sorted &&
                     <div>
-                        <h2>Your Playlists</h2>
+                        <h2 className="homepage-h2">Your Playlists</h2>
                         <div className="library-grid-container">
                             {sorted.map(playlist => {
                                 return (
@@ -77,7 +77,7 @@ const PlaylistsCollection = () => {
                 }
                 {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 &&
                     <div>
-                        <h2>Playlists You Follow</h2>
+                        <h2 className="homepage-h2">Playlists You Follow</h2>
                         <div className="library-grid-container">
                             {followedPlaylists && followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
                                 return (
