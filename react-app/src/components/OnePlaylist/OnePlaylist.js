@@ -177,6 +177,9 @@ const OnePlaylistView = () => {
     const dateAdded = (datetimeObj) => {
         // const now = new Date();
         const newObj = datetimeObj.split(" ").slice(1, 4);
+        if (newObj[0][0] === "0") {
+            newObj[0] = newObj[0].slice(1);
+        }
         return newObj[1] + " " + newObj[0] + ", " + newObj[2];
     }
 
