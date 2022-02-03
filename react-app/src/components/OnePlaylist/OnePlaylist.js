@@ -157,6 +157,8 @@ const OnePlaylistView = () => {
 
     useEffect(() => {
         if (playlist) {
+            setQuery("");
+            setResults("");
             if (sessionUser && playlist.playlist_songs.length === 0 && playlist.user_id === sessionUser.id) {
                 setShowSearch(true);
             } else {
@@ -508,7 +510,7 @@ const OnePlaylistView = () => {
                         <div className="playlist-inline-search-noresults"></div>
                     </div>
                 )}
-                {results && (
+                {sessionUser && results && (
                     <div className="playlist-inline-search-results">
                         {results.songs.length > 0 && results.songs.map(song => {
                             if (!checkPlaylistHasSong(song)) {
