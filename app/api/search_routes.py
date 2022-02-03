@@ -1,4 +1,5 @@
 from flask import Blueprint, request, session
+from flask_login import login_required
 from sqlalchemy.orm import joinedload
 from app.models import User, Playlist, Song, Album, Artist, Playlist_Song
 from app.forms import SearchForm
@@ -54,3 +55,21 @@ def results():
             'users': [user.to_safe() for user in users],
         }
     return {"errors": validation_errors_to_error_messages(form.errors)}
+
+@search_routes.route('/from_playlist', methods=['POST'])
+@login_required
+def search_from_playlist():
+    form = SearchForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        query = form.data["query"]
+        songs = Song.query.filter(Song.title.ilike(f'%{query}%')).limit(25).all()
+        artists = Artist.query.filter(Artist.name.ilike(f'%{query}%')).limit(5).all()
+        artistSongs = Song.query.join(Artist).filter(Artist.name.in_([artist.name for artist in artists])).limit(25).options(joinedload(Song.artist)).all()
+        albums = Album.query.filter(Album.title.ilike(f'%{query}%')).limit(5).all()
+        albumSongs = Song.query.join(Album).filter(Album.title.in_([album.title for album in albums])).limit(25).options(joinedload(Song.album)).all()
+        songs = set(songs + artistSongs + albumSongs)
+
+        return {"songs": [song.to_dict() for song in songs]}
+    return {"errors": validation_errors_to_error_messages(form.errors)}
+

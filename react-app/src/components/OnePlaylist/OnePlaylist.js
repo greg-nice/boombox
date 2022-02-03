@@ -26,6 +26,8 @@ const OnePlaylistView = () => {
     const [playlistSongId, setPlaylistSongId] = useState(null);
     const [showDummyPlayModal, setShowDummyPlayModal] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState("");
     // const [isLoaded, setIsLoaded] = useState(true);
 
     const handlePlaylistPlayClick = (playlist) => {
@@ -153,6 +155,16 @@ const OnePlaylistView = () => {
         }
     }, [showSongMenu]);
 
+    useEffect(() => {
+        if (playlist) {
+            if (sessionUser && playlist.playlist_songs.length === 0 && playlist.user_id === sessionUser.id) {
+                setShowSearch(true);
+            } else {
+                setShowSearch(false);
+            }
+        }
+    }, [playlist.id, sessionUser]);
+
     // useEffect(() => {
     //     if (showPlaylistEditModal) {
     //         document.addEventListener('click', handlePlaylistEditClick);
@@ -213,16 +225,52 @@ const OnePlaylistView = () => {
     //     }
     // }, [dispatch, playlistId, isLoaded]);
 
-    const handleSearchClick = () => {
-        setShowSearch(!showSearch);
+    function gotoBottom(id) {
+        var element = document.getElementById(id);
+        console.log("HELLO!!!")
+        element.scrollTop = element.scrollHeight - element.clientHeight;
     }
+
+    const handleSearchClick = () => {
+        (async () => {
+            await setShowSearch(!showSearch);
+            gotoBottom("one-playlist-view");
+        })();
+    }
+
+    const handleCloseSearchClick = () => {
+        setResults("");
+        setQuery("");
+        handleSearchClick();
+    }
+
+    useEffect(() => {
+        if (query) {
+            (async () => {
+                const response = await fetch('/api/search/from_playlist', {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "query": query })
+                })
+
+                if (response.ok) {
+                    const searchResults = await response.json();
+                    console.log(searchResults);
+                    setResults(searchResults);
+                }
+            })();
+        } else {
+            setResults("");
+            return;
+        }
+    }, [query])
 
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
 
     return (
-        <div className="one-playlist-view">
+        <div id="one-playlist-view">
             <div className='searchpage-spacer'></div>
             <div className="playlist-title-tile-container">
                 <div className="playlist-image-container">
@@ -334,7 +382,7 @@ const OnePlaylistView = () => {
                         <div className="row-element header first-column"><div>#</div><div>Title</div></div>
                         <div className="row-element header"><div>Album</div></div>
                         <div className="row-element header"><div>Date Added</div></div>
-                        <div className="row-element header"><div><span class="material-icons md-18">
+                        <div className="row-element header"><div><span className="material-icons md-18">
                             schedule
                         </span></div></div>
                         {/* <div className="row-element header"><div>Options</div></div> */}
@@ -391,12 +439,12 @@ const OnePlaylistView = () => {
                         </div>
                     )
                 })}
-                {playlist && playlist.user_id === sessionUser.id && !showSearch && (
+                {playlist && sessionUser && playlist.user_id === sessionUser.id && !showSearch && (
                     <button className="findmore-button">
                         <div className="findmore-inner-div" onClick={handleSearchClick}>Find more</div>
                     </button>
                 )}
-                {showSearch && (
+                {showSearch && sessionUser && (
                     <section className="playlist-searchbox-container">
                         <div className="playlist-searchbox-content-container">
                             <h1 className="playlist-searchbox-h1">Let's find something for your playlist</h1>
@@ -405,22 +453,40 @@ const OnePlaylistView = () => {
                                     className="playlist-searchbox-input"
                                     placeholder='Search for songs'
                                     maxLength="80"
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
                                 />
                                 <div className="playlist-searchbox-inner-div">
                                     <span className="playlist-searchbox-span">
-                                        <span class="material-icons md-18">
+                                        <span className="material-icons md-18">
                                             search
                                         </span>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <button className="searchbox-close-button" onClick={handleSearchClick}>
-                            <span class="material-icons">
+                        <button className="searchbox-close-button" onClick={handleCloseSearchClick}>
+                            <span className="material-icons">
                                 close
                             </span>
                         </button>
                     </section>
+                )}
+                {showSearch && sessionUser && !results && (
+                    <div className="playlist-inline-search-results">
+                        <div className="playlist-inline-search-noresults"></div>
+                    </div>
+                )}
+                {results && (
+                    <div className="playlist-inline-search-results">
+                        {results.songs.length > 0 && results.songs.map(song => {
+                            return (
+                                <div className="playlist-search-results-row" key={song.id}>
+                                    {song.title}
+                                </div>
+                            )
+                        })}
+                    </div>
                 )}
             </div>
         </div>

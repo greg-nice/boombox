@@ -1,4 +1,4 @@
-.one-playlist-view {
+#one-playlist-view {
     color: rgb(179, 179, 179);
     box-sizing: border-box;
     display:block;
@@ -8,6 +8,7 @@
     min-height: 0px;
     position: relative;
     overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 
 .playlist-title-tile-container {
@@ -628,3 +629,10 @@
     padding:0;
 }
 
+.playlist-inline-search-results {
+    height: calc(60vh - 122px);
+}
+
+.playlist-inline-search-noresults {
+    height: calc(60vh - 122px);
+}
