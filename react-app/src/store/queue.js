@@ -11,6 +11,8 @@ const EAGER_LOAD_PLAYLIST = "queue/EAGER_LOAD_PLAYLIST";
 const EAGER_LOAD_ALBUM_FROM_SONG = "queue/EAGER_LOAD_ALBUM_FROM_SONG";
 const EAGER_LOAD_ALBUM = "queue/EAGER_LOAD_ALBUM";
 
+const EAGER_LOAD_SEARCH_SONG = "queue/EAGER_LOAD_SEARCH_SONG";
+
 const EAGER_CLEAR_QUEUE = "queue/EAGER_CLEAR_QUEUE";
 
 // ACTION CREATORS
@@ -40,27 +42,32 @@ const eagerLoadPlaylistFromSong = (playlist, playlistSongOrder) => ({
     type: EAGER_LOAD_PLAYLIST_FROM_SONG,
     playlist,
     playlistSongOrder
-})
+});
 
 const eagerLoadPlaylist = (playlist) => ({
     type: EAGER_LOAD_PLAYLIST,
     playlist
-})
+});
 
 const eagerLoadAlbum = (album) => ({
     type: EAGER_LOAD_ALBUM,
     album
-})
+});
 
 const eagerLoadAlbumFromSong = (album, songIndex) => ({
     type: EAGER_LOAD_ALBUM_FROM_SONG,
     album,
     songIndex
-})
+});
+
+const eagerLoadSearchSong = (song) => ({
+    type: EAGER_LOAD_SEARCH_SONG,
+    song
+});
 
 const eagerClearQueue = () => ({
     type: EAGER_CLEAR_QUEUE
-})
+});
 
 // const eagerLoadAlbumSong
 
@@ -98,6 +105,10 @@ export const eagerLoadAlbumThunk = (album) => async (dispatch) => {
 
 export const eagerLoadAlbumFromSongThunk = (album, songIndex) => async (dispatch) => {
     dispatch(eagerLoadAlbumFromSong(album, songIndex));
+}
+
+export const eagerLoadSearchSongThunk = (song) => async (dispatch) => {
+    dispatch(eagerLoadSearchSong(song));
 }
 
 export const eagerClearQueueThunk = () => async (dispatch) => {
@@ -155,6 +166,15 @@ export default function queueReducer(state = initialState, action) {
         case EAGER_LOAD_ALBUM_FROM_SONG: {
             let newState = [];
             const songs = action.album.songs.slice(action.songIndex);
+            songs.forEach(song => {
+                song.type = "album_song";
+                newState.push(song);
+            })
+            return newState;
+        }
+        case EAGER_LOAD_SEARCH_SONG: {
+            let newState = [];
+            let songs = [action.song]
             songs.forEach(song => {
                 song.type = "album_song";
                 newState.push(song);

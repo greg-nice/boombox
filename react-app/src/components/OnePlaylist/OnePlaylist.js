@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link, useParams } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate } from '../../store/playlists';
 import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
-import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk , eagerClearQueueThunk} from '../../store/queue';
+import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk, eagerLoadSearchSongThunk, eagerClearQueueThunk} from '../../store/queue';
 import './OnePlaylist.css'
 import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
 import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
@@ -282,6 +282,13 @@ const OnePlaylistView = () => {
         })();
     }
 
+    const handleSearchSongPlayClick = (song) => {
+        (async () => {
+            await dispatch(eagerClearQueueThunk());
+            await dispatch(eagerLoadSearchSongThunk(song));
+        })();
+    }
+
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
@@ -507,23 +514,23 @@ const OnePlaylistView = () => {
                             if (!checkPlaylistHasSong(song)) {
                                 return (
                                     <div className="playlist-search-result-row" key={song.id}>
-                                        <div className="playlist-search-result-row-2">
+                                        <div className="playlist-search-result-row-2" onDoubleClick={() => handleSearchSongPlayClick(song)}>
                                             <div className="playlist-search-result-cell">
                                                 <div className="playlist-search-result-pic-container">
                                                     <img className='playlist-search-result-pic-img' src={song.albumDetails.pic} alt=""></img>
                                                 </div>
                                                 <div className="playlist-search-result-titleartist-container">
                                                     <div className='playlist-search-result-title'>
-                                                        {song.title}
+                                                        <Link className="playlist-search-result-title-link" to={`/albums/${song.album_id}`}>{song.title}</Link>
                                                     </div>
                                                     <span className='playlist-search-result-artist'>
-                                                        {song.artist}
+                                                        <Link className="playlist-search-result-artist-link" to={`/artists/${song.artist_id}`}>{song.artist}</Link>
                                                     </span>
                                                 </div>
                                             </div>
                                             <div className="playlist-search-result-cell">
                                                 <span className="playlist-search-result-album">
-                                                    {song.album}
+                                                    <Link className="playlist-search-result-album-link" to={`/albums/${song.album_id}`}>{song.album}</Link>
                                                 </span>
                                             </div>
                                             <div className="playlist-search-result-cell-last">

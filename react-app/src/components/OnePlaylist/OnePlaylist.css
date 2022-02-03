@@ -659,6 +659,10 @@
     box-sizing: border-box;
 }
 
+.playlist-search-result-row-2:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
 .playlist-search-result-cell {
     justify-self: start;
     align-items: center;
@@ -667,7 +671,7 @@
 
 .playlist-search-result-pic-container {
     margin-right: 16px;
-    margin-left: -16px;
+    margin-left: -8px;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -707,6 +711,18 @@
     line-height: 24px;
 }
 
+.playlist-search-result-title-link {
+    color:#fff;
+    word-break:break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 24px;
+    text-decoration: none;
+}
+
 .playlist-search-result-artist {
     color:#a7a7a7;
     grid-area:subtitle;
@@ -719,11 +735,38 @@
     line-height: 16px;
 }
 
+.playlist-search-result-artist-link {
+    color:#a7a7a7;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+}
+
+.playlist-search-result-artist-link:hover {
+    text-decoration: underline;
+}
+
 .playlist-search-result-album {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: normal;
     line-height: 16px;
+}
+
+.playlist-search-result-album-link {
+    color:#b3b3b3;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+}
+
+.playlist-search-result-album-link:hover {
+    text-decoration: underline;
 }
 
 .playlist-search-result-cell-last {
