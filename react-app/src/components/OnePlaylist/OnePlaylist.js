@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link, useParams } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate } from '../../store/playlists';
 import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
-import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk , eagerClearQueueThunk} from '../../store/queue';
+import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk, eagerLoadSearchSongThunk, eagerClearQueueThunk} from '../../store/queue';
 import './OnePlaylist.css'
 import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
 import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
@@ -25,6 +25,9 @@ const OnePlaylistView = () => {
     const [songId, setSongId] = useState(null);
     const [playlistSongId, setPlaylistSongId] = useState(null);
     const [showDummyPlayModal, setShowDummyPlayModal] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState("");
     // const [isLoaded, setIsLoaded] = useState(true);
 
     const handlePlaylistPlayClick = (playlist) => {
@@ -152,6 +155,16 @@ const OnePlaylistView = () => {
         }
     }, [showSongMenu]);
 
+    useEffect(() => {
+        if (playlist) {
+            if (sessionUser && playlist.playlist_songs.length === 0 && playlist.user_id === sessionUser.id) {
+                setShowSearch(true);
+            } else {
+                setShowSearch(false);
+            }
+        }
+    }, [playlist.id, sessionUser]);
+
     // useEffect(() => {
     //     if (showPlaylistEditModal) {
     //         document.addEventListener('click', handlePlaylistEditClick);
@@ -212,12 +225,76 @@ const OnePlaylistView = () => {
     //     }
     // }, [dispatch, playlistId, isLoaded]);
 
+    function gotoBottom(id) {
+        var element = document.getElementById(id);
+        console.log("HELLO!!!")
+        element.scrollTop = element.scrollHeight - element.clientHeight;
+    }
+
+    const handleSearchClick = () => {
+        (async () => {
+            await setShowSearch(!showSearch);
+            gotoBottom("one-playlist-view");
+        })();
+    }
+
+    const handleCloseSearchClick = () => {
+        setResults("");
+        setQuery("");
+        handleSearchClick();
+    }
+
+    useEffect(() => {
+        if (query) {
+            (async () => {
+                const response = await fetch('/api/search/from_playlist', {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ "query": query })
+                })
+
+                if (response.ok) {
+                    const searchResults = await response.json();
+                    console.log(searchResults);
+                    setResults(searchResults);
+                }
+            })();
+        } else {
+            setResults("");
+            return;
+        }
+    }, [query])
+
+    const checkPlaylistHasSong = (song) => {
+        for (let i = 0; i < playlist.playlist_songs.length; i++) {
+            let playlist_song = playlist.playlist_songs[i];
+            if (playlist_song.song.id === song.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const handleAddClick = (songId) => {
+        (async () => {
+            await dispatch(addSuserPlaylistSong(playlist.id, songId));
+            dispatch(getPlaylist(playlist.id));
+        })();
+    }
+
+    const handleSearchSongPlayClick = (song) => {
+        (async () => {
+            await dispatch(eagerClearQueueThunk());
+            await dispatch(eagerLoadSearchSongThunk(song));
+        })();
+    }
+
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
 
     return (
-        <div className="one-playlist-view">
+        <div id="one-playlist-view">
             <div className='searchpage-spacer'></div>
             <div className="playlist-title-tile-container">
                 <div className="playlist-image-container">
@@ -329,7 +406,7 @@ const OnePlaylistView = () => {
                         <div className="row-element header first-column"><div>#</div><div>Title</div></div>
                         <div className="row-element header"><div>Album</div></div>
                         <div className="row-element header"><div>Date Added</div></div>
-                        <div className="row-element header"><div><span class="material-icons md-18">
+                        <div className="row-element header"><div><span className="material-icons md-18">
                             schedule
                         </span></div></div>
                         {/* <div className="row-element header"><div>Options</div></div> */}
@@ -386,7 +463,88 @@ const OnePlaylistView = () => {
                         </div>
                     )
                 })}
-
+                {playlist && sessionUser && playlist.user_id === sessionUser.id && !showSearch && (
+                    <button className="findmore-button">
+                        <div className="findmore-inner-div" onClick={handleSearchClick}>Find more</div>
+                    </button>
+                )}
+                {showSearch && sessionUser && (
+                    <section className="playlist-searchbox-container">
+                        <div className="playlist-searchbox-content-container">
+                            <h1 className="playlist-searchbox-h1">Let's find something for your playlist</h1>
+                            <div className="playlist-searchbox-wrapper">
+                                <input
+                                    className="playlist-searchbox-input"
+                                    placeholder='Search for songs'
+                                    maxLength="80"
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                />
+                                <div className="playlist-searchbox-inner-div">
+                                    <span className="playlist-searchbox-span">
+                                        <span className="material-icons md-18">
+                                            search
+                                        </span>
+                                    </span>
+                                    {query && (
+                                        <button className="playlist-searchbox-clear-search-button" onClick={() => setQuery("")}>
+                                            <span className="material-icons md-18">
+                                                clear
+                                            </span>
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <button className="searchbox-close-button" onClick={handleCloseSearchClick}>
+                            <span className="material-icons">
+                                close
+                            </span>
+                        </button>
+                    </section>
+                )}
+                {showSearch && sessionUser && !results && (
+                    <div className="playlist-inline-search-results">
+                        <div className="playlist-inline-search-noresults"></div>
+                    </div>
+                )}
+                {results && (
+                    <div className="playlist-inline-search-results">
+                        {results.songs.length > 0 && results.songs.map(song => {
+                            if (!checkPlaylistHasSong(song)) {
+                                return (
+                                    <div className="playlist-search-result-row" key={song.id}>
+                                        <div className="playlist-search-result-row-2" onDoubleClick={() => handleSearchSongPlayClick(song)}>
+                                            <div className="playlist-search-result-cell">
+                                                <div className="playlist-search-result-pic-container">
+                                                    <img className='playlist-search-result-pic-img' src={song.albumDetails.pic} alt=""></img>
+                                                </div>
+                                                <div className="playlist-search-result-titleartist-container">
+                                                    <div className='playlist-search-result-title'>
+                                                        <Link className="playlist-search-result-title-link" to={`/albums/${song.album_id}`}>{song.title}</Link>
+                                                    </div>
+                                                    <span className='playlist-search-result-artist'>
+                                                        <Link className="playlist-search-result-artist-link" to={`/artists/${song.artist_id}`}>{song.artist}</Link>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="playlist-search-result-cell">
+                                                <span className="playlist-search-result-album">
+                                                    <Link className="playlist-search-result-album-link" to={`/albums/${song.album_id}`}>{song.album}</Link>
+                                                </span>
+                                            </div>
+                                            <div className="playlist-search-result-cell-last">
+                                                <button className='playlist-search-result-add-button' onClick={() => handleAddClick(song.id)}>
+                                                    <span className='playlist-search-result-add-button-inner-span'>Add</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
+                    </div>
+                )}
             </div>
         </div>
     )
