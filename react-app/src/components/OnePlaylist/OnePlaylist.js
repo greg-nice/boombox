@@ -479,6 +479,13 @@ const OnePlaylistView = () => {
                                             search
                                         </span>
                                     </span>
+                                    {query && (
+                                        <button className="playlist-searchbox-clear-search-button" onClick={() => setQuery("")}>
+                                            <span className="material-icons md-18">
+                                                clear
+                                            </span>
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

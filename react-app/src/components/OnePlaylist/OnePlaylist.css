@@ -612,7 +612,17 @@
     padding:0;
     line-height: 25.6px;
     display: block;
-    height:16px;
+    height:18px;
+}
+
+.playlist-searchbox-clear-search-button {
+    background-color: transparent;
+    border:0;
+    color:rgba(255,255,255,.7);
+    padding:0;
+    box-sizing: border-box;
+    pointer-events: auto;
+    height:18px;
 }
 
 .material-icons.md-18 {
