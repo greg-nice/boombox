@@ -265,6 +265,23 @@ const OnePlaylistView = () => {
         }
     }, [query])
 
+    const checkPlaylistHasSong = (song) => {
+        for (let i = 0; i < playlist.playlist_songs.length; i++) {
+            let playlist_song = playlist.playlist_songs[i];
+            if (playlist_song.song.id === song.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const handleAddClick = (songId) => {
+        (async () => {
+            await dispatch(addSuserPlaylistSong(playlist.id, songId));
+            dispatch(getPlaylist(playlist.id));
+        })();
+    }
+
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
@@ -480,11 +497,37 @@ const OnePlaylistView = () => {
                 {results && (
                     <div className="playlist-inline-search-results">
                         {results.songs.length > 0 && results.songs.map(song => {
-                            return (
-                                <div className="playlist-search-results-row" key={song.id}>
-                                    {song.title}
-                                </div>
-                            )
+                            if (!checkPlaylistHasSong(song)) {
+                                return (
+                                    <div className="playlist-search-result-row" key={song.id}>
+                                        <div className="playlist-search-result-row-2">
+                                            <div className="playlist-search-result-cell">
+                                                <div className="playlist-search-result-pic-container">
+                                                    <img className='playlist-search-result-pic-img' src={song.albumDetails.pic} alt=""></img>
+                                                </div>
+                                                <div className="playlist-search-result-titleartist-container">
+                                                    <div className='playlist-search-result-title'>
+                                                        {song.title}
+                                                    </div>
+                                                    <span className='playlist-search-result-artist'>
+                                                        {song.artist}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="playlist-search-result-cell">
+                                                <span className="playlist-search-result-album">
+                                                    {song.album}
+                                                </span>
+                                            </div>
+                                            <div className="playlist-search-result-cell-last">
+                                                <button className='playlist-search-result-add-button' onClick={() => handleAddClick(song.id)}>
+                                                    <span className='playlist-search-result-add-button-inner-span'>Add</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         })}
                     </div>
                 )}
