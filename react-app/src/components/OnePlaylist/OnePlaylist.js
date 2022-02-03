@@ -25,6 +25,7 @@ const OnePlaylistView = () => {
     const [songId, setSongId] = useState(null);
     const [playlistSongId, setPlaylistSongId] = useState(null);
     const [showDummyPlayModal, setShowDummyPlayModal] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
     // const [isLoaded, setIsLoaded] = useState(true);
 
     const handlePlaylistPlayClick = (playlist) => {
@@ -212,6 +213,10 @@ const OnePlaylistView = () => {
     //     }
     // }, [dispatch, playlistId, isLoaded]);
 
+    const handleSearchClick = () => {
+        setShowSearch(!showSearch);
+    }
+
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
@@ -386,7 +391,37 @@ const OnePlaylistView = () => {
                         </div>
                     )
                 })}
-
+                {playlist && playlist.user_id === sessionUser.id && !showSearch && (
+                    <button className="findmore-button">
+                        <div className="findmore-inner-div" onClick={handleSearchClick}>Find more</div>
+                    </button>
+                )}
+                {showSearch && (
+                    <section className="playlist-searchbox-container">
+                        <div className="playlist-searchbox-content-container">
+                            <h1 className="playlist-searchbox-h1">Let's find something for your playlist</h1>
+                            <div className="playlist-searchbox-wrapper">
+                                <input
+                                    className="playlist-searchbox-input"
+                                    placeholder='Search for songs'
+                                    maxLength="80"
+                                />
+                                <div className="playlist-searchbox-inner-div">
+                                    <span className="playlist-searchbox-span">
+                                        <span class="material-icons md-18">
+                                            search
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button className="searchbox-close-button" onClick={handleSearchClick}>
+                            <span class="material-icons">
+                                close
+                            </span>
+                        </button>
+                    </section>
+                )}
             </div>
         </div>
     )

@@ -110,6 +110,7 @@ const NavBar = () => {
               <div className="searchbar-content-2">
                 <form className="searchbar-form">
                   <input
+                  maxLength="80"
                   className="searchbar-input"
                   type="text"
                   placeholder="Artists, songs, or playlists"

@@ -97,10 +97,8 @@
 .playlist-table {
     font-size: small;
     color: rgb(179, 179, 179);
-    padding-top: 24px;
     padding-left: 32px;
     padding-right: 32px;
-    padding-bottom: 24px;
 }
 
 .header {
@@ -523,5 +521,110 @@
     text-transform: none;
     color: #fff;
     text-decoration: none;
+}
+
+.findmore-button {
+    background: none;
+    border:none;
+    color:#fff;
+    display: block;
+    margin:32px 16px 0 auto;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.findmore-inner-div {
+    font-size:12px;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.playlist-searchbox-container {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding: 24px 0;
+    box-sizing: border-box;
+}
+
+.playlist-searchbox-content-container {
+    display: inline-block;
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+.playlist-searchbox-h1 {
+    color:#fff;
+    margin: 0 0 16px 0;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.04rem;
+    line-height: 28px;
+    border:0;
+    padding:0;
+}
+
+.playlist-searchbox-wrapper {
+    position: relative;
+}
+
+.playlist-searchbox-input {
+    background-color:rgba(255,255,255,.1);
+    border:0;
+    border-radius: 4px;
+    color:rgba(255,255,255,.7);
+    height:40px;
+    opacity:1;
+    padding:8px 32px;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    box-sizing: border-box;
+    outline:none;
+}
+
+.playlist-searchbox-inner-div {
+    align-items: center;
+    bottom:0;
+    display: flex;
+    left:10px;
+    opacity:1;
+    pointer-events: none;
+    position: absolute;
+    right:10px;
+    top:0;
+    box-sizing: border-box;
+}
+
+.playlist-searchbox-span {
+    color:rgba(255,255,255,.7);
+    flex:1;
+    border:0;
+    margin:0;
+    padding:0;
+    line-height: 25.6px;
+    display: block;
+    height:16px;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+    width:18px;
+    height:18px;
+}
+
+.searchbox-close-button {
+    margin-right:8px;
+    background-color: transparent;
+    border:0;
+    color:rgba(255,255,255,.7);
+    padding:0;
 }
 
