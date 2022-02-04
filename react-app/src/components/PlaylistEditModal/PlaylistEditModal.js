@@ -129,7 +129,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                                         <div className='song-nav-dropdown'>
                                             <ul className='song-nav-menu-options-list'>
                                                 <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Change photo</span></button></li>
-                                                <li className="menu-list-item"><button className="menu-list-button" onClick={handleRemovePhotoClick}><span className="menu-button-span">Remove photo</span></button></li>
+                                                {playlist.pic !== "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg" && <li className="menu-list-item"><button className="menu-list-button" onClick={handleRemovePhotoClick}><span className="menu-button-span">Remove photo</span></button></li>}
                                             </ul>
                                         </div>
                                     </div>

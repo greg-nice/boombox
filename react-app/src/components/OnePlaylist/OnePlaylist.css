@@ -35,6 +35,10 @@
     color:white;
 }
 
+.playlist-name-h1-editable:hover {
+    cursor:pointer;
+}
+
 /* .playlist-stats {
     font-size: smaller;
 } */

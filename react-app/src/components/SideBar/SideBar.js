@@ -65,8 +65,10 @@ const SideBar = () => {
     }
 
     const handleCreatePlaylistClick = () => {
-        dispatch(createSimplePlaylist());
-        history.push(`/`);
+        (async () => {
+            const newId = await dispatch(createSimplePlaylist());
+            history.push(`/playlists/${newId}`);
+        })();
     }
 
     // if (user && playlistsLoaded) {
