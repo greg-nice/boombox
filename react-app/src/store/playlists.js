@@ -132,6 +132,22 @@ export const deleteSuserPlaylistPic = (playlistId) => async (dispatch) => {
     }
 }
 
+// EDIT a session user playlist to use a user-uploaded cover pic
+export const changeSuserPlaylistPic = (playlistId, file) => async (dispatch) => {
+    const form = new FormData();
+    form.append("file", file);
+
+    const response = await fetch(`/api/playlists/${playlistId}/update_pic`, {
+        method: 'PUT',
+        body: form
+    });
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(update(playlist));
+    }
+}
+
 // EDIT a session user playlist to make Public
 
 export const makePlaylistPublic = (playlistId) => async (dispatch) => {

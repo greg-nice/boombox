@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteSuserPlaylistPic, updateSuserPlaylist } from '../../store/playlists';
+import { deleteSuserPlaylistPic, updateSuserPlaylist, changeSuserPlaylistPic } from '../../store/playlists';
 import { getPlaylist } from '../../store/playlist';
 import './PlaylistEditModal.css';
 
@@ -11,10 +11,24 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
     const [description, setDescription] = useState(playlist.description ? playlist.description : "");
     const [pic, setPic] = useState(playlist.pic)
     const [resetPic, setResetPic] = useState(false);
+    const [changePic, setChangePic] = useState(false);
+    const [file, setFile] = useState(null);
+    // const [preview, setPreview] = useState(undefined);
     const [validationErrors, setValidationErrors] = useState([]);
-    const [showUploadModal, setShowUploadModal] = useState(false);
+    // const [showUploadModal, setShowUploadModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!file) {
+            console.log("8888888888888888888")
+            return;
+        }
+        console.log("999999999999999999")
+        const objectUrl = URL.createObjectURL(file);
+        setPic(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [file]);
 
     const validate = () => {
         const validationErrors = [];
@@ -47,6 +61,10 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                 if (resetPic) {
                     await dispatch(deleteSuserPlaylistPic(playlist.id));
                 }
+                if (changePic && file) {
+                    console.log("trying to change playlist pic in database!")
+                    await dispatch(changeSuserPlaylistPic(playlist.id, file))
+                }
                 await dispatch(getPlaylist(playlist.id));
                 setValidationErrors([]);
                 setResetPic(false);
@@ -72,9 +90,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
         });
     }, []);
 
-    const handleEditPicClick = (e) => {
-        e.preventDefault();
-
+    const handleEditPicClick = () => {
         setShowPicEditMenu(!showPicEditMenu);
     }
 
@@ -92,13 +108,28 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
     const handleRemovePhotoClick = (e) => {
         (async () => {
             e.preventDefault();
+            setChangePic(false);
             setResetPic(true);
+            setFile(null);
             setPic("https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg")
-            // await dispatch(deleteSuserPlaylistPic(playlist.id));
-            // await dispatch(getPlaylist(playlist.id));
         })();
     }
 
+    const handleChangePicClick = (e) => {
+            e.preventDefault();
+            document.getElementById("file-upload").click();
+            setResetPic(false);
+            setChangePic(true);
+    }
+
+    // useEffect(() => {
+    //     console.log("changePicUseEffect:", changePic)
+    // }, [changePic]);
+
+    const handleFile = (e) => {
+        // console.log(e.target.files);
+        setFile(e.target.files[0]);
+    }
 
     return (
         <div className="edit-playlist-modal">
@@ -111,6 +142,8 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                     </span></button>
                 </div>
                 <div className='details-container'>
+                    {/* <label id="file-upload-label" htmlFor="file-upload">Change photo</label> */}
+                    <input type="file" id="file-upload" accept="image/png, image/jpeg" onChange={handleFile} />
                     <div className="playlist-pic-container">
                         <div className="playlist-pic-wrapper" id="picwrap">
                             <img className="playlist-pic" src={pic} alt=""></img>
@@ -125,11 +158,11 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                                     </div>
                                 </button>
                                 {showPicEditMenu && (
-                                    <div className='song-nav-dropdown-wrapper'>
+                                    <div className='playlist-pic-dropdown-wrapper'>
                                         <div className='song-nav-dropdown'>
                                             <ul className='song-nav-menu-options-list'>
-                                                <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Change photo</span></button></li>
-                                                {playlist.pic !== "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg" && <li className="menu-list-item"><button className="menu-list-button" onClick={handleRemovePhotoClick}><span className="menu-button-span">Remove photo</span></button></li>}
+                                                <li className="menu-list-item"><button className="menu-list-button" onClick={handleChangePicClick}><label htmlFor="file-upload"><span className="menu-button-span">Change photo</span></label></button></li>
+                                                <li className="menu-list-item"><button className="menu-list-button" onClick={handleRemovePhotoClick}><span className="menu-button-span">Remove photo</span></button></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -138,7 +171,6 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
                         )}
                     </div>
                     <div className="title-container">
-                  
                         <label className="title-label" htmlFor="title-text">Name</label>
                         <input id="title-text" type="text" value={name} onChange={(e) => setName(e.target.value)} />
                     </div>
