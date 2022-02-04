@@ -5,7 +5,7 @@ import { getPlaylist } from '../../store/playlist';
 import './PlaylistEditModal.css';
 
 
-const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
+const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit }) => {
     const [showPicEditMenu, setShowPicEditMenu] = useState(false);
     const [name, setName] = useState(playlist.name);
     const [description, setDescription] = useState(playlist.description ? playlist.description : "");
@@ -29,6 +29,13 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick }) => {
         setPic(objectUrl);
         return () => URL.revokeObjectURL(objectUrl);
     }, [file]);
+
+    useEffect(() => {
+        if (photoEdit) {
+            document.getElementById("file-upload").click();
+            setChangePic(true);
+        }
+    }, []);
 
     const validate = () => {
         const validationErrors = [];

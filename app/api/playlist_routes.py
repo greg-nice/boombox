@@ -138,13 +138,12 @@ def update_playlist_pic(id):
     updated_playlist = Playlist.query.get(id)
     if updated_playlist:
         file = request.files["file"]
-        print("FIIIIIIILE:", file)
-        # file_url = upload_file_to_s3(file, Config.S3_BUCKET)
-        # if file_url:
-        #     updated_playlist.pic = file_url
-        #     db.session.commit()
-        #     return updated_playlist.to_dict()
-        return {"placeholder": "placeholder"}
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        if file_url:
+            updated_playlist.pic = file_url
+            db.session.commit()
+            return updated_playlist.to_dict()
+        return updated_playlist.to_dict()
 
 # use default playlist pic
 @playlist_routes.route('/<int:id>/resetpic', methods=["PUT"])
