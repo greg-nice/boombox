@@ -465,6 +465,10 @@
     font-size: 36px;
 }
 
+.playlist-dropdown-button-container {
+    height:36px;
+}
+
 .playlist-dropdown-button {
     background-color:inherit;
     color:rgb(179, 179, 179);
@@ -473,7 +477,8 @@
     margin:0;
     padding:0 0 0 1rem;
     border:0;
-    cursor:pointer
+    cursor:pointer;
+    height:36px;
 }
 
 .playlist-dropdown-wrapper {
@@ -505,10 +510,10 @@
     text-transform: uppercase;
 }
 
-/* .playbutton-container {
+.playbutton-container {
     height: 54px;
     width: 54px;
-} */
+}
 
 /* .playbutton-container-2 {
     border:0;
