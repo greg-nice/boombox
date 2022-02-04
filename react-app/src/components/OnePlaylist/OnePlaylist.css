@@ -113,12 +113,15 @@
 .playlist-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .playlist-song-row {
-    border-radius: 12px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    border-radius: 4px;
+    /* margin-top: 1rem;
+    margin-bottom: 1rem; */
+    /* padding:4px; */
+    height:56px;
 }
 
 .playlist-song-row:hover {
