@@ -291,6 +291,10 @@ const OnePlaylistView = () => {
         })();
     }
 
+    const handleEditPlaylistClickFromName = () => {
+        setShowPlaylistEditModal(true);
+    }
+
     if (!playlist) {
         (async () => { await getPlaylist(playlistId)})();
     }
@@ -305,7 +309,8 @@ const OnePlaylistView = () => {
                 </div>
                 <div>
                     <h2 className="h2-type">Playlist</h2>
-                    <div className="playlist-name-container"><h1>{playlist.name}</h1></div>
+                    {(!sessionUser || sessionUser.id !== playlist.user_id) && <div className="playlist-name-container"><h1>{playlist.name}</h1></div>}
+                    {sessionUser && sessionUser.id === playlist.user_id && <div className="playlist-name-container"><h1 className="playlist-name-h1-editable" onClick={handleEditPlaylistClickFromName}>{playlist.name}</h1></div>}
                     <div>
                         <div>{playlist.description}</div>
                         <div className="playlist-stats">
