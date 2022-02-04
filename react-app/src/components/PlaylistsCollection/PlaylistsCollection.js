@@ -48,11 +48,11 @@ const PlaylistsCollection = () => {
         <div className='homepage-top-container'>
             <div className='searchpage-spacer'></div>
             <div className="homepage-container">
-                {userPlaylists && userPlaylists.length > 0 && sorted &&
-                    <div>
+                {userPlaylists && userPlaylists.length > 0 &&
+                    <div className="playlist-collection-your-playlists-shelf">
                         <h2 className="homepage-h2">Your Playlists</h2>
                         <div className="library-grid-container">
-                            {sorted.map(playlist => {
+                            {sorted && sorted.map(playlist => {
                                 return (
                                     <div className="library-item-container" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>
                                         <div className="library-item-content-container">

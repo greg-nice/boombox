@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link, useParams } from 'react-router-dom';
-import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate } from '../../store/playlists';
+import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate, getSuserPlaylists } from '../../store/playlists';
 import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk, eagerLoadSearchSongThunk, eagerClearQueueThunk} from '../../store/queue';
 import './OnePlaylist.css'
@@ -82,9 +82,12 @@ const OnePlaylistView = () => {
     }
 
     const handleDeletePlaylistClick = (playlistId) => {
-        dispatch(deleteSuserPlaylist(playlistId));
-        history.push("/collections/playlists"); // have store return a confirmation?
-    }
+        (async () => {
+            await dispatch(deleteSuserPlaylist(playlistId));
+            await dispatch(getSuserPlaylists());
+            history.push("/collections/playlists"); // have store return a confirmation?
+        })();
+    };
    
 
     const openSongMenuClick = (songId, playlistSongId) => {
