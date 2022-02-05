@@ -67,6 +67,11 @@
     border-bottom-right-radius: 500px;
     border-bottom-left-radius: 500px;
     font-family: Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+
+#demo-button:hover {
+    background-color: rgb(40, 40, 40);
 }
 
 #signup-button {
@@ -91,6 +96,10 @@
     border-bottom-left-radius: 500px;
     font-family: Helvetica, Arial, sans-serif;
     cursor: pointer;
+}
+
+#signup-button:hover {
+    background-color: rgb(40, 40, 40);
 }
 
 #signup-link {
@@ -120,6 +129,11 @@
     border-bottom-left-radius: 500px;
     font-family: Helvetica, Arial, sans-serif;
     cursor: pointer;
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+}
+
+#login-button:hover {
+    transform: scale(1.06);
 }
 
 #login-link {

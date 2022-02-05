@@ -38,7 +38,7 @@
     margin: 0;
     box-sizing: border-box;
     display: block;
-    transform:translateX(-82px)
+    transform: translate3d(-82px, 30px, 0);
 }
 
 .about-dropdown-second-container {

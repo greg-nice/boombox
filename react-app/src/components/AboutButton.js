@@ -21,7 +21,7 @@ const AboutButton = () => {
     }, [showAbout]);
 
     return (
-        <div>
+        <>
             <button className="about-button" onClick={handleAbout}><span className="about-span">About</span></button>
             {showAbout && (
                 <div className='about-dropdown'>
@@ -43,7 +43,7 @@ const AboutButton = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     )
 };
 

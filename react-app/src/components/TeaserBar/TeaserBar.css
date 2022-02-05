@@ -84,4 +84,9 @@
     text-align: center;
     text-transform: uppercase;
     box-sizing: border-box;
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+}
+
+.teaser-signup-button:hover {
+    transform: scale(1.06);
 }

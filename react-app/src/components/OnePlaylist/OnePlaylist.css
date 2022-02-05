@@ -5,8 +5,6 @@
     flex:1;
     min-height: 0;
     position: relative;
-    /* overflow-y: scroll;
-    scroll-behavior: smooth; */
 }
 
 #one-playlist-os-padding {
@@ -34,7 +32,7 @@
 
 #one-playlist-main-view-container {
     min-height: calc(100vh - 64px - 90px - 519px);
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     isolation: isolate;
     padding-bottom: 32px;
     box-sizing: border-box;
