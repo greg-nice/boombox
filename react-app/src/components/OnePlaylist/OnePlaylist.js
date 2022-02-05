@@ -4,10 +4,9 @@ import { useHistory, Link, useParams } from 'react-router-dom';
 import { deleteSuserPlaylist, addSuserPlaylistSong, deleteSuserPlaylistSong, makePlaylistPublic, makePlaylistPrivate, getSuserPlaylists } from '../../store/playlists';
 import { unfollowPlaylist, addPlaylistFollow, getPlaylist } from '../../store/playlist';
 import { eagerLoadPlaylistThunk, eagerLoadPlaylistFromSongThunk, lazyLoadPlaylistSongThunk, eagerLoadSearchSongThunk, eagerClearQueueThunk} from '../../store/queue';
-import './OnePlaylist.css'
+import './OnePlaylist.css';
 import PlaylistEditModal from '../PlaylistEditModal/PlaylistEditModal';
 import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
-// import SongMenu from './SongMenu';
 
 
 const OnePlaylistView = () => {
