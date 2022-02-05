@@ -233,14 +233,13 @@ const OnePlaylistView = () => {
 
     function gotoBottom(id) {
         var element = document.getElementById(id);
-        console.log("HELLO!!!")
         element.scrollTop = element.scrollHeight - element.clientHeight;
     }
 
     const handleSearchClick = () => {
         (async () => {
             await setShowSearch(!showSearch);
-            gotoBottom("one-playlist-view");
+            gotoBottom("one-playlist-os-padding");
         })();
     }
 
@@ -299,6 +298,10 @@ const OnePlaylistView = () => {
         setShowPlaylistEditModal(true);
     }
 
+    const handleEditPlaylistClickFromDescription = () => {
+        setShowPlaylistEditModal(true);
+    }
+
     const handleEditPhotoClick = () => {
         setPhotoEdit(true);
         setShowPlaylistEditModal(true);
@@ -346,12 +349,47 @@ const OnePlaylistView = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div className="playlist-title-container">
                                     <h2 className="h2-type">Playlist</h2>
-                                    {(!sessionUser || sessionUser.id !== playlist.user_id) && <div className="playlist-name-container"><h1>{playlist.name}</h1></div>}
-                                    {sessionUser && sessionUser.id === playlist.user_id && <div className="playlist-name-container"><h1 className="playlist-name-h1-editable" onClick={handleEditPlaylistClickFromName}>{playlist.name}</h1></div>}
+                                    {sessionUser && sessionUser.id === playlist.user_id &&
+                                        <span className="playlist-name-span">
+                                            <button className="playlist-name-button editable" onClick={handleEditPlaylistClickFromName}>
+                                                <span className="playlist-name-button-inner-span">
+                                                    <h1 className="playlist-name-button-h1">
+                                                        {playlist.name}
+                                                    </h1>
+                                                </span>
+                                            </button>
+                                        </span>
+                                    }
+                                    {(!sessionUser || sessionUser.id !== playlist.user_id) && 
+                                        <span className="playlist-name-span">
+                                            <button className="playlist-name-button">
+                                                <span className="playlist-name-button-inner-span">
+                                                    <h1 className="playlist-name-button-h1">
+                                                        {playlist.name}
+                                                    </h1>
+                                                </span>
+                                            </button>
+                                        </span>
+                                    }
                                     <div>
-                                        <div>{playlist.description}</div>
+                                        <h2 className='playlist-description-h2'>
+                                            {sessionUser && sessionUser.id === playlist.user_id && 
+                                                <button className='playlist-description-button editable' onClick={handleEditPlaylistClickFromDescription}>
+                                                    <p className='playlist-description-p editable'>
+                                                        {playlist.description}
+                                                    </p>
+                                                </button>
+                                            }
+                                            {(!sessionUser || sessionUser.id !== playlist.user_id) &&
+                                                <button className='playlist-description-button'>
+                                                    <p className='playlist-description-p'>
+                                                        {playlist.description}
+                                                    </p>
+                                                </button>
+                                            }
+                                        </h2>
                                         <div className="playlist-stats">
                                             <Link className="username-link" to={`/users/${playlist.user.id}`}><span id="username-span">{playlist.user.username}</span></Link>{Object.keys(playlist.list_followers).length !== 0 && <span id="playlist-stats"> • {Object.keys(playlist.list_followers).length} {Object.keys(playlist.list_followers).length === 1 ? "like" : "likes"}</span>}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
                                             {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}

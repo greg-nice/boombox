@@ -41,8 +41,8 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit }) =>
         const validationErrors = [];
 
         if (!name) validationErrors.push("Name can't be blank.");
-        if (name.length > 100) validationErrors.push("Name can't be more than 100 characters.")
-        if (description.length > 255) validationErrors.push("Description can't be more than 255 characters.")
+        if (name.length > 100) validationErrors.push("Name cannot be more than 100 characters in length.")
+        if (description.length > 255) validationErrors.push("Description cannot be more than 255 characters in length.")
 
         return validationErrors;
     }
