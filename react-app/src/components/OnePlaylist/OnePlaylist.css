@@ -577,6 +577,7 @@
 .dummy-play-album-cover-container {
     display:flex;
     margin-left:0;
+    align-items:center;
     margin-right:64px;
     min-height:168px;
 }
@@ -586,8 +587,12 @@
     border-radius: 8px;
     display: block;
     margin:auto;
+    user-select: none;
     object-fit: cover;
     object-position: center center;
+    width:300px;
+    height:300px;
+    aspect-ratio: auto 300 / 300;
 }
 
 .dummy-play-modal-text-container {
