@@ -110,7 +110,7 @@ const SideBar = () => {
                                 })}
                                 {followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
                                         return (
-                                            <NavLink className="playlist-item" key={playlist.id} activeStyle={{ color: "white" }} exact to={`/playlists/${playlist.id}`}></NavLink>
+                                            <NavLink className="playlist-item" key={playlist.id} activeStyle={{ color: "white" }} exact to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
                                         )
                                     })
                                 }
