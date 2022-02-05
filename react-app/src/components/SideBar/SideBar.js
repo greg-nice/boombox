@@ -77,20 +77,20 @@ const SideBar = () => {
             <div className="side-bar">
                 <div className="sidebar-container">
                     <div className="logo-button-container">
-                        <NavLink className="boombox-logo-link" to='/' exact={true}>
+                        <Link className="boombox-logo-link" to='/' exact={true}>
                             {"BOOMBOX"}
-                        </NavLink>
+                        </Link>
                     </div>
                     <ul className="sidebar-buttons-container">
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
+                        <li className="sidebar-item"><NavLink className="sidebar-link" activeStyle={{fontWeight: "bold", color: "white" }} exact to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             home
-                        </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/search"><div className="sidebar-link-icon"><span className="material-icons">
+                        </span></div><span className="sidebar-link-text-span">Home</span></NavLink></li>
+                        <li className="sidebar-item"><NavLink className="sidebar-link" activeStyle={{ fontWeight: "bold", color: "white" }} exact to="/search"><div className="sidebar-link-icon"><span className="material-icons">
                             search
-                        </span></div><span className="sidebar-link-text-span">Search</span></Link></li>
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/collections"><div className="sidebar-link-icon"><span className="material-icons-outlined">
+                        </span></div><span className="sidebar-link-text-span">Search</span></NavLink></li>
+                        <li className="sidebar-item"><NavLink className="sidebar-link" activeStyle={{ fontWeight: "bold", color: "white" }} to="/collections"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             stacked_bar_chart
-                        </span></div><span className="sidebar-link-text-span">Your Library</span></Link></li>
+                        </span></div><span className="sidebar-link-text-span">Your Library</span></NavLink></li>
                     </ul>
                     <div className="rootlist-container">
                         <div className="rootlist-container-inner">
@@ -105,12 +105,12 @@ const SideBar = () => {
                             <div id="playlists-container">
                                 {playlists.map(playlist => {
                                     return (
-                                        <div className="playlist-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                                        <NavLink className="playlist-item" key={playlist.id} activeStyle={{ color: "white" }} exact to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>
                                     )
                                 })}
                                 {followedPlaylistsArr && followedPlaylistsArr.length > 0 && followedPlaylistsArr.map(playlist => {
                                         return (
-                                            <div className="playlist-item" key={playlist.id} onClick={() => handlePlaylistClick(playlist.id)}>{playlist.name}</div>
+                                            <NavLink className="playlist-item" key={playlist.id} activeStyle={{ color: "white" }} exact to={`/playlists/${playlist.id}`}></NavLink>
                                         )
                                     })
                                 }
@@ -125,17 +125,17 @@ const SideBar = () => {
             <div className="side-bar">
                 <div className="sidebar-container">
                     <div className="logo-button-container">
-                        <NavLink className="boombox-logo-link" to='/' exact={true}>
+                        <Link className="boombox-logo-link" to='/' exact={true}>
                             {"BOOMBOX"}
-                        </NavLink>
+                        </Link>
                     </div>
                     <ul className="sidebar-buttons-container">
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
+                        <li className="sidebar-item"><NavLink className="sidebar-link" activeStyle={{ fontWeight: "bold", color: "white" }} exact to="/"><div className="sidebar-link-icon"><span className="material-icons-outlined">
                             home
-                        </span></div><span className="sidebar-link-text-span">Home</span></Link></li>
-                        <li className="sidebar-item"><Link className="sidebar-link" to="/search"><div className="sidebar-link-icon"><span className="material-icons">
+                        </span></div><span className="sidebar-link-text-span">Home</span></NavLink></li>
+                        <li className="sidebar-item"><NavLink className="sidebar-link" activeStyle={{ fontWeight: "bold", color: "white" }} exact to="/search"><div className="sidebar-link-icon"><span className="material-icons">
                             search
-                        </span></div><span className="sidebar-link-text-span">Search</span></Link></li>
+                        </span></div><span className="sidebar-link-text-span">Search</span></NavLink></li>
                         <li className="sidebar-item">
                             <div className="sidebar-link" onClick={handleLibraryModal}>
                                 <div className="sidebar-link-icon">

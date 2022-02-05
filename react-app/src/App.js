@@ -90,9 +90,9 @@ function App() {
             <ProtectedRoute path='/collections' exact={true}>
               <Collections />
             </ProtectedRoute>
-            <ProtectedRoute path='/collections/playlists' exact={true}>
+            <Route path='/collections/playlists' exact={true}>
               <PlaylistsCollection />
-            </ProtectedRoute>
+            </Route>
             <Route path="/">
               <div>Page Not Found, 404</div>
             </Route>

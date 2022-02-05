@@ -237,6 +237,11 @@
     text-align: center;
     text-transform: uppercase;
     white-space: nowrap;
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+}
+
+.save-button:hover {
+    transform: scale(1.06);
 }
 
 #edit-playlist-errors {

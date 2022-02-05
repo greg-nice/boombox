@@ -386,6 +386,10 @@
     cursor:pointer;
 }
 
+.song-nav-dropdown-button:hover {
+    color:white;
+}
+
 .song-nav-dropdown-wrapper {
     z-index: 9999;
     position: absolute;
@@ -722,6 +726,10 @@
     border:0;
     cursor:pointer;
     height:36px;
+}
+
+.playlist-dropdown-button:hover {
+    color:white;
 }
 
 .playlist-dropdown-wrapper {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, Redirect} from 'react-router-dom';
 // import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
 import './PlaylistsCollection.css';
 
 const PlaylistsCollection = () => {
     // const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user)
     const followedPlaylists = useSelector(state => state.followedPlaylists);
     const followedPlaylistsArr = Object.values(followedPlaylists);
     const userPlaylists = useSelector(state => state.userPlaylists);
@@ -42,6 +43,10 @@ const PlaylistsCollection = () => {
 
     const handlePlaylistClick = (playlistId) => {
         history.push(`/playlists/${playlistId}`)
+    }
+
+    if (!sessionUser) {
+        return <Redirect to="/"/>
     }
 
     return (
