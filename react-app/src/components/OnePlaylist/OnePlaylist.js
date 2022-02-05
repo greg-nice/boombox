@@ -452,7 +452,7 @@ const OnePlaylistView = () => {
                                 </div>
                             )}
                             {showPlaylistEditModal && (
-                                <PlaylistEditModal playlist={playlist} handlePlaylistEditClick={handlePlaylistEditClick} photoEdit={photoEdit}/>
+                                <PlaylistEditModal playlist={playlist} handlePlaylistEditClick={handlePlaylistEditClick} photoEdit={photoEdit} setPhotoEdit={setPhotoEdit}/>
                                 )
                             }
                             {showSongMenu && (
