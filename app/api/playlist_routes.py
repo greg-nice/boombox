@@ -132,7 +132,7 @@ def update_playlist(id):
 
 
 # update playlist pic
-@playlist_routes.route('/<int:id>/pic', methods=["PUT"])
+@playlist_routes.route('/<int:id>/update_pic', methods=["PUT"])
 @login_required
 def update_playlist_pic(id):
     updated_playlist = Playlist.query.get(id)
@@ -143,6 +143,7 @@ def update_playlist_pic(id):
             updated_playlist.pic = file_url
             db.session.commit()
             return updated_playlist.to_dict()
+        return updated_playlist.to_dict()
 
 # use default playlist pic
 @playlist_routes.route('/<int:id>/resetpic', methods=["PUT"])

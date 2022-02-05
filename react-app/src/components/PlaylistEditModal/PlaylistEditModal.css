@@ -243,3 +243,16 @@
     color: red;
     padding: 0 1rem;
 }
+
+#file-upload {
+    display: none;
+}
+
+.playlist-pic-dropdown-wrapper {
+    z-index: 9999;
+    position: absolute;
+    margin: 0;
+    box-sizing: border-box;
+    right:0;
+    transform: translate3d(130px, -12px, 0)
+}
