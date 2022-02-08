@@ -76,12 +76,12 @@ const NavBar = () => {
           <AboutButton />
           <button id="demo-button"><span id="demo-span" onClick={(e) => handleDemoClick(e)}>Demo</span></button>
           <button id="signup-button">
-            <NavLink id="signup-link" to='/signup' exact={true}>
+            <NavLink id="signup-link" to='/signup' exact>
               Sign Up
             </NavLink>
           </button>
           <button id="login-button">
-            <NavLink id="login-link" to='/login' exact={true}>
+            <NavLink id="login-link" to='/login' exact>
               Log In
             </NavLink>
           </button>

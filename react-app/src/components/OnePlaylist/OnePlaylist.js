@@ -333,7 +333,7 @@ const OnePlaylistView = () => {
                                                     <div className="edit-playlist-image-screen-2" onClick={handleEditPhotoClick}>
                                                         <button className="edit-playlist-image-screen-button">
                                                             <div className='edit-playlist-image-screen-button-inner-div'>
-                                                                <span class="material-icons-outlined md-48">
+                                                                <span className="material-icons-outlined md-48">
                                                                     edit
                                                                 </span>
                                                                 <span className='edit-playlist-image-screen-button-span'>

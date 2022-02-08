@@ -77,7 +77,7 @@ const SideBar = () => {
             <div className="side-bar">
                 <div className="sidebar-container">
                     <div className="logo-button-container">
-                        <Link className="boombox-logo-link" to='/' exact={true}>
+                        <Link className="boombox-logo-link" to='/' exact>
                             {"BOOMBOX"}
                         </Link>
                     </div>
