@@ -7,7 +7,7 @@ import datetime
 import boto3
 import botocore
 from app.config import Config
-from app.aws_s3 import upload_file_to_s3
+from app.aws_s3 import upload_file_to_s3, delete_file_from_s3
 
 playlist_routes = Blueprint('playlists', __name__)
 
@@ -137,10 +137,13 @@ def update_playlist(id):
 def update_playlist_pic(id):
     updated_playlist = Playlist.query.get(id)
     if updated_playlist:
+        updated_playlist_current_pic = updated_playlist.pic
         file = request.files["file"]
         file_url = upload_file_to_s3(file, Config.S3_BUCKET)
         if file_url:
             updated_playlist.pic = file_url
+            if not updated_playlist_current_pic.startswith("https://media.discordapp.net/"):
+                delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
             db.session.commit()
             return updated_playlist.to_dict()
         return updated_playlist.to_dict()
@@ -151,7 +154,12 @@ def update_playlist_pic(id):
 def reset_playlist_pic(id):
     updated_playlist = Playlist.query.get(id)
     if updated_playlist:
+        updated_playlist_current_pic = updated_playlist.pic
         updated_playlist.pic = "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg"
+        if not updated_playlist_current_pic.startswith("https://media.discordapp.net/"):
+            print("*****************", updated_playlist_current_pic)
+            print("$$$$$$$$$$$$$$$$$", updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+            delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
         db.session.commit()
         return updated_playlist.to_dict()
 
