@@ -36,6 +36,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
             setChangePic(true);
             setPhotoEdit(false);
         }
+        // console.log(photoEdit);
     }, []);
 
     const validate = () => {
@@ -169,7 +170,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
                                     <div className='playlist-pic-dropdown-wrapper'>
                                         <div className='song-nav-dropdown'>
                                             <ul className='song-nav-menu-options-list'>
-                                                <li className="menu-list-item"><button className="menu-list-button" onClick={handleChangePicClick}><label htmlFor="file-upload"><span className="menu-button-span">Change photo</span></label></button></li>
+                                                <li className="menu-list-item"><button className="menu-list-button" onClick={handleChangePicClick}><span className="menu-button-span">Change photo</span></button></li>
                                                 <li className="menu-list-item"><button className="menu-list-button" onClick={handleRemovePhotoClick}><span className="menu-button-span">Remove photo</span></button></li>
                                             </ul>
                                         </div>

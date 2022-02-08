@@ -97,7 +97,7 @@ const NavBar = () => {
         {/* <div></div>
         <div></div> */}
         {/* <div>
-          <NavLink className='nav-link' id="users-link" to='/users' exact={true}>
+          <NavLink className='nav-link' id="users-link" to='/users' exact>
             Users
           </NavLink>
         </div> */}
