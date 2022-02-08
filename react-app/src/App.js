@@ -51,10 +51,10 @@ function App() {
     <BrowserRouter>
 
       <div className="top-container">
-        <Route path='/login' exact>
+        <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/signup' exact>
+        <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
         <NavBar />
@@ -63,34 +63,34 @@ function App() {
         {!sessionUser && <TeaserBar />}
         <div className="main-view">
           <Switch>
-            {/* <ProtectedRoute path='/users' exact >
+            {/* <ProtectedRoute path='/users' exact={true} >
               <UsersList/>
             </ProtectedRoute> */}
-            {/* <ProtectedRoute path='/users/:userId' exact >
+            {/* <ProtectedRoute path='/users/:userId' exact={true} >
               <User />
             </ProtectedRoute> */}
-            <Route path='/' exact >
+            <Route path='/' exact={true} >
               <HomePage />
             </Route>
-            <Route path='/search' exact>
+            <Route path='/search' exact={true}>
               <SearchPage />
             </Route>
-            <Route path='/playlists/:playlistId' exact>
+            <Route path='/playlists/:playlistId' exact={true}>
               <OnePlaylist />
             </Route>
-            <Route path='/artists/:artistId' exact>
+            <Route path='/artists/:artistId' exact={true}>
               <OneArtist />
             </Route>
-            <Route path='/albums/:albumId' exact>
+            <Route path='/albums/:albumId' exact={true}>
               <OneAlbum />
             </Route>
-            <Route path='/users/:userId' exact>
+            <Route path='/users/:userId' exact={true}>
               <OneUser />
             </Route>
-            <ProtectedRoute path='/collections' exact>
+            <ProtectedRoute path='/collections' exact={true}>
               <Collections />
             </ProtectedRoute>
-            <Route path='/collections/playlists' exact>
+            <Route path='/collections/playlists' exact={true}>
               <PlaylistsCollection />
             </Route>
             <Route path="/">
