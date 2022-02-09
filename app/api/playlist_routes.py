@@ -190,9 +190,14 @@ def make_playlist_private(id):
 @login_required
 def delete_one_playlist(id):
     deleted_playlist = Playlist.query.get(id)
-    db.session.delete(deleted_playlist)
-    db.session.commit()
-    return {"delete": id}
+    if deleted_playlist:
+        deleted_playlist_current_pic = deleted_playlist.pic
+        print("11111111111111", deleted_playlist_current_pic)
+        if not deleted_playlist_current_pic.startswith("https://media.discordapp.net/"):
+            delete_file_from_s3(Config.S3_BUCKET, deleted_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+        db.session.delete(deleted_playlist)
+        db.session.commit()
+        return {"delete": id}
 
 # # is this route ever used?? if not, delete it
 # # GET PLAYLIST_SONGS
