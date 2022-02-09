@@ -1,5 +1,3 @@
-Hi!
-
 # Summary
 
 Boombox is a single-page web application inspired by Spotify and built using Javascript React.js/Redux architecture with an Python/Flask backend. Boombox allows users to:
