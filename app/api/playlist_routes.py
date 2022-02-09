@@ -130,6 +130,9 @@ def update_playlist(id):
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
+# def checkPlaylistPicNotUsed(url, id):
+#     result = Playlist.query.filter(Playlist.pic == url and Playlist.id != id)
+#     return not result
 
 # update playlist pic
 @playlist_routes.route('/<int:id>/update_pic', methods=["PUT"])
@@ -139,11 +142,11 @@ def update_playlist_pic(id):
     if updated_playlist:
         updated_playlist_current_pic = updated_playlist.pic
         file = request.files["file"]
-        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET, f'playlists/{id}')
         if file_url:
             updated_playlist.pic = file_url
             if not updated_playlist_current_pic.startswith("https://media.discordapp.net/"):
-                delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+                delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/")[1])
             db.session.commit()
             return updated_playlist.to_dict()
         return updated_playlist.to_dict()
@@ -159,7 +162,7 @@ def reset_playlist_pic(id):
         if not updated_playlist_current_pic.startswith("https://media.discordapp.net/"):
             print("*****************", updated_playlist_current_pic)
             print("$$$$$$$$$$$$$$$$$", updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
-            delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+            delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/")[1])
         db.session.commit()
         return updated_playlist.to_dict()
 
@@ -189,12 +192,14 @@ def make_playlist_private(id):
 @playlist_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_one_playlist(id):
+    (print("//////////////////////"))
     deleted_playlist = Playlist.query.get(id)
     if deleted_playlist:
         deleted_playlist_current_pic = deleted_playlist.pic
         print("11111111111111", deleted_playlist_current_pic)
         if not deleted_playlist_current_pic.startswith("https://media.discordapp.net/"):
-            delete_file_from_s3(Config.S3_BUCKET, deleted_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+            print(deleted_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/"))
+            delete_file_from_s3(Config.S3_BUCKET, deleted_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/")[1])
         db.session.delete(deleted_playlist)
         db.session.commit()
         return {"delete": id}

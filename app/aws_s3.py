@@ -8,14 +8,14 @@ s3 = boto3.client(
    aws_secret_access_key=Config.S3_SECRET
 )
 
-def upload_file_to_s3(file, bucket_name, acl="public-read"):
+def upload_file_to_s3(file, bucket_name, file_prefix, acl="public-read"):
 
     try:
 
         s3.upload_fileobj(
             file,
             bucket_name,
-            file.filename,
+            f"{file_prefix}/{file.filename}",
             ExtraArgs={
                 "ACL": acl,
                 "ContentType": file.content_type
@@ -28,7 +28,7 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         return e
 
 
-    return f"{Config.S3_LOCATION}{file.filename}"
+    return f"{Config.S3_LOCATION}{file_prefix}/{file.filename}"
 
 
 def delete_file_from_s3(bucket_name, file_name):
