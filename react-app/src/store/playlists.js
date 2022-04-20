@@ -5,7 +5,6 @@ const ADD_ONE_SUSER_PLAYLIST = "playlists/ADD_ONE_SUSER_PLAYLIST";
 const REMOVE_SUSER_PLAYLIST = "playlists/REMOVE_SUSER_PLAYLIST";
 const UPDATE_ONE_SUSER_PLAYLIST = "playlists/UPDATE_ONE_SUSER_PLAYLIST";
 const CLEAR_SUSER_PLAYLISTS = "playlists/CLEAR_SUSER_PLAYLISTS";
-// const ADD_SUSER_PLAYLIST_SONG = "playlists/ADD_SUSER_PLAYLIST_SONG";
 
 // ACTION CREATORS
 
@@ -78,7 +77,6 @@ export const deleteSuserPlaylist = (playlistId) => async (dispatch) => {
 // EDIT a session user playlist to add a song
 
 export const addSuserPlaylistSong = (playlistId, songId) => async (dispatch) => {
-    console.log("********", playlistId, songId);
     const response = await fetch(`/api/playlists/${playlistId}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
@@ -121,7 +119,6 @@ export const updateSuserPlaylist = (playlistData) => async (dispatch) => {
 
 // EDIT a session user playlist to use the default cover pic
 export const deleteSuserPlaylistPic = (playlistId) => async (dispatch) => {
-    console.log(playlistId);
     const response = await fetch(`/api/playlists/${playlistId}/resetpic`, {
         method: 'PUT'
     });
@@ -200,17 +197,12 @@ export default function userPlaylistsReducer(state=initialState, action) {
         case REMOVE_SUSER_PLAYLIST: {
             let newState = [...state];
             newState = newState.filter(playlist => playlist["id"] !== action.playlistId);
-            // const index = newState.indexOf(deleted_playlist_Arr[0])
-            // if (index > -1) {
-            //     newState.splice(index, 1);
             return newState;
         }
         case UPDATE_ONE_SUSER_PLAYLIST: {
             const newState = state.reduce((accum, playlist) => {
                 return {...accum, [playlist.id]: playlist}
             }, {});
-            // console.log(state);
-            // console.log(newState);
             newState[action.playlist.id] = action.playlist;
             let playlists = Object.values(newState);
             return [ ...playlists ]

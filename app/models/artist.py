@@ -25,7 +25,6 @@ class Artist(db.Model):
             "name": self.name,
             "pic": self.pic,
             "albums": [album.to_dict() for album in self.albums]
-            # "songs": [song.to_dict() for song in self.songs]
         }
 
     def to_mydict(self):

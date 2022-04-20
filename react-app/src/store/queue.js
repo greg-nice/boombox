@@ -2,9 +2,7 @@
 
 const LAZY_LOAD_PLAYLIST_SONG = "queue/LAZY_LOAD_PLAYLIST_SONG";
 const LAZY_LOAD_ALBUM_SONG = "queue/LAZY_LOAD_ALBUM_SONG";
-// const LAZY_LOAD_PLAYLIST_SONGS = "queue/LAZY_LOAD_PLAYLIST_SONGS";
-// const LAZY_LOAD_ALBUM_SONGS = "queue/LAZY_LOAD_ALBUM_SONGS";
-// const LAZY_CLEAR_QUEUE = "queue/LAZY_CLEAR_QUEUE";
+
 const EAGER_LOAD_PLAYLIST_FROM_SONG = "queue/EAGER_LOAD_PLAYLIST_FROM_SONG";
 const EAGER_LOAD_PLAYLIST = "queue/EAGER_LOAD_PLAYLIST";
 
@@ -27,16 +25,6 @@ const lazyLoadAlbumSong = (song) => ({
     type: LAZY_LOAD_ALBUM_SONG,
     song
 })
-
-// const lazyLoadPlaylistSongs = (playlist_songs) => ({
-//     type: LAZY_LOAD_PLAYLIST_SONGS,
-//     playlist_songs
-// })
-
-// const lazyLoadAlbumSongs = (album_songs) => ({
-//     type: LAZY_LOAD_ALBUM_SONGS,
-//     album_songs
-// })
 
 const eagerLoadPlaylistFromSong = (playlist, playlistSongOrder) => ({
     type: EAGER_LOAD_PLAYLIST_FROM_SONG,
@@ -69,16 +57,6 @@ const eagerClearQueue = () => ({
     type: EAGER_CLEAR_QUEUE
 });
 
-// const eagerLoadAlbumSong
-
-// const eagerLoadAlbum
-
-// const eagerLoadPlaylist
-
-// const lazyClear = () => ({
-//     type: LAZY_CLEAR_QUEUE
-// })
-
 // THUNK ACTION CREATORS
 
 export const lazyLoadPlaylistSongThunk = (playlistName, playlistSong) => async (dispatch) => {
@@ -92,8 +70,6 @@ export const lazyLoadAlbumSongThunk = (song) => async (dispatch) => {
 export const eagerLoadPlaylistFromSongThunk = (playlist, playlistSongOrder) => async (dispatch) => {
     dispatch(eagerLoadPlaylistFromSong(playlist, playlistSongOrder));
 }
-// try eager loading the whole playlist and returning the playlistsong order and in the component setting the current song to that number - 1
-// the above won't work because the now-playing component won't have access to the return value, which goes to the OnePlaylist component
 
 export const eagerLoadPlaylistThunk = (playlist) => async (dispatch) => {
     dispatch(eagerLoadPlaylist(playlist));

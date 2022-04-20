@@ -12,13 +12,6 @@
 }
 
 .signup-second-top-container {
-    /* box-sizing: border-box;
-    display: block;
-    color:#222326;
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight:400;
-    width:100%; */
     max-width: 460px;
     margin: 0 auto;
     padding-bottom: 130px;
@@ -32,8 +25,6 @@
     flex-direction: column;
     box-sizing: border-box;
 }
-
-
 
 .signup-homelink {
     background-size:100%;
@@ -177,7 +168,6 @@
 }
 
 .login-link-span {
-    /* margin-inline-start: 4px; */
     text-decoration: underline;
     color:rgb(29, 185, 84);
     cursor:pointer;

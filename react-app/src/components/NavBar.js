@@ -94,13 +94,6 @@ const NavBar = () => {
     <div className="top-bar">
       <header className="top-bar-and-user-menu">
         <div className="style-setting-div"><div className="inner-style-setting-div"></div></div>
-        {/* <div></div>
-        <div></div> */}
-        {/* <div>
-          <NavLink className='nav-link' id="users-link" to='/users' exact>
-            Users
-          </NavLink>
-        </div> */}
         {!searchOn  && (
           <div></div>
         )}

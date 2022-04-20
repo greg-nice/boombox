@@ -36,9 +36,7 @@ export const getPlaylist = (playlistId) => async (dispatch) => {
     if (response.ok) {
         const playlist = await response.json();
         dispatch(load(playlist));
-        return //stuff?
-    } else {
-        return ['An error occurred. Please try again.'];
+        return
     }
 };
 

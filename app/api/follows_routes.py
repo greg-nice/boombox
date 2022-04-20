@@ -18,7 +18,6 @@ def get_suser_follows():
         follows["followers"] = {follower["id"]: follower for follower in user["followers"]}
         follows["following"] = {followed["id"]: followed for followed in user["following"]}
         return follows
-    # else?
 
 #ADD ONE USER TO SUSER'S FOLLOWING LIST
 
@@ -32,7 +31,6 @@ def add_suser_followed(followedId):
         user.following.append(followed)
         db.session.commit()
         return followed.to_safe()
-    # else?
 
 #UPDATE FOLLOW/DELETE ONE USER FROM SUSER'S FOLLOWING LIST
 

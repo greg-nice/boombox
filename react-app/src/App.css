@@ -1,20 +1,3 @@
-/* .side-and-main {
-    display:flex;
-} */
-/* .main {
-    box-sizing: border-box;
-    display: block;
-    height: 100%;
-    margin: 0;
-    position: relative;
-    width: 100%;
-    z-index: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: rgb(179,179,179);
-
-} */
-
 .top-container {
     box-sizing:border-box;
     display: grid;
@@ -31,35 +14,6 @@
     position: relative;
     width: 100%;
 }
-
-/* CHECK
-.side-bar {
-    box-sizing: border-box;
-    display:flex;
-    flex-direction: column;
-    margin: 0;
-    position: relative;
-    width: 242px;
-    z-index: 3;
-    line-height: 1.6;
-    background-color: rgb(0,0,0);
-    color: rgb(179,179,179);
-    grid-area: side-bar;
-} */
-
-/* CHECK
-.now-playing-bar {
-    box-sizing: border-box;
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    z-index: 4;
-    line-height: 1.6;
-    color:rgb(179,179,179);
-    background-color: #181818;
-    grid-area: now-playing-bar;
-} */
 
 .main-view {
     box-sizing: border-box;

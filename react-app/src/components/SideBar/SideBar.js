@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
-// import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, NavLink, Link } from 'react-router-dom';
-// import { getSuserPlaylists } from '../../store/playlists';
 import { createSimplePlaylist } from '../../store/playlists';
-// import { clearPlaylist } from "../../store/playlist";
-// import { getSuserFollowedPlaylists } from '../../store/followedPlaylists';
 import './SideBar.css'
 
 const SideBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const playlists = useSelector(state => state.userPlaylists);
     const followedPlaylists = useSelector(state => state.followedPlaylists)
     const followedPlaylistsArr = Object.values(followedPlaylists);
-    // const [followedPlaylistsLoaded, setFollowedPlaylistsLoaded] = useState(false);
     const [showLibraryModal, setShowLibraryModal] = useState(false);
     const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState(false)
 
@@ -46,23 +40,9 @@ const SideBar = () => {
         }
     }, [showCreatePlaylistModal])
 
-    // useEffect(() => {
-    //     (async () => {
-    //         await dispatch(getSuserPlaylists());
-    //         setPlaylistsLoaded(true);
-    //     })();
-    // }, [dispatch]);
-
-    // useEffect(() => {
-    //     (async () => {
-    //         await dispatch(getSuserFollowedPlaylists());
-    //         setFollowedPlaylistsLoaded(true)
-    //     })();
-    // }, [dispatch])
-
-    const handlePlaylistClick = (playlistId) => {
-        history.push(`/playlists/${playlistId}`)
-    }
+    // const handlePlaylistClick = (playlistId) => {
+    //     history.push(`/playlists/${playlistId}`)
+    // }
 
     const handleCreatePlaylistClick = () => {
         (async () => {
@@ -71,7 +51,6 @@ const SideBar = () => {
         })();
     }
 
-    // if (user && playlistsLoaded) {
     if (sessionUser) {
         return (
             <div className="side-bar">
@@ -97,7 +76,6 @@ const SideBar = () => {
                             <button className="rootlist-item" onClick={() => handleCreatePlaylistClick()}><div className="rootlist-button-icon-container"><span className="material-icons-outlined">
                                 add_circle_outline
                             </span></div><span className="rootlist-button-text-span">Create Playlist</span></button>
-                            {/* <div className="sidebar-item"><Link className="sidebar-link" to='/collections/songs'>Liked Songs</Link></div> */}
                             <div className="border-container">
                                 <hr id="hr"></hr>
                                 <div id="border-div"></div>
@@ -204,7 +182,6 @@ const SideBar = () => {
                                     </div>
                                 </div>
                             )}
-                            {/* <div className="sidebar-item">Liked Songs</div> */}
                             <div className="border-container">
                                 <hr id="hr"></hr>
                                 <div id="border-div"></div>

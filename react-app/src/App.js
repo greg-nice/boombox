@@ -6,8 +6,6 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar/SideBar.js';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
-// import User from './components/User';
 import HomePage from './components/HomePage/HomePage.js';
 import OnePlaylist from './components/OnePlaylist/';
 import OneAlbum from './components/OneAlbum/OneAlbum.js';
@@ -29,7 +27,6 @@ function App() {
   const dispatch = useDispatch();
 
   if (sessionUser) {
-    // console.log(sessionUser);
     (async () => {
       await dispatch(getSuserPlaylists());
       await dispatch(getSuserFollowedPlaylists());
@@ -63,12 +60,6 @@ function App() {
         {!sessionUser && <TeaserBar />}
         <div className="main-view">
           <Switch>
-            {/* <ProtectedRoute path='/users' exact={true} >
-              <UsersList/>
-            </ProtectedRoute> */}
-            {/* <ProtectedRoute path='/users/:userId' exact={true} >
-              <User />
-            </ProtectedRoute> */}
             <Route path='/' exact={true} >
               <HomePage />
             </Route>

@@ -29,7 +29,6 @@ const OneAlbum = () => {
                 album.songs.sort((a, b) => a.song_num - b.song_num)
                 setAlbum(album);
                 setAlbumLoaded(true);
-                console.log("ALBUM!!!!!!!", album)
             }
         })();
     }, []);
@@ -47,13 +46,6 @@ const OneAlbum = () => {
             await dispatch(eagerLoadAlbumFromSongThunk(album, songIndex));
         })();
     }
-
-    // const handleSongPlayClick = (album, playlistSongOrder) => {
-    //     (async () => {
-    //         await dispatch(eagerClearQueueThunk());
-    //         await dispatch(eagerLoadPlaylistFromSongThunk(playlist, playlistSongOrder));
-    //     })();
-    // }
 
     const handleDummyPlayModal = () => {
         setShowDummyPlayModal(!showDummyPlayModal);
@@ -93,19 +85,6 @@ const OneAlbum = () => {
         })();
     }
 
-    // const handleSongPlayClick = (playlist, playlistSongOrder) => {
-    //     (async () => {
-    //         await dispatch(eagerClearQueueThunk());
-    //         await dispatch(eagerLoadPlaylistFromSongThunk(playlist, playlistSongOrder));
-    //     })();
-    // }
-
-    // const handleAddPlaylistSongToQueueClick = (playlistName, playlistSongArr) => {
-    //     (async () => {
-    //         await dispatch(lazyLoadPlaylistSongThunk(playlistName, playlistSongArr[0]))
-    //     })();
-    // }
-
     useEffect(() => {
         if (showSongMenu) {
             document.addEventListener('click', closeSongMenuClick);
@@ -141,7 +120,6 @@ const OneAlbum = () => {
     return (
         <div>
             <div className="os-content">
-                {/* <div className="scroll-child-spacer"></div> */}
                 <div className="scroll-child">
                     <div className="presentation">
                         <div className="content-spacing">
@@ -157,15 +135,8 @@ const OneAlbum = () => {
                                 <span className="album-title-container"><h1 className="album-title-text">{album.title}</h1></span>
                                 <div className="album-data-container">
                                     <div className="artist-info-container">
-                                        {/* need to finish the below elements */}
-                                        {/* <div className="artist-profile-pic-container">
-                                            <div className="artist-profile-pic-wrapper">
-                                                <img className="artist-profile-pic" alt=""></img>
-                                            </div>
-                                        </div> */}
                                         <Link className="artist-name" to={`/artists/${album.artist.id}`}>{album.artist.name}</Link>
                                     </div>
-                                    {/* <span className="album-year-info">• year •</span> */}
                                     <span className="album-length-info dot-before">{album.songs.length} {album.songs.length === 1 ? "song" : "songs"}, <span>{albumDuration(album)}</span></span>
                                 </div>
                             </div>
@@ -197,33 +168,13 @@ const OneAlbum = () => {
                                     </div>
                                 </div>
                             )}
-                            {/* {sessionUser && sessionUser.id === playlist.user_id && <div>
-                                <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}><span className="material-icons-outlined md-36">
-                                    more_horiz
-                                </span>
-                                </button>
-
-                            </div>} */}
                         </div>
-                        {/* {showPlaylistButtonsModal && (
-                            <div className="playlist-dropdown-wrapper">
-                                <div className="song-nav-dropdown">
-                                    <ul className="song-nav-menu-options-list">
-                                        <li className="menu-list-item"><button className="menu-list-button" onClick={() => handlePlaylistEditClick(setShowPlaylistEditModal)}><span className="menu-button-span">Edit details</span></button></li>
-                                        <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistClick(playlist.id)}><span className="menu-button-span">Delete</span></button></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        )} */}
                         {showSongMenu && (
                             <div className='song-nav-dropdown-wrapper'>
                                 <div className='song-nav-dropdown'>
                                     <ul className='song-nav-menu-options-list'>
                                         {sessionUser && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddAlbumSongToQueueClick(album.songs.filter(song => song.id === songId)[0])}><span className="menu-button-span">Add to queue</span></button></li>}
                                         <li className="menu-list-item"><Link className="menu-link" to={`/artists/${album.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
-                                        {/* <li className="menu-list-item"><Link className="menu-link" to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li> */}
-                                        {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li> */}
-                                        {/* {sessionUser && sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>} */}
                                         {sessionUser && playlists.length !== 0 && <li className="menu-list-item"><button className="menu-list-button" id="album-song-button"><span className="menu-button-span">Add to playlist</span></button></li>}
                                     </ul>
                                 </div>

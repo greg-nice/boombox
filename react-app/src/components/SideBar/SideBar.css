@@ -5,14 +5,12 @@
     margin: 0;
     position: relative;
     width: 242px;
-    /* z-index: 3; */
     line-height: 1.6;
     background-color: rgb(0,0,0);
     color: rgb(179,179,179);
     min-height: 0;
     grid-area: side-bar;
 }
-/* I could try to implement the adjustable width div */
 
 .sidebar-container {
     display: flex;
@@ -56,11 +54,6 @@
     margin:0;
     padding:0;
     display:block;
-    /* margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 40px; */
     user-select: none;
     cursor:default;
 }
@@ -101,10 +94,6 @@
     overflow: hidden;
 }
 
-/* .sidebar-link-icon:hover {
-    color:#fff;
-} */
-
 .sidebar-link-text-span {
     overflow: hidden;
     text-overflow:ellipsis;
@@ -115,17 +104,6 @@
     line-height: 16px;
     box-sizing: border-box;
 }
-
-/* .sidebar-link-text-span:hover {
-    color:#fff;
-} */
-
-/* #playlists-subcontainer {
-    border-top:1px solid darkgray;
-    line-height: 2rem;
-    font-weight: 500;
-    font-size: .8rem;
-} */
 
 .rootlist-container {
     display: flex;
@@ -157,16 +135,6 @@
     padding:8px 24px;
     width:100%;
     box-sizing: border-box;
-    /* align-items: center;
-    border-radius: 4px;
-    cursor:pointer;
-    display:flex;
-    gap:16px;
-    height:40px;
-    padding:0 16px;
-    user-select:none;
-    text-decoration: none;
-    box-sizing: border-box; */
 }
 
 .rootlist-item:hover {
@@ -185,18 +153,7 @@
     width:24px;
     box-sizing: border-box;
     overflow: hidden;
-    /* margin-right:16px;
-    display:block;
-    height:24px;
-    width:24px;
-    color:#b3b3b3;
-    cursor:pointer;
-    overflow: hidden; */
 }
-
-/* .rootlist-button-icon-container:hover {
-    color:white;
-} */
 
 .rootlist-button-text-span {
     text-align: left;
@@ -206,12 +163,7 @@
     font-weight: 700;
     letter-spacing: normal;
     line-height: 16px;
-    /* color:rgb(179,179,179); */
 }
-/* 
-.rootlist-button-text-span:hover {
-    color:white;
-} */
 
 .border-container {
     position:relative;
@@ -235,7 +187,6 @@
     left:0;
     right:0;
     position:absolute;
-    /* z-index:1; */
     box-sizing: border-box;
 }
 

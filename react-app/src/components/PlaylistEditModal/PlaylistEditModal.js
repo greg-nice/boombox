@@ -13,18 +13,15 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
     const [resetPic, setResetPic] = useState(false);
     const [changePic, setChangePic] = useState(false);
     const [file, setFile] = useState(null);
-    // const [preview, setPreview] = useState(undefined);
     const [validationErrors, setValidationErrors] = useState([]);
-    // const [showUploadModal, setShowUploadModal] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (!file) {
-            console.log("8888888888888888888")
             return;
         }
-        console.log("999999999999999999")
+
         const objectUrl = URL.createObjectURL(file);
         setPic(objectUrl);
         return () => URL.revokeObjectURL(objectUrl);
@@ -36,7 +33,6 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
             setChangePic(true);
             setPhotoEdit(false);
         }
-        // console.log(photoEdit);
     }, []);
 
     const validate = () => {
@@ -56,7 +52,6 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
             if (errors.length > 0) {
                 setValidationErrors(errors);
             } else {
-                // console.log("11111111", playlist);
 
                 const playlistData = {
                     ...playlist,
@@ -64,14 +59,12 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
                     description,
                     submittedOn: new Date()
                 }
-                // console.log("22222222", playlistData);
 
                 await dispatch(updateSuserPlaylist(playlistData));
                 if (resetPic) {
                     await dispatch(deleteSuserPlaylistPic(playlist.id));
                 }
                 if (changePic && file) {
-                    console.log("trying to change playlist pic in database!")
                     await dispatch(changeSuserPlaylistPic(playlist.id, file))
                 }
                 await dispatch(getPlaylist(playlist.id));
@@ -131,12 +124,7 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
             setChangePic(true);
     }
 
-    // useEffect(() => {
-    //     console.log("changePicUseEffect:", changePic)
-    // }, [changePic]);
-
     const handleFile = (e) => {
-        // console.log(e.target.files);
         setFile(e.target.files[0]);
     }
 
@@ -151,7 +139,6 @@ const PlaylistEditModal = ( { playlist, handlePlaylistEditClick, photoEdit, setP
                     </span></button>
                 </div>
                 <div className='details-container'>
-                    {/* <label id="file-upload-label" htmlFor="file-upload">Change photo</label> */}
                     <input type="file" id="file-upload" accept="image/png, image/jpeg" onChange={handleFile} />
                     <div className="playlist-pic-container">
                         <div className="playlist-pic-wrapper" id="picwrap">

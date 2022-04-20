@@ -40,15 +40,6 @@ def get_featured_playlists():
 @login_required
 def get_sessionuser_playlists():
     user_id = current_user.id
-    print("^^^^^^^^^^^", user_id)
-    # playlists = Playlist.query.filter(Playlist.user_id == user_id).all()
-    # print("PLAYLISTSSSSSS", playlists)
-    # if playlists:
-    #     return {playlist.id: playlist.to_dict() for playlist in playlists}
-    # elif len(playlists) == 0:
-    #     print("USER HAS NO PLAYLISTS!!!")
-    #     return {}
-    # else handle errors??
     user = User.query.get(user_id)
     if user:
         return {playlist.id: playlist.to_dict() for playlist in user.playlists}
@@ -61,32 +52,6 @@ def get_one_playlist(id):
     if playlist:
         return playlist.to_dict()
     return {"errors": ["Playlist does not exist"]}
-
-
-
-
-
-# # CREATE NEW PLAYLIST
-# @playlist_routes.route('/', methods=["POST"])
-# @login_required
-# def create_playlist():
-#     user_id = current_user.id
-#     form = PlaylistForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-
-# # make sure this works if the session user doesn't provide all the fields
-#     if form.validate_on_submit():
-#         new_playlist = Playlist(
-#             user_id=user_id,
-#             name=form.data["name"],
-#             pic=form.data["pic"],
-#             description=form.data["description"],
-#             public=form.data["public"]
-#         )
-#         db.session.add(new_playlist)
-#         db.session.commit()
-#         return new_playlist.to_dict()
-#     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 # CREATE NEW PLAYLIST SIMPLE
@@ -102,7 +67,6 @@ def create_simple_playlist():
     db.session.add(new_playlist)
     db.session.commit()
     return new_playlist.to_dict()
-# add error handling
 
 
 # UPDATE PLAYLIST METADATA
@@ -110,10 +74,6 @@ def create_simple_playlist():
 @login_required
 def update_playlist(id):
     form = PlaylistForm()
-    # print("WHOOOOOOOOOOOA", form.data)
-    # print(request.form)
-    # req = request.get_json()
-    # print(req)
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -124,15 +84,11 @@ def update_playlist(id):
             updated_playlist.description=None
         else:    
             updated_playlist.description=form.data["description"]
-        # updated_playlist.created_at=datetime.datetime.now
 
         db.session.commit()
         return updated_playlist.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
-# def checkPlaylistPicNotUsed(url, id):
-#     result = Playlist.query.filter(Playlist.pic == url and Playlist.id != id)
-#     return not result
 
 # update playlist pic
 @playlist_routes.route('/<int:id>/update_pic', methods=["PUT"])
@@ -151,6 +107,7 @@ def update_playlist_pic(id):
             return updated_playlist.to_dict()
         return updated_playlist.to_dict()
 
+
 # use default playlist pic
 @playlist_routes.route('/<int:id>/resetpic', methods=["PUT"])
 @login_required
@@ -160,8 +117,8 @@ def reset_playlist_pic(id):
         updated_playlist_current_pic = updated_playlist.pic
         updated_playlist.pic = "https://media.discordapp.net/attachments/920418592820957228/926947291380736010/boombox_signature_square.jpgD39CCE35-F671-405A-A9D3-6DA2D2407DADLarge.jpg"
         if not updated_playlist_current_pic.startswith("https://media.discordapp.net/"):
-            print("*****************", updated_playlist_current_pic)
-            print("$$$$$$$$$$$$$$$$$", updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
+            # print("*****************", updated_playlist_current_pic)
+            # print("$$$$$$$$$$$$$$$$$", updated_playlist_current_pic.split("http://boombox415.s3.amazonaws.com/")[1])
             delete_file_from_s3(Config.S3_BUCKET, updated_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/")[1])
         db.session.commit()
         return updated_playlist.to_dict()
@@ -176,6 +133,7 @@ def make_playlist_public(id):
         updated_playlist.public=True
         db.session.commit()
         return updated_playlist.to_dict()
+
 
 # make playlist private
 @playlist_routes.route('/<int:id>/private', methods=["PUT"])
@@ -192,32 +150,21 @@ def make_playlist_private(id):
 @playlist_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_one_playlist(id):
-    (print("//////////////////////"))
     deleted_playlist = Playlist.query.get(id)
     if deleted_playlist:
         deleted_playlist_current_pic = deleted_playlist.pic
-        print("11111111111111", deleted_playlist_current_pic)
         if not deleted_playlist_current_pic.startswith("https://media.discordapp.net/"):
-            print(deleted_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/"))
+            # print(deleted_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/"))
             delete_file_from_s3(Config.S3_BUCKET, deleted_playlist_current_pic.split("https://boombox415.s3.amazonaws.com/")[1])
         db.session.delete(deleted_playlist)
         db.session.commit()
         return {"delete": id}
 
-# # is this route ever used?? if not, delete it
-# # GET PLAYLIST_SONGS
-# @playlist_routes.route('/<int:id>/playlists_songs')
-# def get_playlist_songs(id):
-#     playlist_songs = Playlist_Song.query.filter(Playlist_Song.playlist_id == id)
-#     if playlist_songs:
-#         return {playlist_song.id: playlist_song.to_dict() for playlist_song in playlist_songs}
 
 # ADD SONG TO PLAYLIST
 
 def getOrder(playlist):
     playlist = playlist.to_dict()
-    print("^^^^^^^^^", playlist)
-    print("%%%%%%%%%", playlist["playlist_songs"])
     plsongsList = playlist["playlist_songs"]
     if len(plsongsList) == 0:
         return 0
@@ -230,7 +177,6 @@ def getOrder(playlist):
 def add_playlist_song(id):
     updated_playlist = Playlist.query.get(id)
     req = request.get_json()
-    print("&&&&&&&&&&&", req)
     if updated_playlist:
         new_playlist_song = Playlist_Song(
             playlist_id=id,
@@ -241,16 +187,15 @@ def add_playlist_song(id):
         db.session.commit()
         return updated_playlist.to_dict()
 
+
 #DELETE SONG FROM PLAYLIST
 
 @playlist_routes.route('/<int:id>/playlist_songs/<int:playlist_song_id>', methods=["DELETE"])
 @login_required
 def delete_playlist_song(id, playlist_song_id):
     updated_playlist = Playlist.query.get(id)
-    print("***********", updated_playlist.list_songs)
     deleted_playlist_song = Playlist_Song.query.get(playlist_song_id)
     deleted_song_order = deleted_playlist_song.order
-    print("9999999999999", deleted_song_order)
     if updated_playlist:
         updated_playlist.list_songs.remove(deleted_playlist_song)
         db.session.commit()

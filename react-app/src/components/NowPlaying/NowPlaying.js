@@ -5,23 +5,16 @@ import 'react-h5-audio-player/lib/styles.css';
 import './NowPlaying.css';
 import { useSelector } from 'react-redux';
 
-// Link to = {`/playlists/${playlist.id}`} ??
-
 export default function NowPlaying() {
     const queue = useSelector(state => state.queue);
     const [currentSong, setCurrentSong] = useState(0)
-    // const [autoPlay, setAutoPlay] = useState(true)
     const player = useRef();
     const audiofunction = () => {
-        // console.log("WHATUP!")
         player.current.audio.current.pause()
     }
 
     const song = queue[currentSong];
 
-    // if (queue.length === 0) {
-    //     setCurrentSong(0);
-    // }
     useEffect(() => {
         if (queue.length === 0) {
             setCurrentSong(0);
@@ -70,7 +63,6 @@ export default function NowPlaying() {
                     setCurrentSong((currentSong) => currentSong - 1)
                 }
             }}
-        // other props here
         />
     );
 
@@ -126,7 +118,6 @@ export default function NowPlaying() {
                             </div>
                         </div>
                     </div>
-                    {/* <button className="song-favorite-button">[Like]</button> */}
                 </div>
             </>
         );

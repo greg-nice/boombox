@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import AboutButton from './AboutButton';
 
 const ProfileButton = ({ user }) => {
-    // const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
     const handleMenu = () => {
         setShowMenu(!showMenu);
     }
-
-    // const handleLogout = (e) => {
-    //     e.preventDefault();
-    //     dispatch(logoutUser());
-    // }
 
     useEffect(() => {
         if (showMenu) {
@@ -46,7 +39,6 @@ const ProfileButton = ({ user }) => {
                         <ul className='nav-dropdown-list'>
                             <li className='nav-list-item'><Link className="profile-page-link" to={`/users/${user.id}`}><span className="dropdown-span">Profile</span></Link></li>
                             <li className='nav-list-item'>
-                                {/* <button id="logout-button" onClick={handleLogout}>Log Out</button> */}
                                 <LogoutButton />
                             </li>
                         </ul>

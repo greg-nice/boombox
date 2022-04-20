@@ -135,7 +135,6 @@
 
 .track-name-link {
     color: #fff;
-    /* justify-self: start; */
     word-break:break-all;
     overflow: hidden;
     text-overflow: ellipsis;

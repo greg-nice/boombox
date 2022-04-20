@@ -43,12 +43,6 @@
 }
 
 .playlist-title-tile-container {
-    /* display:flex;
-    gap: 1rem;
-    padding-top: 24px;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-bottom: 24px; */
     height: 30vh;
     max-height: 500px;
     min-height: 340px;
@@ -66,9 +60,6 @@
 }
 
 .playlist-image-container {
-    /* height: 192px;
-    width: 192px;
-    overflow: hidden; */
     align-self: flex-end;
     height:192px;
     margin-inline-end: 24px;
@@ -273,10 +264,6 @@
     cursor:pointer
 }
 
-/* .playlist-stats {
-    font-size: smaller;
-} */
-
 #playlist-stats {
     color: rgba(255,255,255,.7);
     white-space: nowrap;
@@ -302,12 +289,6 @@
 }
 
 .playlist-playbutton-section-container {
-    /* display: flex;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-right: 32px;
-    padding-left: 32px;
-    align-items:center */
     align-items:flex-start;
     display: flex;
     flex-direction: column;
@@ -352,9 +333,6 @@
 
 .playlist-song-row {
     border-radius: 4px;
-    /* margin-top: 1rem;
-    margin-bottom: 1rem; */
-    /* padding:4px; */
     height:56px;
 }
 
@@ -378,8 +356,6 @@
 .song-nav-dropdown-button {
     background-color:transparent;
     color:rgb(179, 179, 179);
-    /* border-radius: 25%; */
-    /* border: 1px solid rgb(179, 179, 179); */
     border:transparent;
     position:relative;
     transform: translateY(-4px);
@@ -466,7 +442,6 @@
 .playlist-song-dropdown-wrapper {
     z-index: 9999;
     position: absolute;
-    /* inset: 6rem 21rem auto auto; */
     margin: 0;
     box-sizing: border-box;
     right:0;
@@ -724,8 +699,6 @@
 .playlist-dropdown-button {
     background-color:inherit;
     color:rgb(179, 179, 179);
-    /* border-radius: 25%; */
-    /* border: 1px solid rgb(179, 179, 179); */
     margin:0;
     padding:0 0 0 1rem;
     border:0;
@@ -743,7 +716,6 @@
     inset: 22.5rem auto auto 6.5rem;
     margin: 0;
     box-sizing: border-box;
-    /* background-color: red; */
 }
 
 .following-button {
@@ -770,13 +742,6 @@
     height: 54px;
     width: 54px;
 }
-
-/* .playbutton-container-2 {
-    border:0;
-    padding:0;
-    margin:0;
-    vertical-align: middle;
-} */
 
 #username-span {
     user-select: none;

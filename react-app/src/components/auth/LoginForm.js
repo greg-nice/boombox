@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getSuserPlaylists } from '../../store/playlists';
-// import { getSuserPlaylists } from '../../store/playlists';
 import { login } from '../../store/session';
 import './LoginForm.css';
 
@@ -10,23 +9,16 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
-    // (async (e) => {
       e.preventDefault();
       const data = await dispatch(login(email, password));
       if (data) {
         setErrors(data);
       }
       await dispatch(getSuserPlaylists());
-    //   } else {
-    //     await dispatch(getSuserPlaylists());
-    //     setIsLoaded(true);
-    //   }
-    // })();
   };
 
   const updateEmail = (e) => {

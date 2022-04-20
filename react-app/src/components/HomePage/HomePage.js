@@ -1,32 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
-// import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
-// import { getSuserPlaylists } from '../../store/playlists';
 import './HomePage.css';
 
 const HomePage = ( ) => {
-    // const dispatch = useDispatch();
     const history = useHistory();
-    // const [playlistsLoaded, setPlaylistsLoaded] = useState(false);
     const user = useSelector(state => state.session.user);
     const playlists = useSelector(state => state.userPlaylists);
     const [featuredPlaylistsLoaded, setFeaturedPlaylistsLoaded] = useState(false);
     const [featuredPlaylists, setFeaturedPlaylists] = useState("");
-    // const [shuffled, setShuffled] = useState([])
     const sessionUser = useSelector(state => state.session.user);
-    // const [loadedCount, setLoadedCount] = useState(0);
-    // const [loaded, setLoaded] = useState(false);
-    // const dispatch = useDispatch();
     const [sorted, setSorted] = useState("");
 
-    // useEffect(() => {
-    //     (async () => {
-    //         await dispatch(getSuserPlaylists());
-    //         setPlaylistsLoaded(true);
-    //     })();
-    // }, [dispatch]);
     useEffect(() => {
         (async () => {
             const response = await fetch("/api/playlists/featured")
@@ -51,26 +36,6 @@ const HomePage = ( ) => {
         })();
     }, [playlists])
 
-    // useEffect(() => {
-    //     (async () => {
-    //         console.log("before", loadedCount);
-    //         await setLoadedCount(loadedCount + 1);
-    //     })();
-    // }, [playlists])
-
-    // useEffect(() => {
-    //     let unshuffled = [...playlists];
-
-    //     let shuffled = unshuffled
-    //         .map((playlist) => ({ playlist, sort: Math.random() }))
-    //         .sort((a, b) => a.sort - b.sort)
-    //         .map(({ playlist }) => playlist)
-
-    //     setShuffled(shuffled);
-    //     console.log("changed")
-    // }, [playlists.length]) 
-
-    // if (user && playlistsLoaded) {
     if (user) {
         return (
             <div className="homepage-top-container">

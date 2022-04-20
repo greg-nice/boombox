@@ -17,13 +17,11 @@ const SignUpForm = () => {
   const validate = () => {
     const validationErrors = [];
 
-    // console.log("validating!")
     if (username.length < 4 || username.length > 20) validationErrors.push("username : Username must be between 4 and 20 characters.");
     if (email.length < 6 || email.length > 255) validationErrors.push("email : Email address must be between 6 and 255 characters.");
     if (password.length < 8 || password.length > 25) validationErrors.push("password : Password must be between 8 and 25 characters.");
     if (password !== repeatPassword) validationErrors.push("password : Passwords must match.");
 
-    // console.log(validationErrors)
     return validationErrors;
   }
 

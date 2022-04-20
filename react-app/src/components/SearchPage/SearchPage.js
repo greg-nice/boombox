@@ -18,7 +18,6 @@ function SearchPage() {
 
                 if (response.ok) {
                     const searchResults = await response.json();
-                    console.log(searchResults);
                     setResults(searchResults);
                 }
             })();
@@ -32,9 +31,7 @@ function SearchPage() {
             <div className="searchpage-spacer"></div>
             <div className="searchpage-content-container">
                 <div className="searchpage-content-spacing">
-                    {/* {!query && <h2>Enter search above</h2>} */}
                     <div className="searchpage-grid-container">
-                        {/* {!query && <h1>Enter search above</h1>} */}
                         {query && results && (
                             <div className="grid-search-results">
                                 {results.songs.length > 0 && (
@@ -63,7 +60,6 @@ function SearchPage() {
                                                             <div className="track-duration-container">
                                                                 <div className="track-favorite-button-placeholder"></div>
                                                                 <div className="track-duration-text-div">{Math.floor(song.length / 60)}:{song.length % 60 >= 10 ? song.length % 60 : "0" + song.length % 60}</div>
-                                                                {/* {Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60} */}
                                                                 <div className="track-option-menu-placeholder"></div>
                                                             </div>
                                                         </div>
@@ -121,7 +117,6 @@ function SearchPage() {
                                         <div className="searchpage-shelf-grid">
                                             {results.albums.map(album => {
                                                 return (
-                                                    // <div key={album.id}><Link to={`/albums/${album.id}`}>{album.title}</Link></div>
                                                     <div className="searchpage-shelf-oneresult" key={album.id}>
                                                         <div className="searchpage-shelf-oneresult-2">
                                                             <div className="searchpage-shelf-oneresult-pic-container">
@@ -158,7 +153,6 @@ function SearchPage() {
                                         <div className="searchpage-shelf-grid">
                                             {results.playlists.map(playlist => {
                                                 return (
-                                                    // <div key={playlist.id}><Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link></div>
                                                     <div className="searchpage-shelf-oneresult" key={playlist.id}>
                                                         <div className="searchpage-shelf-oneresult-2">
                                                             <div className="searchpage-shelf-oneresult-pic-container">
@@ -195,7 +189,6 @@ function SearchPage() {
                                         <div className="searchpage-shelf-grid">
                                             {results.users.map(user => {
                                                 return (
-                                                    // <div key={user.id}><Link to={`/users/${user.id}`}>{user.username}</Link></div>
                                                     <div className="searchpage-shelf-oneresult" key={user.id}>
                                                         <div className="searchpage-shelf-oneresult-2">
                                                             <div className="searchpage-shelf-oneresult-pic-container">

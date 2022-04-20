@@ -70,12 +70,6 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
 
-        # first_playlist = Playlist(
-        #     user_id=user.id,
-        #     name="My First Playlist"
-        # )
-        # db.session.add(first_playlist)
-        # db.session.commit()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

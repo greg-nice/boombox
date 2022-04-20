@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import session from './session';
 import playlistReducer from './playlist';
 import userPlaylistsReducer from './playlists';
-// import playlist_songsReducer from './playlist_songs';
 import queueReducer from './queue';
 import userReducer from './user';
 import followsReducer from './follows';
@@ -13,7 +12,6 @@ import followedPlaylistsReducer from './followedPlaylists';
 const rootReducer = combineReducers({
   session,
   playlist: playlistReducer,
-  // playlist_songs: playlist_songsReducer,
   userPlaylists: userPlaylistsReducer,
   queue: queueReducer,
   user: userReducer,

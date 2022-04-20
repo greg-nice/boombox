@@ -9,7 +9,6 @@
     padding-left: 16px;
     padding-top: 24px;
     padding-bottom: 48px;
-    /* overflow-y: scroll; */
     right: 0;
 }
 
@@ -25,7 +24,6 @@
     font-weight: 700;
     letter-spacing: -.04em;
     line-height: 36px;
-    
 }
 
 .homepage-h2 {
@@ -51,12 +49,6 @@
     flex-direction: column;
 }
 
-/* .cover-pic-container {
-    height: 165px;
-    width: 165px;
-    overflow:hidden;
-} */
-
 .playlist-cover {
     object-fit: cover;
     object-position: center center;
@@ -73,19 +65,10 @@
 
 .grid-container {
     display: flex;
-    /* grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
-    gap: 24px; */
     list-style-type: none;
     padding: 0;
     gap:1rem;
 }
-
-/* .playlist-row {
-    display:flex;
-    list-style-type: none;
-    padding: 0;
-    gap:1rem;
-} */
 
 .grid-item {
   display: flex;

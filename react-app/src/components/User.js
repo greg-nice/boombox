@@ -13,7 +13,6 @@ function User() {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
-      console.log(user);
     })();
   }, [userId]);
 
@@ -34,9 +33,6 @@ function User() {
       <li>
         <strong>Email</strong> {user.email}
       </li>
-      {/* <li>
-        <strong>Playlists</strong>{user.playlists && user.playlists.map(playlist => <p key={playlist}>{playlist}</p>)}
-      </li> */}
     </ul>
   );
 }

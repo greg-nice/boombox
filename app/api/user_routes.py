@@ -30,13 +30,5 @@ def user(id):
         return {}
 
 
-# #GET ALL OF ANY USER'S PLAYLISTS
-# @user_routes.route('/<int:id>/playlists')
-# def get_user_playlists(id):
-#     if id == current_user.id:
-#         playlists = Playlist.query.filter(Playlist.user_id == id).all()
-#     else:
-#         playlists = Playlist.query.filter(Playlist.user_id == id and Playlist.public == True).all()
-#     if playlists:
-#         return #stuff
+
 

@@ -11,7 +11,6 @@ const OneUser = () => {
     const [userLoaded, setUserLoaded] = useState(false);
     const user = useSelector(state => state.user);
     const sessionUser = useSelector(state => state.session.user);
-    // const followers = useSelector(state => state.follows.followers);
     const following = useSelector(state => state.follows.following);
     const history = useHistory();
 
@@ -132,8 +131,6 @@ const OneUser = () => {
                         </div>
                         <div className="library-grid-container homepage-grid">
                             {user.followers.length > 0 && user.followers.map(follower => {
-                                // return (
-                                //     <div key={follower.id}><Link to={`/users/${follower.id}`}>{follower.username}</Link><img src={follower.profile_pic}></img></div>
                                 return (
                                     <div className="library-item-container" key={follower.id} onClick={() => handleProfileClick(follower.id)}>
                                         <div className="library-item-content-container">
@@ -168,8 +165,6 @@ const OneUser = () => {
                         </div>
                         <div className="library-grid-container homepage-grid">
                             {user.following.length > 0 && user.following.map(followed => {
-                                // return (
-                                //     <div key={followed.id}><Link to={`/users/${followed.id}`}>{followed.username}</Link></div>
                                 return (
                                     <div className="library-item-container" key={followed.id} onClick={() => handleProfileClick(followed.id)}>
                                         <div className="library-item-content-container">

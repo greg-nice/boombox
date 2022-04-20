@@ -18,7 +18,6 @@ def validation_errors_to_error_messages(validation_errors):
 @search_routes.route('/', methods=["POST"])
 def results():
     form = SearchForm()
-    print("###############", form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         query = form.data["query"]
@@ -34,9 +33,7 @@ def results():
         songAlbums = Album.query.join(Song).filter(Song.title.in_([song.title for song in songs])).limit(5).options(joinedload(Album.songs)).all()
         albumArtists = Artist.query.join(Album).filter(Album.title.in_([album.title for album in albums])).limit(5).options(joinedload(Artist.albums)).all()
         albumSongs = Song.query.join(Album).filter(Album.title.in_([album.title for album in albums])).limit(5).options(joinedload(Song.album)).all()
-        # albumPlaylists = Playlist.query.join(Album).filter(Album.title.in_([album.title for album in albums])).limit(5).options(joinedload(Playlist.albums)).all()
-        # songPlaylists
-        # artistPlaylists
+
         songPlaylists = Playlist.query.join(Playlist_Song).filter(Playlist_Song.song_id.in_([song.id for song in songs])).limit(5).options(joinedload(Playlist.list_songs)).all()
         albumPlaylists = Playlist.query.join(Playlist_Song).join(Song).filter(Song.album_id.in_([album.id for album in albums])).limit(5).options(joinedload(Playlist.list_songs)).all()
         artistPlaylists = Playlist.query.join(Playlist_Song).join(Song).filter(Song.artist_id.in_([artist.id for artist in artists])).limit(5).options(joinedload(Playlist.list_songs)).all()

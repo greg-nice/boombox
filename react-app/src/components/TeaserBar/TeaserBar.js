@@ -1,8 +1,4 @@
-// import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-
-// Link to = {`/playlists/${playlist.id}`} ??
 import React from 'react';
 import './TeaserBar.css'
 

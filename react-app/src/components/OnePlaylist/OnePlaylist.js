@@ -28,7 +28,6 @@ const OnePlaylistView = () => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState("");
     const [photoEdit, setPhotoEdit] = useState(false);
-    // const [isLoaded, setIsLoaded] = useState(true);
 
     const handlePlaylistPlayClick = (playlist) => {
         (async () => {
@@ -112,16 +111,6 @@ const OnePlaylistView = () => {
             }
         })();
     }
-        // dispatch(addSuserPlaylistSong(playlistId, songId));
-        // if (Number(playlistId) === Number(playlist.id)) {
-            // setIsLoaded(false);
-        // }
-        // if (playlistId = playlist.id) {
-        //     dispatch(addPlaylistSong);
-        // } else {
-        //     dispatch(addSuserPlaylistSong(playlistId, songId));
-        // }
-        // DO MORE HERE??
 
     const handleDeletePlaylistSongClick = (playlistId, playlistSongId) => {
         (async () => {
@@ -170,17 +159,6 @@ const OnePlaylistView = () => {
         }
     }, [playlist.id, sessionUser]);
 
-    // useEffect(() => {
-    //     if (showPlaylistEditModal) {
-    //         document.addEventListener('click', handlePlaylistEditClick);
-    //         return () => {
-    //             document.removeEventListener('click', handlePlaylistEditClick)
-    //         }
-    //     } else {
-    //         return;
-    //     }
-    // }, [showPlaylistEditModal, handlePlaylistEditClick])
-
     const playlistDuration = (playlist) => {
         const duration = playlist.playlist_songs.reduce((accum, playlist_song) => {
             return accum += playlist_song.song.length;
@@ -193,7 +171,6 @@ const OnePlaylistView = () => {
     };
 
     const dateAdded = (datetimeObj) => {
-        // const now = new Date();
         const newObj = datetimeObj.split(" ").slice(1, 4);
         if (newObj[0][0] === "0") {
             newObj[0] = newObj[0].slice(1);
@@ -214,21 +191,6 @@ const OnePlaylistView = () => {
             await dispatch(getPlaylist(playlistId))
         })();
     }
-
-        //     duration += playlist_song.length;
-        //     console.log(playlist_song.song);
-        // }
-        // return `${Math.floor(duration / 60)} hours, ${duration % 60} seconds`
-    // }
-    // useEffect(() => {
-    //     if (!isLoaded) {
-    //         (async () => {
-    //             await dispatch(getPlaylist(playlistId));
-    //             setIsLoaded(true);
-
-    //         })();
-    //     }
-    // }, [dispatch, playlistId, isLoaded]);
 
     function gotoBottom(id) {
         var element = document.getElementById(id);
@@ -325,9 +287,7 @@ const OnePlaylistView = () => {
                                 <div className="playlist-image-container">
                                     <div className="playlist-image-container-2">
                                         <div className="playlist-image-container-3">
-
                                             {playlist.pic && <img className="playlist-image" src={playlist.pic} alt=""></img>}
-                                            {/* {!playlist.pic && <img className="playlist-image" src="https://media.discordapp.net/attachments/920418592820957228/921562711932948530/Picture1.jpg" alt=""></img>} */}
                                             {playlist.pic && sessionUser && sessionUser.id === playlist.user_id &&
                                                 <div className="edit-playlist-image-screen">
                                                     <div className="edit-playlist-image-screen-2" onClick={handleEditPhotoClick}>
@@ -391,13 +351,10 @@ const OnePlaylistView = () => {
                                         </h2>
                                         <div className="playlist-stats">
                                             <Link className="username-link" to={`/users/${playlist.user.id}`}><span id="username-span">{playlist.user.username}</span></Link>{Object.keys(playlist.list_followers).length !== 0 && <span id="playlist-stats"> • {Object.keys(playlist.list_followers).length} {Object.keys(playlist.list_followers).length === 1 ? "like" : "likes"}</span>}{playlist.playlist_songs.length > 0 && <span id="playlist-stats"> • {playlist.playlist_songs.length} {playlist.playlist_songs.length === 1 ? "song" : "songs"}, {playlistDuration(playlist)}</span>}
-                                            {/* {playlist.playlist_songs.length && playlist.playlist_songs.reduce()} */}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {/* {playlist.public} */}
-                            {/* <div>{playlist.playlist_songs}</div> */}
                             <div className="playlist-playbutton-section-container">
                                 <div className="action-bar-row">
                                     {sessionUser && <div className="playbutton-container" onClick={() => handlePlaylistPlayClick(playlist)}><span className="material-icons-outlined md-48" id="playlist-play-button-from-one-playlist">
@@ -427,7 +384,6 @@ const OnePlaylistView = () => {
                                     )}
                                     {sessionUser && sessionUser.id !== playlist.user_id && !playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleLikePlaylistClick()}>Follow</button></div>}
                                     {sessionUser && sessionUser.id !== playlist.user_id && playlist.list_followers[sessionUser.id] && <div><button className="following-button" onClick={() => handleUnlikePlaylistClick()}>Following</button></div>}
-                                    {/* {sessionUser && sessionUser.id === playlist.user_id && <div><button>[Make public]</button></div>} */}
                                     {sessionUser && sessionUser.id === playlist.user_id &&
                                         <div className="playlist-dropdown-button-container">
                                             <button className="playlist-dropdown-button" onClick={() => handlePlaylistMenuClick()}>
@@ -462,7 +418,6 @@ const OnePlaylistView = () => {
                                             {sessionUser && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId }))}><span className="menu-button-span">Add to queue</span></button></li>}
                                             <li className="menu-list-item"><Link className="menu-link" to={`/artists/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
                                             <li className="menu-list-item"><Link className="menu-link" to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li>
-                                            {/* <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li> */}
                                             {sessionUser && sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>}
                                             {sessionUser && <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>}
                                         </ul>
@@ -493,7 +448,6 @@ const OnePlaylistView = () => {
                                         <div className="row-element header"><div><span className="material-icons md-18">
                                             schedule
                                         </span></div></div>
-                                        {/* <div className="row-element header"><div>Options</div></div> */}
                                     </div>
                                 )}
                                 {sessionUser && playlist.playlist_songs.map(playlist_song => {
@@ -517,11 +471,7 @@ const OnePlaylistView = () => {
                                                     </span>
                                                     </button>
                                                 </div>}
-                                                {/* {showSongMenu && <SongMenu key={playlist_song.id} playlist={playlist} playlistSongId={playlistSongId} />} */}
                                             </div>
-                                            {/* <div className="row-element">
-                                                
-                                            </div> */}
                                         </div>
                                     )
                                 })}
@@ -541,9 +491,6 @@ const OnePlaylistView = () => {
                                             <div className="row-element">
                                                 <div className="song-length-text">{Math.floor(playlist_song.song.length / 60)}:{playlist_song.song.length % 60 >= 10 ? playlist_song.song.length % 60 : "0" + playlist_song.song.length % 60}</div>
                                             </div>
-                                            {/* <div className="row-element">
-                                                
-                                            </div> */}
                                         </div>
                                     )
                                 })}
@@ -640,18 +587,5 @@ const OnePlaylistView = () => {
         </div>
     )
 }
-
-//                 <div className='song-nav-dropdown-wrapper'>
-                    //     <div className='song-nav-dropdown'>
-                    //         <ul className='song-nav-menu-options-list'>
-                    //             {sessionUser && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleAddPlaylistSongToQueueClick(playlist.name, playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId}))}><span className="menu-button-span">Add to queue</span></button></li>}
-                    //             <li className="menu-list-item"><Link className="menu-link" to={`/artists/${playlist.playlist_songs.filter(playlist_song => {return playlist_song.id === playlistSongId})[0].song.artist_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to artist</span></button></Link></li>
-                    //             <li className="menu-list-item"><Link className="menu-link" to={`/albums/${playlist.playlist_songs.filter(playlist_song => { return playlist_song.id === playlistSongId })[0].song.album_id}`}><button className="menu-list-button"><span className="menu-button-span">Go to album</span></button></Link></li>
-                    //             <li className="menu-list-item"><button className="menu-list-button"><span className="menu-button-span">Save to your liked songs</span></button></li>
-                    //             {sessionUser && sessionUser.id === playlist.user_id && <li className="menu-list-item"><button className="menu-list-button" onClick={() => handleDeletePlaylistSongClick(playlist.id, playlistSongId)}><span className="menu-button-span">Remove from this playlist</span></button></li>}
-                    //             {sessionUser && <li className="menu-list-item"><button className="menu-list-button" id="playlist-song-button"><span className="menu-button-span">Add to playlist</span></button></li>}
-                    //         </ul>
-                    //     </div>
-                    // </div>
 
 export default OnePlaylistView;

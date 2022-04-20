@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import './OneArtist.css';
 
 
@@ -18,7 +17,6 @@ const OneArtist = () => {
                 const artist = await response.json();
                 setArtist(artist);
                 setArtistLoaded(true);
-                console.log(artist)
             }
         })();
     }, [artistId])
